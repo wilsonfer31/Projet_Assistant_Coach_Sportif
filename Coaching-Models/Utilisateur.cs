@@ -12,6 +12,7 @@ namespace Coaching_Models
         public string MotDePasse { get; set; }
         public string Prenom { get; set; }
         public string Tel { get; set; }
+        public string Mail { get; set; }
         public string Adresse { get; set; }
         public Ville Ville { get; set; }
         public List<GroupeChat> GroupeChats { get; set; }
