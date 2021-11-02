@@ -8,10 +8,6 @@ namespace Coaching_Models
 {
     public class NamedEntity : BaseEntity
     {
-        public NamedEntity(int id, string nom) : base(id)
-        {
-            Nom = nom;
-        }
 
         public string Nom { get; set; }
     }

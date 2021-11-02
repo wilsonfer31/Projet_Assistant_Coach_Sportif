@@ -50,7 +50,7 @@
     <Compile Include="GroupeChat.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Activite.cs" />
-    <Compile Include="Adresse.cs" />
+    <Compile Include="Ville.cs" />
     <Compile Include="Entities\NamedEntity.cs" />
     <Compile Include="Utilisateur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
