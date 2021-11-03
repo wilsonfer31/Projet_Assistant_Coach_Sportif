@@ -39,6 +39,19 @@ namespace CoachSportif.Controllers
         // GET: Utilisateurs/Create
         public ActionResult Create()
         {
+
+            List<SelectListItem> VilleSelect = new List<SelectListItem>();
+            foreach (Ville V in new List<Ville> 
+            {
+                new Ville {Id= 0, Nom = "Paris", CP = 75000},
+                new Ville {Id= 1, Nom = "Le Mans", CP = 72000},
+                new Ville {Id= 2, Nom = "Nantes", CP = 44000},
+                new Ville {Id= 3, Nom = "Toulouse", CP = 31000},
+            })
+            {
+                VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
+            }
+            ViewBag.SelectVille = VilleSelect;
             return View();
         }
 
@@ -47,15 +60,29 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Pseudo,MotDePasse,Prenom,Tel,Mail,Adresse,Nom")] Utilisateur utilisateur)
+        public ActionResult Create([Bind(Include = "Id,Pseudo,MotDePasse,Prenom,Tel,Mail,Adresse,Nom,Ville")] Utilisateur utilisateur, [Bind(Include = "Ville")] string ville)
         {
+            List<Ville> lv = new List<Ville>
+            {
+                new Ville {Id= 0, Nom = "Paris", CP = 75000},
+                new Ville {Id= 1, Nom = "Le Mans", CP = 72000},
+                new Ville {Id= 2, Nom = "Nantes", CP = 44000},
+                new Ville {Id= 3, Nom = "Toulouse", CP = 31000},
+            };
+            List<SelectListItem> VilleSelect = new List<SelectListItem>();
+            foreach (Ville V in lv)
+            {
+                VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
+                if (V.Id.ToString().Equals(ville)) utilisateur.Ville = V;
+            }
+            ViewBag.SelectVille = VilleSelect;
+
             if (ModelState.IsValid)
             {
                 db.Utilisateurs.Add(utilisateur);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(utilisateur);
         }
 
