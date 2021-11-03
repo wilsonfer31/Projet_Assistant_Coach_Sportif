@@ -3,5 +3,45 @@
     ViewBag.Title = "Index";
 }
 
+<link href="~/Content/StyleSheetCard.css" rel="stylesheet" />
 
+<br />
+<br />
+<nav class="nav">
+    <ul class="nav-list">
+        <li>
+            <a class="nav-link" href="#">Activités</a>
+        </li>
+        <li>
+            <a class="nav-link" href="#">Coaches</a>
+        </li>
+    </ul>
+</nav>
+
+<br />
+<h3>Les Activités disponibles dans votre ville</h3>
+@for (int i = 0; i < 2; i++)
+{
+
+    <div class="cards-container">
+        <article class="card">
+            <div class="card-header">
+                <img src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_960_720.jpg" alt="">
+            </div>
+            <div class="card-body">
+                <span class="tag tag-first">Shoes</span>
+                <h2>NIKE AIR MAX 90</h2>
+                <p>Un style percutant avec des tissus et des designs aux couleurs audacieuses.</p>
+            </div>
+            <div class="card-footer">
+                <span class="price">139,99€</span>
+                <div class="btn-card">
+                    <button type="button" name="button" class="noselect">Acheter</button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+}
 
