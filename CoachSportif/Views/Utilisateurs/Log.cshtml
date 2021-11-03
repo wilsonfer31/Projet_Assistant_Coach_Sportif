@@ -1,0 +1,37 @@
+﻿@model Coaching_Models.LogForm
+@{
+    ViewBag.Title = "Log";
+}
+
+
+@using (Html.BeginForm("CheckLogin", "Utilisateurs", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+    <h4>Connexion</h4>
+    <hr />
+
+    <div class="row gtr-uniform gtr-50" style="display:flex">
+        <div class="col-10 col-12-xsmall" style="margin:auto">
+            @Html.LabelFor(model => model.Pseudo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pseudo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pseudo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-10 col-12-xsmall"style="margin:auto">
+            @Html.LabelFor(model => model.MotDePasse, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-10 col-12-xsmall"style="margin:auto">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Connexion" class="btn btn-default" />
+            </div>
+        </div>
+    </div>}

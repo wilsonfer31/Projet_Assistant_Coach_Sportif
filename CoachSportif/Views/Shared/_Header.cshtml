@@ -7,7 +7,21 @@
             <li>@Html.ActionLink("Ville", "Index", "Ville")</li>
 
             <li><a href="elements.html">Elements</a></li>
-            <li class="button primary">@Html.ActionLink("Connexion", "Create", "Utilisateurs")</li>
+            @if (Session["user_id"] == null)
+            {
+                if (Session["logging"] != null)
+                {
+                    <li class="button primary">@Html.ActionLink("Inscription", "Create", "Utilisateurs")</li>
+                }
+                else
+                {
+                    <li class="button primary">@Html.ActionLink("Connexion", "Log", "Utilisateurs")</li>
+                }
+            }
+            else
+            {
+                <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
+            }
         </ul>
     </nav>
 </header>

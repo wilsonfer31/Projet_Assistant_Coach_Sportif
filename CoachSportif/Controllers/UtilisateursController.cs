@@ -39,7 +39,7 @@ namespace CoachSportif.Controllers
         // GET: Utilisateurs/Create
         public ActionResult Create()
         {
-
+            Session.Remove("logging");
             List<SelectListItem> VilleSelect = new List<SelectListItem>();
             foreach (Ville V in new List<Ville> 
             {
@@ -81,7 +81,8 @@ namespace CoachSportif.Controllers
             {
                 db.Utilisateurs.Add(utilisateur);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Session["logging"] = true;
+                return RedirectToAction("Log");
             }
             return View(utilisateur);
         }
@@ -150,6 +151,83 @@ namespace CoachSportif.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Log()
+        {
+            Session["logging"] = true;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckLogin(LogForm user)
+        {
+            string msgErreur = "Echec authentification";
+
+            if (ModelState.IsValid)
+            {
+
+                Utilisateur userDB = null;
+                Coach coach = db.Coaches.SingleOrDefault(u => u.Utilisateur.Pseudo.Equals(user.Pseudo));
+                if(coach == null)
+                {
+                    userDB = db.Utilisateurs.SingleOrDefault(u => u.Pseudo.Equals(user.Pseudo));
+                }
+                else
+                {
+                    userDB = coach.Utilisateur;
+                }
+                if (userDB != null)
+                {
+                    if (userDB.MotDePasse.Equals(user.MotDePasse))
+                    {
+                        /*
+                         * Session est un objet (dictionnaire crée côté serveur), accessible par l'ensemble des contrôleurs
+                         * (idem vues) disponible tant que l'application est en cours d'execution
+                         * Une session possède une durée par defaut limitée à 20min
+                         */
+                        if (coach != null)
+                        {
+                            Session["coach_id"] = coach.Id;  //Enregistrement de userDB.Admin dans la session
+                        }
+                        Session["user_id"] = userDB.Id;
+
+                        //Session.Timeout = 1; //Permet de limiter la durée de la session à 1 min*
+                        Session.Remove("logging");
+                        return RedirectToAction("Index","Ville");
+                    }
+                    else
+                    {
+                        ViewBag.Error = msgErreur;
+                    }
+                }
+                else
+                {
+                    ViewBag.Error = msgErreur;
+                }
+            }
+            else
+            {
+                ViewBag.Error = msgErreur;
+            }
+
+            Session.Remove("logging");
+
+            return RedirectToAction("Log");
+        }
+
+        public ActionResult Logout()
+        {
+            //Vider le contenu de la clé user_id définie dans la session
+            Session.Remove("user_id");
+
+            Session.Remove("coach_id");
+
+            //Pour vider tout le conteni de la session 
+            //Session.RemoveAll();
+
+            return RedirectToAction("Index","Home");
         }
     }
 }
