@@ -6,91 +6,17 @@
     <link href="~/Content/main.css" rel="stylesheet" />
     <link href="~/Content/noscript.css" rel="stylesheet" />
     <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+
 </head>
 <body class="is-preload landing">
     <div id="page-wrapper">
 
-        <!-- Header -->
-        <header id="header">
-            <h1 id="logo"><a href="index.html">Landed</a></h1>
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li>@Html.ActionLink("Ville", "Index", "Ville")</li>
-                   
-                    <li><a href="elements.html">Elements</a></li>
-                    <li><a href="#" class="button primary">Sign Up</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Banner -->
-        <section id="banner">
-            <div class="content">
-                <header>
-                    <h2>The future has landed</h2>
-                    <p>
-                        And there are no hoverboards or flying cars.<br />
-                        Just apps. Lots of mother flipping apps.
-                    </p>
-                </header>
-                <span class="image"><img src="images/pic01.jpg" alt="" /></span>
-            </div>
-            <a href="#one" class="goto-next scrolly">Next</a>
-        </section>
-
-        <!-- One -->
-        <section id="one" class="spotlight style1 bottom">
-            <span class="image fit main"><img src="images/pic02.jpg" alt="" /></span>
-            <div class="content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-4 col-12-medium">
-                            <header>
-                                <h2>Odio faucibus ipsum integer consequat</h2>
-                                <p>Nascetur eu nibh vestibulum amet gravida nascetur praesent</p>
-                            </header>
-                        </div>
-                        @RenderBody()
+        @Html.Partial("_Header");
 
 
-                    </div>
-                </div>
-            </div>
-            <a href="#two" class="goto-next scrolly">Next</a>
-        </section>
-
-        <!-- Two -->
-        <section id="two" class="spotlight style2 right">
-            <span class="image fit main"><img src="images/pic03.jpg" alt="" /></span>
-            <div class="content">
-                <header>
-                    <h2>Interdum amet non magna accumsan</h2>
-                    <p>Nunc commodo accumsan eget id nisi eu col volutpat magna</p>
-                </header>
-                <p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Learn More</a></li>
-                </ul>
-            </div>
-            <a href="#three" class="goto-next scrolly">Next</a>
-        </section>
-
-        <!-- Three -->
-        <section id="three" class="spotlight style3 left">
-            <span class="image fit main bottom"><img src="images/pic04.jpg" alt="" /></span>
-            <div class="content">
-                <header>
-                    <h2>Interdum felis blandit praesent sed augue</h2>
-                    <p>Accumsan integer ultricies aliquam vel massa sapien phasellus</p>
-                </header>
-                <p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Learn More</a></li>
-                </ul>
-            </div>
-            <a href="#four" class="goto-next scrolly">Next</a>
-        </section>
+        <div>
+            @RenderBody()
+        </div>
 
         <!-- Four -->
         <section id="four" class="wrapper style1 special fade-up">
@@ -157,51 +83,24 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer id="footer">
-            <ul class="icons">
-                <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-                <li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; Untitled. All rights reserved.</li>
-                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-            </ul>
-        </footer>
+        @Html.Partial("_Footer")
 
     </div>
 
     <!-- Scripts -->
-
-    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.intellisense.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.slim.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
-    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/breakpoints.min.js"></script>
+    <script src="~/Scripts/browser.min.js"></script>
+    <script src="~/Scripts/jquery.scrollex.min.js"></script>
+    <script src="~/Scripts/jquery.scrolly.min.js"></script>
     <script src="~/Scripts/main.js"></script>
-    <a href="~/Scripts/jquery-3.4.1.min.map">~/Scripts/jquery-3.4.1.min.map</a>
-    <a href="~/Scripts/jquery-3.4.1.slim.min.map">~/Scripts/jquery-3.4.1.slim.min.map</a>
+    <script src="~/Scripts/util.js"></script>
+    <script src="~/Scripts/jquery.dropotron.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+
+@*    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+   @* @RenderSection("scripts", required: false)*@
 
 </body>
-</html> application ASP.NET</p>
-        </footer>
-    </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
-</body>
 </html>
