@@ -49,6 +49,7 @@
     <Compile Include="Entities\DescribedEntity.cs" />
     <Compile Include="Entities\IllustratedEntity.cs" />
     <Compile Include="GroupeChat.cs" />
+    <Compile Include="LogForm.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Activite.cs" />
     <Compile Include="Ville.cs" />
