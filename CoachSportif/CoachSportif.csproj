@@ -141,6 +141,7 @@
       <DependentUpon>202111021547410_InitaModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\MailForm.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
