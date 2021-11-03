@@ -20,7 +20,7 @@ namespace CoachSportif
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js", "~/Scripts/jquery.min.js", "~/Scripts/jquery.scrolly.min.js" , "~/Scripts/jquery.dropotron.min.js", "~/Scripts/jquery.scrollex.min.js", "~/Scripts/browser.min.js", "~/Scripts/breakpoints.min.js", "~/Scripts/util.js", "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
