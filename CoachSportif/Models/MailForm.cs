@@ -12,9 +12,12 @@ namespace CoachSportif.Models
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
         public string Mail { get; set; }
-        [Required]
 
+        [Required]
         public string Sujet { get; set; }
+
+        [Required]
+        public string Telephone { get; set; }
 
 
         [Required]

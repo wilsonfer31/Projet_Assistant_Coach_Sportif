@@ -23,13 +23,20 @@ namespace CoachSportif.Controllers
             return View();
         }
 
+        public ActionResult Contact()
+        {
+
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Contact(MailForm form)
         {
             if (ModelState.IsValid)
             {
-                MailMessage msg = new MailMessage(form.Mail, "tahmi.ma222@gmail.com", form.Sujet, form.Contenu);
-                msg.CC.Add("tahmi.ma222@gmail.com");
+                MailMessage msg = new MailMessage(form.Mail, "claudeaziz8@gmail.com", form.Sujet, form.Contenu);
+                msg.CC.Add("claudeaziz8@gmail.com");
 
                 //Instanciation du client: On se connecte au serveur SMTP gmail
                 //Provider Gmail
