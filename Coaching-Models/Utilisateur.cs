@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Coaching_Models
 {
@@ -23,7 +19,7 @@ namespace Coaching_Models
         [DataType(DataType.EmailAddress)]
         public string Mail { get; set; }
         public string Adresse { get; set; }
-        
+
         [Required]
         public Ville Ville { get; set; }
         public List<GroupeChat> GroupeChats { get; set; }

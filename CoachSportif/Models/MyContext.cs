@@ -1,7 +1,5 @@
 ﻿using Coaching_Models;
-using System;
 using System.Data.Entity;
-using System.Linq;
 
 namespace CoachSportif.Models
 {

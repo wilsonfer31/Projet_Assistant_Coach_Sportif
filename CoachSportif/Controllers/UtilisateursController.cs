@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Coaching_Models;
+using CoachSportif.Models;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using CoachSportif.Models;
-using Coaching_Models;
 
 namespace CoachSportif.Controllers
 {
@@ -41,7 +38,7 @@ namespace CoachSportif.Controllers
         {
             Session.Remove("logging");
             List<SelectListItem> VilleSelect = new List<SelectListItem>();
-            foreach (Ville V in new List<Ville> 
+            foreach (Ville V in new List<Ville>
             {
                 new Ville {Id= 0, Nom = "Paris", CP = 75000},
                 new Ville {Id= 1, Nom = "Le Mans", CP = 72000},
@@ -170,7 +167,7 @@ namespace CoachSportif.Controllers
 
                 Utilisateur userDB = null;
                 Coach coach = db.Coaches.SingleOrDefault(u => u.Utilisateur.Pseudo.Equals(user.Pseudo));
-                if(coach == null)
+                if (coach == null)
                 {
                     userDB = db.Utilisateurs.SingleOrDefault(u => u.Pseudo.Equals(user.Pseudo));
                 }
@@ -195,7 +192,7 @@ namespace CoachSportif.Controllers
 
                         //Session.Timeout = 1; //Permet de limiter la durée de la session à 1 min*
                         Session.Remove("logging");
-                        return RedirectToAction("Index","Ville");
+                        return RedirectToAction("Index", "Ville");
                     }
                     else
                     {
@@ -227,7 +224,7 @@ namespace CoachSportif.Controllers
             //Pour vider tout le conteni de la session 
             //Session.RemoveAll();
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
