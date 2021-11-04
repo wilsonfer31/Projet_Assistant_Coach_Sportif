@@ -151,15 +151,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fontawesome-all.min.css" />
-    <Content Include="Content\images\banner.jpg" />
-    <Content Include="Content\images\pic01.jpg" />
-    <Content Include="Content\images\pic02.jpg" />
-    <Content Include="Content\images\pic03.jpg" />
-    <Content Include="Content\images\pic04.jpg" />
-    <Content Include="Content\images\pic05.jpg" />
-    <Content Include="Content\images\pic06.jpg" />
-    <Content Include="Content\images\pic07.jpg" />
-    <Content Include="Content\images\pic08.jpg" />
+    <Content Include="Content\images\AllSportLogo.png" />
+    <Content Include="Content\images\BackgroundAccueil.jpg" />
+    <Content Include="Content\images\colorrun.jpg" />
+    <Content Include="Content\images\cyclisme.jpg" />
+    <Content Include="Content\images\ligneDeDepart.jpg" />
+    <Content Include="Content\images\willCoachSoonLogo.png" />
+    <Content Include="Content\images\yoga.jpg" />
     <Content Include="Content\main.css" />
     <Content Include="Content\noscript.css" />
     <Content Include="Content\StyleSheetCard.css" />
@@ -216,7 +214,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Ville\Index.cshtml" />
     <Content Include="Views\Coach\Index.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
@@ -231,6 +228,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Utilisateurs\Log.cshtml" />
     <Content Include="Views\Ville\Cards.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
