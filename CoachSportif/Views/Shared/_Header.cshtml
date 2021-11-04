@@ -23,7 +23,7 @@
 
             else
             {
-                <li>@Html.ActionLink("Mon profil", "Details", "Utilisateurs", Session["user_id"])</li>
+                <li>@Html.ActionLink("Mon profil", "Details", "Utilisateurs", new { id = Session["user_id"] }, null)</li>
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
             }
         </ul>
