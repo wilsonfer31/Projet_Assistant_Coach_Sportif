@@ -128,9 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\CommunautéController.cs" />
-    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MonProfilController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Controllers\VilleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -216,8 +214,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Ville\Index.cshtml" />
     <Content Include="Views\Coach\Index.cshtml" />
-    <Content Include="Views\Contacts\Index.cshtml" />
-    <Content Include="Views\MonProfil\Index.cshtml" />
     <Content Include="Views\Communauté\Index.cshtml" />
     <Content Include="Views\Utilisateurs\Create.cshtml" />
     <Content Include="Views\Utilisateurs\Delete.cshtml" />

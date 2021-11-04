@@ -3,12 +3,12 @@
     <h1 id="logo"> <img src="~/Content/images/willCoachSoonLogo.png" height="80px" /> </h1>
     <nav id="nav">
         <ul>
-            
+
             <li>@Html.ActionLink("Home", "", "Home")</li>
             <li>@Html.ActionLink("Ville", "Index", "Ville")</li>
             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-            <li><a href="elements.html">Elements</a></li>
+
             @if (Session["user_id"] == null)
             {
                 if (Session["logging"] != null)
@@ -20,8 +20,10 @@
                     <li class="button primary">@Html.ActionLink("Connexion", "Log", "Utilisateurs")</li>
                 }
             }
+
             else
             {
+                <li>@Html.ActionLink("Mon profil", "Details", "Utilisateurs", Session["user_id"])</li>
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
             }
         </ul>
