@@ -174,66 +174,32 @@ namespace CoachSportif.Controllers
 
             if (ModelState.IsValid)
             {
-
                 Utilisateur userDB = null;
                 Coach coach = db.Coaches.SingleOrDefault(u => u.Utilisateur.Pseudo.Equals(user.Pseudo));
-                if (coach == null)
-                {
-                    userDB = db.Utilisateurs.SingleOrDefault(u => u.Pseudo.Equals(user.Pseudo));
-                }
-                else
-                {
-                    userDB = coach.Utilisateur;
-                }
+                if (coach == null) userDB = db.Utilisateurs.SingleOrDefault(u => u.Pseudo.Equals(user.Pseudo));
+                else userDB = coach.Utilisateur;
                 if (userDB != null)
                 {
                     if (userDB.MotDePasse.Equals(user.MotDePasse))
                     {
-                        /*
-                         * Session est un objet (dictionnaire crée côté serveur), accessible par l'ensemble des contrôleurs
-                         * (idem vues) disponible tant que l'application est en cours d'execution
-                         * Une session possède une durée par defaut limitée à 20min
-                         */
-                        if (coach != null)
-                        {
-                            Session["coach_id"] = coach.Id;  //Enregistrement de userDB.Admin dans la session
-                        }
+                        if (coach != null)Session["coach_id"] = coach.Id;
                         Session["user_id"] = userDB.Id;
-
-                        //Session.Timeout = 1; //Permet de limiter la durée de la session à 1 min*
+                        if (userDB.Admin) Session["admin"] = userDB.Admin;
                         Session.Remove("logging");
                         return RedirectToAction("Index", "Ville");
                     }
-                    else
-                    {
-                        ViewBag.Error = msgErreur;
-                    }
+                    else ViewBag.Error = msgErreur;
                 }
-                else
-                {
-                    ViewBag.Error = msgErreur;
-                }
+                else ViewBag.Error = msgErreur;
             }
-            else
-            {
-                ViewBag.Error = msgErreur;
-            }
-
+            else ViewBag.Error = msgErreur;
             Session.Remove("logging");
-
             return RedirectToAction("Log");
         }
 
         public ActionResult Logout()
         {
-            //Vider le contenu de la clé user_id définie dans la session
-            Session.Remove("user_id");
-
-            Session.Remove("coach_id");
-
-            //Pour vider tout le conteni de la session 
-            //Session.RemoveAll();
-
+            Session.RemoveAll();
             return RedirectToAction("Index", "Home");
         }
     }

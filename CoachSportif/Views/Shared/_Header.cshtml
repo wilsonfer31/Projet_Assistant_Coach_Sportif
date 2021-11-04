@@ -24,6 +24,16 @@
             else
             {
                 <li>@Html.ActionLink("Mon profil", "Details", "Utilisateurs", new { id = Session["user_id"] }, null)</li>
+                if (Session["admin"] != null)
+                {
+                    <li> Administration
+                        <ul class="dropdown">
+                            <li class="button primary">@Html.ActionLink("Gestion des Utilisateurs", "Index", "Utilisateurs")</li>
+                            <li class="button primary">@Html.ActionLink("Gestion des Activités", "Index", "Activites")</li>
+                            <li class="button primary">@Html.ActionLink("Gestion des Cours", "Index", "Cours")</li>
+                        </ul>
+                    </li>
+                }
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
             }
         </ul>

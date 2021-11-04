@@ -126,8 +126,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ActivitesController.cs" />
+    <Compile Include="Controllers\CategorieActivitesController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\CommunautéController.cs" />
+    <Compile Include="Controllers\CoursController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Controllers\VilleController.cs" />
@@ -137,6 +140,10 @@
     <Compile Include="Migrations\202111021547410_InitaModel.cs" />
     <Compile Include="Migrations\202111021547410_InitaModel.Designer.cs">
       <DependentUpon>202111021547410_InitaModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111041347498_Gestion_Admin.cs" />
+    <Compile Include="Migrations\202111041347498_Gestion_Admin.Designer.cs">
+      <DependentUpon>202111041347498_Gestion_Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MailForm.cs" />
@@ -225,6 +232,21 @@
     <Content Include="Views\Utilisateurs\Log.cshtml" />
     <Content Include="Views\Ville\Cards.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Activites\Create.cshtml" />
+    <Content Include="Views\Activites\Delete.cshtml" />
+    <Content Include="Views\Activites\Details.cshtml" />
+    <Content Include="Views\Activites\Edit.cshtml" />
+    <Content Include="Views\Activites\Index.cshtml" />
+    <Content Include="Views\CategorieActivites\Create.cshtml" />
+    <Content Include="Views\CategorieActivites\Delete.cshtml" />
+    <Content Include="Views\CategorieActivites\Details.cshtml" />
+    <Content Include="Views\CategorieActivites\Edit.cshtml" />
+    <Content Include="Views\CategorieActivites\Index.cshtml" />
+    <Content Include="Views\Cours\Create.cshtml" />
+    <Content Include="Views\Cours\Delete.cshtml" />
+    <Content Include="Views\Cours\Details.cshtml" />
+    <Content Include="Views\Cours\Edit.cshtml" />
+    <Content Include="Views\Cours\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -251,6 +273,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111021547410_InitaModel.resx">
       <DependentUpon>202111021547410_InitaModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111041347498_Gestion_Admin.resx">
+      <DependentUpon>202111041347498_Gestion_Admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
