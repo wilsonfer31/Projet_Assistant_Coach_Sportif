@@ -1,6 +1,8 @@
-﻿@model Coaching_Models.Utilisateur
+﻿
+@model Coaching_Models.Utilisateur
 
 @{
+    List<Coaching_Models.Cours> lstCours = new List<Coaching_Models.Cours>();
     ViewBag.Title = "Details";
 }
 
@@ -15,56 +17,78 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Pseudo)
+            <div style="border: solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
+                @Html.DisplayFor(model => model.Pseudo)
+            </div>
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.MotDePasse)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MotDePasse)
+            <div style="border:solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
+                @Html.DisplayFor(model => model.MotDePasse)
+            </div>
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Prenom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Prenom)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Mail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Mail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Adresse)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Adresse)
-        </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Nom)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nom)
+            <div style="border:solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
+                @Html.DisplayFor(model => model.Nom)
+            </div>
         </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+
+        <dd>
+            <div style="border:solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
+                @Html.DisplayFor(model => model.Prenom)
+            </div>
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+
+        <dd>
+            <div style="border: solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
+                @Html.DisplayFor(model => model.Tel)
+            </div>
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            <div style="border: solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
+                @Html.DisplayFor(model => model.Mail)
+            </div>
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            <div style="border:solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
+                @Html.DisplayFor(model => model.Adresse)
+            </div>
+        </dd>
+
+
 
     </dl>
 </div>
@@ -79,43 +103,31 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Description</th>
-                <th>Price</th>
+                <th>NomCoach</th>
+                <th>PrenomCoach</th>
+                <th>TelCoach</th>
+                <th>MailCoach</th>
+                <th>Cours</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Item 1</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
+                @foreach (Coaching_Models.Cours cour in lstCours)
+                {
+                    <td>@cour.Id</td>
+                    <td>@cour.Coach.Utilisateur.Nom</td>
+                    <td>@cour.Coach.Utilisateur.Prenom</td>
+                    <td>@cour.Coach.Utilisateur.Tel </td>
+                    <td>@cour.Coach.Utilisateur.Mail</td>
+                    <td>@cour.Activite.Nom</td>
+                    <td>@cour.DateCours</td>
+
+                }
             </tr>
-            <tr>
-                <td>Item 2</td>
-                <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                <td>19.99</td>
-            </tr>
-            <tr>
-                <td>Item 3</td>
-                <td> Morbi faucibus arcu accumsan lorem.</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>Item 4</td>
-                <td>Vitae integer tempus condimentum.</td>
-                <td>19.99</td>
-            </tr>
-            <tr>
-                <td>Item 5</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-            </tr>
+
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="2"></td>
-                <td>100.00</td>
-            </tr>
-        </tfoot>
+       
     </table>
 </div>
-    </div>
+
