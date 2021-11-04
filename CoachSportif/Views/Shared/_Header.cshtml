@@ -26,7 +26,8 @@
                 <li>@Html.ActionLink("Mon profil", "Details", "Utilisateurs", new { id = Session["user_id"] }, null)</li>
                 if (Session["admin"] != null)
                 {
-                    <li> Administration
+                    <li>
+                        Administration
                         <ul class="dropdown">
                             <li class="button primary">@Html.ActionLink("Gestion des Utilisateurs", "Index", "Utilisateurs")</li>
                             <li class="button primary">@Html.ActionLink("Gestion des Activités", "Index", "Activites")</li>
@@ -34,6 +35,7 @@
                         </ul>
                     </li>
                 }
+                <li>@Html.ActionLink("Community", "Index", "Communauté")</li>
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
             }
         </ul>
