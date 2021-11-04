@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormsModel\EditForm.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="CategorieActivite.cs" />
     <Compile Include="Coach.cs" />
@@ -49,9 +50,10 @@
     <Compile Include="Entities\DescribedEntity.cs" />
     <Compile Include="Entities\IllustratedEntity.cs" />
     <Compile Include="GroupeChat.cs" />
-    <Compile Include="LogForm.cs" />
+    <Compile Include="FormsModel\LogForm.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Activite.cs" />
+    <Compile Include="FormsModel\RegisterForm.cs" />
     <Compile Include="Ville.cs" />
     <Compile Include="Entities\NamedEntity.cs" />
     <Compile Include="Utilisateur.cs" />

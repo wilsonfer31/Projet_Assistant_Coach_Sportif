@@ -38,13 +38,7 @@ namespace CoachSportif.Controllers
         {
             Session.Remove("logging");
             List<SelectListItem> VilleSelect = new List<SelectListItem>();
-            foreach (Ville V in new List<Ville>
-            {
-                new Ville {Id= 0, Nom = "Paris", CP = 75000},
-                new Ville {Id= 1, Nom = "Le Mans", CP = 72000},
-                new Ville {Id= 2, Nom = "Nantes", CP = 44000},
-                new Ville {Id= 3, Nom = "Toulouse", CP = 31000},
-            })
+            foreach (Ville V in db.Villes)
             {
                 VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
             }
@@ -57,46 +51,53 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Pseudo,MotDePasse,Prenom,Tel,Mail,Adresse,Nom,Ville")] Utilisateur utilisateur, [Bind(Include = "Ville")] string ville)
+        public ActionResult Create(RegisterForm registerForm)
         {
-            List<Ville> lv = new List<Ville>
-            {
-                new Ville {Id= 0, Nom = "Paris", CP = 75000},
-                new Ville {Id= 1, Nom = "Le Mans", CP = 72000},
-                new Ville {Id= 2, Nom = "Nantes", CP = 44000},
-                new Ville {Id= 3, Nom = "Toulouse", CP = 31000},
-            };
-            List<SelectListItem> VilleSelect = new List<SelectListItem>();
-            foreach (Ville V in lv)
-            {
-                VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
-                if (V.Id.ToString().Equals(ville)) utilisateur.Ville = V;
-            }
-            ViewBag.SelectVille = VilleSelect;
-
             if (ModelState.IsValid)
             {
+                Utilisateur utilisateur = new Utilisateur
+                {
+                    Pseudo = registerForm.Pseudo,
+                    MotDePasse = registerForm.MotDePasse,
+                    Mail = registerForm.Mail
+                };
+                List<SelectListItem> VilleSelect = new List<SelectListItem>();
+                foreach (Ville V in db.Villes)
+                {
+                    VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
+                    if (V.Id.ToString().Equals(registerForm.Ville)) utilisateur.Ville = V;
+                }
+                ViewBag.SelectVille = VilleSelect;
                 db.Utilisateurs.Add(utilisateur);
                 db.SaveChanges();
                 Session["logging"] = true;
                 return RedirectToAction("Log");
             }
-            return View(utilisateur);
+            return View(registerForm);
         }
 
         // GET: Utilisateurs/Edit/5
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Utilisateur utilisateur = db.Utilisateurs.Find(id);
+            Utilisateur utilisateur = db.Utilisateurs.Include(u => u.Ville).SingleOrDefault(u => u.Id == id);
             if (utilisateur == null)
             {
                 return HttpNotFound();
             }
-            return View(utilisateur);
+            List<SelectListItem> VilleSelect = new List<SelectListItem>();
+            foreach (Ville V in db.Villes)
+            {
+                SelectListItem sli = new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() };
+                if (V.Id.ToString().Equals(utilisateur.Ville.Id.ToString())) sli.Selected = true;
+                VilleSelect.Add(sli);
+            }
+            ViewBag.SelectVille = VilleSelect;
+            return View(new EditForm(utilisateur));
         }
 
         // POST: Utilisateurs/Edit/5
@@ -104,15 +105,24 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Pseudo,MotDePasse,Prenom,Tel,Mail,Adresse,Nom")] Utilisateur utilisateur)
+        public ActionResult Edit(EditForm editForm)
         {
+            List<SelectListItem> VilleSelect = new List<SelectListItem>();
+            Utilisateur utilisateur = db.Utilisateurs.Include(u => u.Ville).SingleOrDefault(u => u.Id == editForm.Id);
+            foreach (Ville V in db.Villes)
+            {
+                VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
+                if (V.Id.ToString().Equals(editForm.Ville)) utilisateur.Ville = V;
+            }
             if (ModelState.IsValid)
             {
-                db.Entry(utilisateur).State = EntityState.Modified;
+                utilisateur.UpdateFromForm(editForm);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details",new { id = utilisateur.Id });
             }
-            return View(utilisateur);
+            ViewBag.SelectVille = VilleSelect;
+            return View(editForm);
+            
         }
 
         // GET: Utilisateurs/Delete/5

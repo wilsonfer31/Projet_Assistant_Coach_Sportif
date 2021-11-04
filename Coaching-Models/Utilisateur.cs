@@ -24,5 +24,15 @@ namespace Coaching_Models
         public Ville Ville { get; set; }
         public List<GroupeChat> GroupeChats { get; set; }
         public List<Cours> CoursSuivis { get; set; }
+
+        public void UpdateFromForm(EditForm ef)
+        {
+            Pseudo = ef.Pseudo;
+            Nom = ef.Nom;
+            Prenom = ef.Prenom;
+            Tel = ef.Tel;
+            Mail = ef.Mail;
+            Adresse = ef.Adresse;
+        }
     }
 }
