@@ -128,7 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActivitesController.cs" />
     <Compile Include="Controllers\CategorieActivitesController.cs" />
-    <Compile Include="Controllers\CoachController.cs" />
+    <Compile Include="Controllers\CoachesController.cs" />
     <Compile Include="Controllers\CommunautéController.cs" />
     <Compile Include="Controllers\CoursController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -247,6 +247,11 @@
     <Content Include="Views\Cours\Details.cshtml" />
     <Content Include="Views\Cours\Edit.cshtml" />
     <Content Include="Views\Cours\Index.cshtml" />
+    <Content Include="Views\Coaches\Create.cshtml" />
+    <Content Include="Views\Coaches\Delete.cshtml" />
+    <Content Include="Views\Coaches\Details.cshtml" />
+    <Content Include="Views\Coaches\Edit.cshtml" />
+    <Content Include="Views\Coaches\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

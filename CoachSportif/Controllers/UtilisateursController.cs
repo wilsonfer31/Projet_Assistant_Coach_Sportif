@@ -15,7 +15,7 @@ namespace CoachSportif.Controllers
         // GET: Utilisateurs
         public ActionResult Index()
         {
-            return View(db.Utilisateurs.ToList());
+            return View(db.Utilisateurs.Include(u => u.Ville).ToList());
         }
 
         // GET: Utilisateurs/Details/5
@@ -201,6 +201,14 @@ namespace CoachSportif.Controllers
         {
             Session.RemoveAll();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AdminState(int id)
+        {
+            Utilisateur utilisateur = db.Utilisateurs.Find(id);
+            utilisateur.Admin = !utilisateur.Admin;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

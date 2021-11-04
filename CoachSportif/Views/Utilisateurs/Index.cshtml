@@ -4,8 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -15,55 +13,56 @@
             @Html.DisplayNameFor(model => model.Pseudo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MotDePasse)
+            @Html.DisplayNameFor(model => model.Nom)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Prenom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tel)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Mail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Adresse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nom)
+            @Html.DisplayNameFor(model => model.Ville)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pseudo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MotDePasse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prenom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adresse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pseudo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Prenom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mail)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ville.Nom)
+    </td>
+    <td>
+
+        @if ((int)Session["user_id"] == item.Id)
+        {
+            @Html.ActionLink("Editer", "Edit", new { id = item.Id })
+        }
+        @if ((int)Session["user_id"] == item.Id && (bool)Session["admin"])
+        {
+            <span> | </span>
+        }
+        @if ((bool)Session["admin"])
+        {
+            if (item.Admin) { @Html.ActionLink("Supprimer Droits Admin", "AdminState", new { id = item.Id })}
+            else { @Html.ActionLink("Donner Droits Admin", "AdminState", new { id = item.Id })}
+            <span> | </span>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        }
+    </td>
+</tr>
 }
 
 </table>
