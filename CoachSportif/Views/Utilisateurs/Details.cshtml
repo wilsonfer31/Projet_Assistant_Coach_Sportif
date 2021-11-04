@@ -113,9 +113,11 @@
         </thead>
         <tbody>
             <tr>
+                @{ int i = 1; }
                 @foreach (Coaching_Models.Cours cour in lstCours)
                 {
-                    <td>@cour.Id</td>
+
+                    <td>@i</td>
                     <td>@cour.Coach.Utilisateur.Nom</td>
                     <td>@cour.Coach.Utilisateur.Prenom</td>
                     <td>@cour.Coach.Utilisateur.Tel </td>
@@ -123,11 +125,13 @@
                     <td>@cour.Activite.Nom</td>
                     <td>@cour.DateCours</td>
 
+                    i++; 
+
                 }
             </tr>
 
         </tbody>
-       
+
     </table>
 </div>
 
