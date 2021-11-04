@@ -1,4 +1,8 @@
-﻿@model Coaching_Models.GroupeChat
+﻿
+
+@model Coaching_Models.Message
+
+
 
 
 
@@ -13,10 +17,10 @@
 
             <ul>
 
-              @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
+                @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
 
 
-              {
+                {
                     <li>
                         <div>
                             <h2>@item.Nom</h2>
@@ -35,7 +39,7 @@
                 <li>
                     <div>
                         <p>
-                            @Html.ActionLink("Ajouter un chat", "CreateNewChat" , "Communauté")
+                            @Html.ActionLink("Ajouter un chat", "CreateNewChat", "Communauté")
                             <br />
                             +
                         </p>
@@ -92,8 +96,8 @@
 
             </ul>
             <footer>
-                @Html.TextAreaFor(model => model.ChatMessages, htmlAttributes: new { @class = "control-label col-md-2" })
-                <a><input type="submit" value="Send" class="btn primary" /></a>
+                @Html.TextAreaFor(model => model.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+                Connected as:  @ViewBag.userName <a><input type="submit" value="Send" class="btn primary" /></a>
 
             </footer>
         </main>
