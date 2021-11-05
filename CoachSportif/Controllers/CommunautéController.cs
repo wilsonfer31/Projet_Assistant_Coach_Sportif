@@ -17,8 +17,7 @@ namespace CoachSportif.Controllers
         // GET: Communauté
         public ActionResult Index(int? id)
         {
-            var intSession = 5;
-           // var intSession = int.Parse(Session["user_id"].ToString());
+            var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur userinfo = myContext.Utilisateurs.Find(intSession);
 
             ViewBag.Messages = myContext.Messages.ToList();
@@ -40,8 +39,7 @@ namespace CoachSportif.Controllers
         [HttpPost]
         public ActionResult Index(ViewModelChatGroupMessages viewModelChatGroupMessages)
         {
-            var intSession = 5;
-            // var intSession = int.Parse(Session["user_id"].ToString());
+         var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
             ViewBag.GroupeChats = myContext.GroupeChats.Include(gc => gc.Membres);
 
@@ -80,8 +78,7 @@ namespace CoachSportif.Controllers
         [HttpPost]
         public ActionResult CreateNewChat(GroupeChat groupeChat)
         {
-            var intSession = 5;
-            //var intSession = int.Parse(Session["user_id"].ToString());
+           var intSession = int.Parse(Session["user_id"].ToString());
 
 
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
@@ -99,5 +96,36 @@ namespace CoachSportif.Controllers
             }
             return View(groupeChat);
         }
+
+
+
+        public ActionResult JoinAchat()
+        {
+            ViewBag.GroupeChats = myContext.GroupeChats.Include(gc => gc.Membres);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult JoinAchat(ViewModelChatGroupMessages ViewModelChatGroupMessages)
+        {
+       
+         var intSession = int.Parse(Session["user_id"].ToString());
+            ViewBag.GroupeChats = myContext.GroupeChats.Include(gc => gc.Membres);
+            Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
+           
+            if (ModelState.IsValid)
+            {
+                
+                GroupeChat groupeChat1 = myContext.GroupeChats.Find(ViewModelChatGroupMessages.groupeChats);
+                groupeChat1.Membres.Add(myUser);
+                myUser.GroupeChats.Add(groupeChat1);
+
+                myContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(ViewModelChatGroupMessages.groupeChats);
+        }
+
+
     }
 }

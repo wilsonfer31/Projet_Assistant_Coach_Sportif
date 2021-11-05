@@ -4,7 +4,11 @@
 
 
 @{ 
-    Coaching_Models.GroupeChat groupeChat = ViewBag.Groupe;
+    Coaching_Models.GroupeChat groupeChat = new Coaching_Models.GroupeChat();
+    if (ViewBag.Groupe != null)
+    {
+        groupeChat = ViewBag.Groupe;
+    }
 }
 
 <link href="~/Content/ChatStyle.css" rel="stylesheet" />
@@ -17,19 +21,27 @@
         <aside>
 
             <ul>
-            
-            
+
+
                 @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
 
 
-                {
-                    <li>
-                     
-                        <div>
-                            <h2>   @Html.ActionLink(item.Nom, "Index", new {id = item.Id })</h2>
-                           
 
-                 
+                {
+
+
+                    foreach (Coaching_Models.Utilisateur item1 in item.Membres)
+                    {
+
+                        if (item1.Id == (int)Session["user_id"])
+                        {
+                    <li>
+
+                        <div>
+                            <h2>   @Html.ActionLink(item.Nom, "Index", new { id = item.Id })</h2>
+
+
+
                             <h3>
                                 <span class="status green"></span>
                                 @item.Membres.Count() participants
@@ -39,9 +51,10 @@
                         </div>
 
                     </li>
-
+                        }
+                    }
                 }
-            
+
                 <li>
                     <div>
                         <p>
@@ -52,21 +65,25 @@
                     </div>
 
                 </li>
+                <li>
+                    <div>
+                        <p>
+                            @Html.ActionLink("Rejoindre un chat", "JoinAchat", "Communauté")
+                            <br />
+                            +
+                        </p>
+                    </div>
+
+                </li>
 
             </ul>
         </aside>
         <main>
-            <header>
-
-                <div>
-                    <h2>Chat : "Administraton""</h2>
-
-                </div>
-
-            </header>
-        @if(ViewBag.Groupe != null) {
+           
+     
             @Html.Partial("_Chat", groupeChat)
-        }
+        
+     
             <footer>
                 <input type="hidden" name="groupeChats" value=@groupeChat.Id />
                 @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,5 +92,5 @@
             </footer>
         </main>
     </div>
-
+                   
 }
