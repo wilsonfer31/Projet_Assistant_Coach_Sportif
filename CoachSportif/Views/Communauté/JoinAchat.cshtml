@@ -1,0 +1,32 @@
+﻿@model Coaching_Models.ViewModelChatGroupMessages.ViewModelChatGroupMessages
+
+@{
+    ViewBag.Title = "JoinAchat";
+
+    Dictionary<int, string>
+     groupeChats = new Dictionary<int, string>
+         ();
+
+    foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
+    {
+        if (!item.Membres.Any(p=>p.Id == (int)Session["user_id"])) {
+            groupeChats.Add(item.Id, (item.Nom).ToString());
+
+        }
+
+    }
+
+}
+
+<h2>JoinAchat</h2>
+
+
+@using (Html.BeginForm())
+{
+
+
+    @Html.DropDownListFor(model => model.groupeChats, new SelectList(groupeChats.OrderBy(x=>x.Value),"Key", "Value" , "Key"))
+    <br />
+    <a><input type="submit" value="Send" class="btn primary" /></a>
+
+}

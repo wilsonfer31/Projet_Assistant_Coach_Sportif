@@ -1,24 +1,31 @@
 ﻿@model Coaching_Models.GroupeChat
 
+
+<header>
+
+    <div>
+        <h2>Chat : @Model.Nom</h2>
+
+    </div>
+
+</header>
 <ul id="chat">
 
-
-    @foreach (Coaching_Models.Message item in Model.ChatMessages)
+    @for (int i = Model.ChatMessages.Count-1; i >= 0; i--)
     {
 
-
-        if (@item.Utilisateur != Session["user_id"])
+        if(Model.ChatMessages[i].Utilisateur.Id == (int)Session["user_id"])
         {
 
             <li class="you">
                 <div class="entete">
                     <span class="status green"></span>
-                    <h2>@item.Utilisateur.Pseudo</h2>
-                    <h3>@item.Date</h3>
+                    <h2>@Model.ChatMessages[i].Utilisateur.Pseudo</h2>
+                    <h3>@Model.ChatMessages[i].Date</h3>
                 </div>
                 <div class="triangle"></div>
                 <div class="message">
-                    @item.MessageText
+                    @Model.ChatMessages[i].MessageText
                 </div>
             </li>
 
@@ -30,16 +37,16 @@
 
             <li class="me">
                 <div class="entete">
-                    <h3>@item.Date</h3>
-                    <h2>@item.Utilisateur.Pseudo</h2>
+                    <h3>@Model.ChatMessages[i].Date</h3>
+                    <h2>@Model.ChatMessages[i].Utilisateur.Pseudo</h2>
                     <span class="status blue"></span>
                 </div>
                 <div class="triangle"></div>
                 <div class="message">
-                    @item.MessageText
+                    @Model.ChatMessages[i].MessageText
                 </div>
             </li>
 
-        }
-    }
+       }
+   }
 </ul>
