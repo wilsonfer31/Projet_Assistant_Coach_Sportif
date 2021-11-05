@@ -1,6 +1,11 @@
-﻿@model Coaching_Models.GroupeChat
+﻿
+
+@model Coaching_Models.ViewModelChatGroupMessages.ViewModelChatGroupMessages
 
 
+@{ 
+    Coaching_Models.GroupeChat groupeChat = ViewBag.Groupe;
+}
 
 <link href="~/Content/ChatStyle.css" rel="stylesheet" />
 
@@ -12,14 +17,19 @@
         <aside>
 
             <ul>
+            
+            
+                @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
 
-              @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
 
-
-              {
+                {
                     <li>
+                     
                         <div>
-                            <h2>@item.Nom</h2>
+                            <h2>   @Html.ActionLink(item.Nom, "Index", new {id = item.Id })</h2>
+                           
+
+                 
                             <h3>
                                 <span class="status green"></span>
                                 @item.Membres.Count() participants
@@ -31,11 +41,11 @@
                     </li>
 
                 }
-
+            
                 <li>
                     <div>
                         <p>
-                            @Html.ActionLink("Ajouter un chat", "CreateNewChat" , "Communauté")
+                            @Html.ActionLink("Ajouter un chat", "CreateNewChat", "Communauté")
                             <br />
                             +
                         </p>
@@ -49,51 +59,18 @@
             <header>
 
                 <div>
-                    <h2>Chat : Admnistration</h2>
+                    <h2>Chat : "Administraton""</h2>
 
                 </div>
 
             </header>
-            <ul id="chat">
-
-                @for (int i = 0; i < 2; i++)
-                {
-
-                    <li class="you">
-                        <div class="entete">
-                            <span class="status green"></span>
-                            <h2>User 1</h2>
-                            <h3>10:12AM, Today</h3>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            Ceci est un texte de chat
-                        </div>
-                    </li>
-
-
-                }
-
-                @for (int i = 0; i < 2; i++)
-                {
-                    <li class="me">
-                        <div class="entete">
-                            <h3>10:12AM, Today</h3>
-                            <h2>User2</h2>
-                            <span class="status blue"></span>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            Ceci est un autre texte de chat
-                        </div>
-                    </li>
-                }
-
-
-            </ul>
+        @if(ViewBag.Groupe != null) {
+            @Html.Partial("_Chat", groupeChat)
+        }
             <footer>
-                @Html.TextAreaFor(model => model.ChatMessages, htmlAttributes: new { @class = "control-label col-md-2" })
-                <a><input type="submit" value="Send" class="btn primary" /></a>
+                <input type="hidden" name="groupeChats" value=@groupeChat.Id />
+                @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+                Connected as:  @ViewBag.userName <a><input type="submit" value="Send" class="btn primary" /></a>
 
             </footer>
         </main>

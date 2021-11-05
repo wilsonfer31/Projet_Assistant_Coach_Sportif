@@ -54,6 +54,7 @@
     <Compile Include="Message.cs" />
     <Compile Include="Activite.cs" />
     <Compile Include="FormsModel\RegisterForm.cs" />
+    <Compile Include="ViewModel\ViewModelChatGroupMessages.cs" />
     <Compile Include="Ville.cs" />
     <Compile Include="Entities\NamedEntity.cs" />
     <Compile Include="Utilisateur.cs" />

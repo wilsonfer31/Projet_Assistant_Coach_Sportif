@@ -252,7 +252,7 @@
     <Content Include="Views\Coaches\Details.cshtml" />
     <Content Include="Views\Coaches\Edit.cshtml" />
     <Content Include="Views\Coaches\Index.cshtml" />
-    <Content Include="Views\Coaches\UserToCoach.cshtml" />
+    <Content Include="Views\Communauté\_Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
