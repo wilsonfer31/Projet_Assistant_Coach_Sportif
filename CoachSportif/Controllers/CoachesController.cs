@@ -39,7 +39,9 @@ namespace CoachSportif.Controllers
         // GET: Coaches/Create
         public ActionResult Create()
         {
-            return View();
+            List<Utilisateur> lst = new List<Utilisateur>();
+            foreach (Coach c in db.Coaches.Include(c => c.Utilisateur)) lst.Add(c.Utilisateur);
+            return View(db.Utilisateurs.Except(lst).Include(u => u.Ville));
         }
 
         // POST: Coaches/Create
@@ -47,16 +49,11 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id")] Coach coach)
+        public ActionResult Create(string pseudo)
         {
-            if (ModelState.IsValid)
-            {
-                db.Coaches.Add(coach);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(coach);
+            List<Utilisateur> lst = new List<Utilisateur>();
+            foreach (Coach c in db.Coaches.Include(c => c.Utilisateur)) lst.Add(c.Utilisateur);
+            return View(db.Utilisateurs.Except(lst).Where(u => u.Pseudo.Contains(pseudo)).Include(u => u.Ville));
         }
 
         // GET: Coaches/Edit/5

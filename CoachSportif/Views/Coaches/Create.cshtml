@@ -1,26 +1,61 @@
-﻿@model Coaching_Models.Coach
+﻿@model IEnumerable<Coaching_Models.Utilisateur>
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Nouveau Coach</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Coach</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+
+    <div class="row gtr-uniform gtr-50">
+        <div class="col-6 col-12-xsmall">
+                <input type="text" name="pseudo" placeholder="Pseudo" />
+        </div>
+
+        <div class="col-6 col-12-xsmall">
+            <ul class="actions">
+                <li><input type="submit" value="Rechercher" class="btn btn-default" /></li>
+            </ul>
         </div>
     </div>
 }
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pseudo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ville.Nom)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pseudo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ville.Nom)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
