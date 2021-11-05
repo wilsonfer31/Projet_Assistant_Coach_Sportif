@@ -37,13 +37,8 @@ namespace CoachSportif.Controllers
         public ActionResult Create()
         {
             Session.Remove("logging");
-            List<SelectListItem> VilleSelect = new List<SelectListItem>();
-            foreach (Ville V in db.Villes)
-            {
-                VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
-            }
-            ViewBag.SelectVille = VilleSelect;
-            return View();
+            return View(new RegisterForm { Villes = db.Villes.Select(V => new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() }) });
+
         }
 
         // POST: Utilisateurs/Create
@@ -79,7 +74,7 @@ namespace CoachSportif.Controllers
         // GET: Utilisateurs/Edit/5
         public ActionResult Edit(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -89,15 +84,7 @@ namespace CoachSportif.Controllers
             {
                 return HttpNotFound();
             }
-            List<SelectListItem> VilleSelect = new List<SelectListItem>();
-            foreach (Ville V in db.Villes)
-            {
-                SelectListItem sli = new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() };
-                if (V.Id.ToString().Equals(utilisateur.Ville.Id.ToString())) sli.Selected = true;
-                VilleSelect.Add(sli);
-            }
-            ViewBag.SelectVille = VilleSelect;
-            return View(new EditForm(utilisateur));
+            return View(new EditForm(utilisateur, db.Villes.Select(V => new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() })));
         }
 
         // POST: Utilisateurs/Edit/5
@@ -118,11 +105,11 @@ namespace CoachSportif.Controllers
             {
                 utilisateur.UpdateFromForm(editForm);
                 db.SaveChanges();
-                return RedirectToAction("Details",new { id = utilisateur.Id });
+                return RedirectToAction("Details", new { id = utilisateur.Id });
             }
             ViewBag.SelectVille = VilleSelect;
             return View(editForm);
-            
+
         }
 
         // GET: Utilisateurs/Delete/5
@@ -175,14 +162,14 @@ namespace CoachSportif.Controllers
             if (ModelState.IsValid)
             {
                 Utilisateur userDB = null;
-                Coach coach = db.Coaches.SingleOrDefault(u => u.Utilisateur.Pseudo.Equals(user.Pseudo));
+                Coach coach = db.Coaches.Include(c => c.Utilisateur).SingleOrDefault(u => u.Utilisateur.Pseudo.Equals(user.Pseudo));
                 if (coach == null) userDB = db.Utilisateurs.SingleOrDefault(u => u.Pseudo.Equals(user.Pseudo));
                 else userDB = coach.Utilisateur;
                 if (userDB != null)
                 {
                     if (userDB.MotDePasse.Equals(user.MotDePasse))
                     {
-                        if (coach != null)Session["coach_id"] = coach.Id;
+                        if (coach != null) Session["coach_id"] = coach.Id;
                         Session["user_id"] = userDB.Id;
                         if (userDB.Admin) Session["admin"] = userDB.Admin;
                         Session.Remove("logging");

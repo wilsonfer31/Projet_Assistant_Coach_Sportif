@@ -5,6 +5,7 @@
 }
 
 <h2>Nouveau Coach</h2>
+<h2>@ViewBag.Error</h2>
 
 @using (Html.BeginForm())
 {
@@ -37,7 +38,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.ToList())
     {
         <tr>
             <td>
@@ -50,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.Ville.Nom)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("+", "CreateCoach", new { id = item.Id })
             </td>
         </tr>
     }

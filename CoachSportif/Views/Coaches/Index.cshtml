@@ -6,6 +6,13 @@
 
 <h2>Les coaches</h2>
 
+@if (Session["coach_id"] != null)
+{
+    <p>
+        @Html.ActionLink("Creer un Cours", "Create", "Cours")
+    </p>
+}
+
 <div class="row gtr-uniform gtr-50">
     <div class="col-6 col-12-xsmall">
         <input type="text" name="" value="" placeholder="Coach" />
@@ -35,20 +42,26 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @{ int i = 1; }
-                @foreach (var coach in Model)
-                {
+            @{ int i = 1; }
+            @foreach (var coach in Model)
+            {
+                <tr>
                     <td>@i</td>
                     <td>@coach.Utilisateur.Nom</td>
                     <td>@coach.Utilisateur.Prenom</td>
                     <td>@coach.CoursDispenses.Count()</td>
 
-                    <td>@Html.ActionLink("Details", "Details", new { id = coach.Id })</td>
-                    i++;
-
-                }
-            </tr>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = coach.Id })
+                        @if (Session["admin"] != null)
+                        {
+                            <span> | </span>
+                            @Html.ActionLink("Delete", "Delete", new { id = coach.Id })
+                        }
+                    </td>
+                </tr>
+                i++;
+            }
 
 
         </tbody>

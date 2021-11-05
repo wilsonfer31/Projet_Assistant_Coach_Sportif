@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Coaching_Models
 {
@@ -19,5 +20,6 @@ namespace Coaching_Models
         public string MotDePasse { get; set; }
         [Required]
         public string Ville { get; set; }
+        public IEnumerable<SelectListItem> Villes { get; set; }
     }
 }

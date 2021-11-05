@@ -39,9 +39,7 @@ namespace CoachSportif.Controllers
         // GET: Coaches/Create
         public ActionResult Create()
         {
-            List<Utilisateur> lst = new List<Utilisateur>();
-            foreach (Coach c in db.Coaches.Include(c => c.Utilisateur)) lst.Add(c.Utilisateur);
-            return View(db.Utilisateurs.Except(lst).Include(u => u.Ville));
+            return View(db.Utilisateurs.Except(db.Coaches.Include(c => c.Utilisateur).Select(c => c.Utilisateur)).Include(u => u.Ville));
         }
 
         // POST: Coaches/Create
@@ -51,9 +49,19 @@ namespace CoachSportif.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string pseudo)
         {
-            List<Utilisateur> lst = new List<Utilisateur>();
-            foreach (Coach c in db.Coaches.Include(c => c.Utilisateur)) lst.Add(c.Utilisateur);
-            return View(db.Utilisateurs.Except(lst).Where(u => u.Pseudo.Contains(pseudo)).Include(u => u.Ville));
+            return View(db.Utilisateurs.Except(db.Coaches.Include(c => c.Utilisateur).Select(c => c.Utilisateur)).Where(u => u.Pseudo.Contains(pseudo)).Include(u => u.Ville));
+        }
+
+        public ActionResult CreateCoach(int? id)
+        {
+            if (id.HasValue)
+            {
+                db.Coaches.Add(new Coach { Utilisateur = db.Utilisateurs.Find(id.Value)});
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.Error = "Something Went Rong";
+            return RedirectToAction("Create");
         }
 
         // GET: Coaches/Edit/5

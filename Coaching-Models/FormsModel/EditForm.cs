@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Coaching_Models
 {
@@ -20,8 +21,9 @@ namespace Coaching_Models
         public string Adresse { get; set; }
         [Required]
         public string Ville { get; set; }
+        public IEnumerable<SelectListItem> Villes { get; set; }
 
-        public EditForm(Utilisateur utilisateur)
+        public EditForm(Utilisateur utilisateur, IEnumerable<SelectListItem> villes)
         {
             Id = utilisateur.Id;
             Pseudo = utilisateur.Pseudo;
@@ -31,6 +33,7 @@ namespace Coaching_Models
             Mail = utilisateur.Mail;
             Adresse = utilisateur.Adresse;
             Ville = utilisateur.Ville.Id.ToString();
+            Villes = villes;
         }
     }
 }
