@@ -5,7 +5,8 @@ using System.Web.Mvc;
 using System.Web.SessionState;
 using System.Linq;
 using System.Data.Entity;
-
+using Coaching_Models.ViewModelChatGroupMessages;
+using System;
 
 namespace CoachSportif.Controllers
 {
@@ -14,49 +15,58 @@ namespace CoachSportif.Controllers
 
         MyContext myContext = new MyContext();
         // GET: Communauté
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var intSession = int.Parse(Session["user_id"].ToString());
+            var intSession = 5;
+           // var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur userinfo = myContext.Utilisateurs.Find(intSession);
 
-
-
+            ViewBag.Messages = myContext.Messages.ToList();
             ViewBag.userName = userinfo.Pseudo;
             ViewBag.GroupeChats = myContext.GroupeChats.Include(gc => gc.Membres);
 
-            ViewBag.Messages = myContext.Messages.ToList();
+                if(id.HasValue)
+            {
+
+
+                ViewBag.Groupe = myContext.GroupeChats.Find(id.Value);
+            };
+           
+            
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(Message message)
+        public ActionResult Index(ViewModelChatGroupMessages viewModelChatGroupMessages)
         {
-            var intSession = int.Parse(Session["user_id"].ToString());
+            var intSession = 5;
+            // var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
-
+            ViewBag.GroupeChats = myContext.GroupeChats.Include(gc => gc.Membres);
 
 
             if (ModelState.IsValid)
             {
-                GroupeChat groupeChat = new GroupeChat();
+
+               
+              
                 Message message1 = new Message();
 
                 message1.Utilisateur = myUser;
-                message1.Date = new System.DateTime();
-                message1.MessageText = message.MessageText;
+                message1.Date =DateTime.Now;
+                message1.MessageText = viewModelChatGroupMessages.messages.MessageText;
 
+                myContext.GroupeChats.Find(viewModelChatGroupMessages.groupeChats).ChatMessages.Add(message1);
+             
+             
                 
-                groupeChat.Membres.Add(myUser);
-                groupeChat.ChatMessages.Add(message1);
 
 
-                myContext.GroupeChats.Attach(groupeChat);
-                myContext.Entry(groupeChat).State = EntityState.Modified;
                 myContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(message);
+            return View(viewModelChatGroupMessages);
            
 
         }
@@ -70,8 +80,8 @@ namespace CoachSportif.Controllers
         [HttpPost]
         public ActionResult CreateNewChat(GroupeChat groupeChat)
         {
-
-            var intSession = int.Parse(Session["user_id"].ToString());
+            var intSession = 5;
+            //var intSession = int.Parse(Session["user_id"].ToString());
 
 
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
