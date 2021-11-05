@@ -37,7 +37,7 @@ namespace CoachSportif.Controllers
         public ActionResult Create()
         {
             Session.Remove("logging");
-            return View(new RegisterForm { Villes = db.Villes.Select(V => new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() }) });
+            return View(new RegisterForm { Villes = db.Villes.Select(V => new SelectListItem { Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() }) });
 
         }
 
@@ -54,15 +54,9 @@ namespace CoachSportif.Controllers
                 {
                     Pseudo = registerForm.Pseudo,
                     MotDePasse = registerForm.MotDePasse,
-                    Mail = registerForm.Mail
+                    Mail = registerForm.Mail,
+                    Ville = db.Villes.Find(registerForm.Ville)
                 };
-                List<SelectListItem> VilleSelect = new List<SelectListItem>();
-                foreach (Ville V in db.Villes)
-                {
-                    VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
-                    if (V.Id.ToString().Equals(registerForm.Ville)) utilisateur.Ville = V;
-                }
-                ViewBag.SelectVille = VilleSelect;
                 db.Utilisateurs.Add(utilisateur);
                 db.SaveChanges();
                 Session["logging"] = true;
@@ -84,7 +78,7 @@ namespace CoachSportif.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new EditForm(utilisateur, db.Villes.Select(V => new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() })));
+            return View(new EditForm(utilisateur, db.Villes.Select(V => new SelectListItem {Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() })));
         }
 
         // POST: Utilisateurs/Edit/5
@@ -98,7 +92,7 @@ namespace CoachSportif.Controllers
             Utilisateur utilisateur = db.Utilisateurs.Include(u => u.Ville).SingleOrDefault(u => u.Id == editForm.Id);
             foreach (Ville V in db.Villes)
             {
-                VilleSelect.Add(new SelectListItem { Selected = false, Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
+                VilleSelect.Add(new SelectListItem {Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
                 if (V.Id.ToString().Equals(editForm.Ville)) utilisateur.Ville = V;
             }
             if (ModelState.IsValid)

@@ -20,7 +20,7 @@ namespace Coaching_Models
         public string Mail { get; set; }
         public string Adresse { get; set; }
         [Required]
-        public string Ville { get; set; }
+        public int Ville { get; set; }
         public IEnumerable<SelectListItem> Villes { get; set; }
 
         public EditForm(Utilisateur utilisateur, IEnumerable<SelectListItem> villes)
@@ -32,7 +32,7 @@ namespace Coaching_Models
             Tel = utilisateur.Tel;
             Mail = utilisateur.Mail;
             Adresse = utilisateur.Adresse;
-            Ville = utilisateur.Ville.Id.ToString();
+            Ville = utilisateur.Ville.Id;
             Villes = villes;
         }
     }

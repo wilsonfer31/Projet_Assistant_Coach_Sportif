@@ -1,4 +1,4 @@
-﻿@model Coaching_Models.Cours
+﻿@model Coaching_Models.CreateCoursForm
 
 @{
     ViewBag.Title = "Create";
@@ -6,23 +6,57 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Cours</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+    <h4>Cours</h4>
+    <hr />
+
+    <div class="row gtr-uniform gtr-50">
+
+        <input type="hidden" name="CoachId" value=@Session["coach_id"] />
+
+        <div class="col-6 col-12-xsmall">
+            @Html.LabelFor(model => model.Ville, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Ville, Model.Villes, "-- Sélectionner --")
+                @Html.ValidationMessageFor(model => model.Ville, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-6 col-12-xsmall">
+            @Html.LabelFor(model => model.Activite, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Activite, Model.Activites, "-- Sélectionner --")
+                @Html.ValidationMessageFor(model => model.Activite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-2 col-12-xsmall">
             @Html.LabelFor(model => model.DateCours, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCours, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DateCours, new { htmlAttributes = new { @type = "date", @style = "height: 3em" } })
                 @Html.ValidationMessageFor(model => model.DateCours, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="col-2 col-12-xsmall">
+            @Html.LabelFor(model => model.Heure, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Heure, Model.Hours)
+                @Html.ValidationMessageFor(model => model.Heure, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="col-2 col-12-xsmall">
+            @Html.LabelFor(model => model.Minutes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Minutes, Model.Mins)
+                @Html.ValidationMessageFor(model => model.Minutes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-6 col-12-xsmall">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

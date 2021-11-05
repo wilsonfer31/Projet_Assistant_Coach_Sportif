@@ -18,7 +18,7 @@ namespace CoachSportif.Controllers
         // GET: Cours
         public ActionResult Index()
         {
-            return View(db.Cours.ToList());
+            return View(db.Cours.Include(C => C.Adresse).Include(C => C.Activite).Include(C =>  C.Coach.Utilisateur));
         }
 
         // GET: Cours/Details/5
@@ -36,10 +36,16 @@ namespace CoachSportif.Controllers
             return View(cours);
         }
 
+
         // GET: Cours/Create
         public ActionResult Create()
         {
-            return View();
+            CreateCoursForm ccf = new CreateCoursForm
+            {
+                Villes = db.Villes.Select(V => new SelectListItem { Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() }),
+                Activites = db.Activites.Select(A => new SelectListItem { Text = A.Nom, Value = A.Id.ToString() })
+            };
+            return View(ccf);
         }
 
         // POST: Cours/Create
@@ -47,16 +53,25 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DateCours")] Cours cours)
+        public ActionResult Create(CreateCoursForm ccf)
         {
             if (ModelState.IsValid)
             {
-                db.Cours.Add(cours);
+                Coach co = db.Coaches.Find(ccf.CoachId);
+                Cours c = new Cours
+                {
+                    Coach = co,
+                    Activite = db.Activites.Find(ccf.Activite),
+                    Adresse = db.Villes.Find(ccf.Ville),
+                    DateCours = ccf.DateCours.AddHours(ccf.Heure).AddMinutes(ccf.Minutes)
+                };
+                co.CoursDispenses.Add(c);
+                db.Cours.Add(c);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cours);
+            return View(ccf);
         }
 
         // GET: Cours/Edit/5

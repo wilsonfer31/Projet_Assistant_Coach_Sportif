@@ -1,9 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    List<string> lst1 = new List<string> { "1", "2", "3" };
-    List<string> lst2 = new List<string> { "1" };
-}
+﻿@model Coaching_Models.ViewModel.ViewModelVille
 
 <script>
     function populate(id)
@@ -11,9 +6,9 @@
         let CardContainer = document.querySelector(".cards-container")
         CardContainer.removeChild(CardContainer.firstChild)
         if (id == 0) {
-            CardContainer.innerHTML = `@Html.Partial("Cards",lst1)`
+            CardContainer.innerHTML = `@Html.Partial("Cards",Model.Cours)`
         } else {
-            CardContainer.innerHTML = `@Html.Partial("Cards",lst2)`
+            CardContainer.innerHTML = `@Html.Partial("CoachList",Model.Coaches)`
         }
     }
 </script>
@@ -38,4 +33,5 @@
 
 <h3>Les Activités disponibles dans votre ville</h3>
 <div class="cards-container">
+    @Html.Partial("Cards", Model.Cours)
 </div>

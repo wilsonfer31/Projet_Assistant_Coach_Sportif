@@ -28,43 +28,4 @@
     </div>
 </div>
 
-<div class="table-wrapper">
-    <table class="alt">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nom Coach</th>
-                <th>Prenom Coach</th>
-                <th>Nombre De Cours Disponible</th>
-                <th>Details</th>
-
-
-            </tr>
-        </thead>
-        <tbody>
-            @{ int i = 1; }
-            @foreach (var coach in Model)
-            {
-                <tr>
-                    <td>@i</td>
-                    <td>@coach.Utilisateur.Nom</td>
-                    <td>@coach.Utilisateur.Prenom</td>
-                    <td>@coach.CoursDispenses.Count()</td>
-
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = coach.Id })
-                        @if (Session["admin"] != null)
-                        {
-                            <span> | </span>
-                            @Html.ActionLink("Delete", "Delete", new { id = coach.Id })
-                        }
-                    </td>
-                </tr>
-                i++;
-            }
-
-
-        </tbody>
-
-    </table>
-</div>
+@Html.Partial("CoachList")

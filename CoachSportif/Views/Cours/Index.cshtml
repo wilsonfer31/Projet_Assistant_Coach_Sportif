@@ -12,22 +12,46 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Coach.Utilisateur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DateCours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adherents)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCours)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @item.Coach.Utilisateur.Pseudo
+    </td>
+    <td>
+        @item.Activite.Nom
+    </td>
+    <td>
+        @item.Adresse.Nom
+    </td>
+    <td>
+        @item.DateCours
+    </td>
+    <td>
+        @item.Adherents.Count()
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
 }
 
 </table>

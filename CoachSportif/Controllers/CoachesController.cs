@@ -18,7 +18,7 @@ namespace CoachSportif.Controllers
         // GET: Coach
         public ActionResult Index()
         {
-            return View(db.Coaches.Include(c => c.Utilisateur));
+            return View(db.Coaches.Include(c => c.Utilisateur).Include(c => c.CoursDispenses));
         }
 
         // GET: Coaches/Details/5

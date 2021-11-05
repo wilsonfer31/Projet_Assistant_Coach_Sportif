@@ -19,7 +19,7 @@ namespace Coaching_Models
         [DataType(DataType.Password)]
         public string MotDePasse { get; set; }
         [Required]
-        public string Ville { get; set; }
+        public int Ville { get; set; }
         public IEnumerable<SelectListItem> Villes { get; set; }
     }
 }
