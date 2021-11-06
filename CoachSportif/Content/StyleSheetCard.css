@@ -24,6 +24,7 @@
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 300px;
+    background-color: slategrey;
 }
 
 .card-header {
@@ -86,7 +87,7 @@
     border-radius: 20px;
 }
 
-.card-footer button {
+.card-footer .button {
     width: 150px;
     height: 50px;
     cursor: pointer;
