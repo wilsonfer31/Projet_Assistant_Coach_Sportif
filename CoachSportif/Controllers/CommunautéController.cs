@@ -7,9 +7,13 @@ using System.Linq;
 using System.Data.Entity;
 using Coaching_Models.ViewModelChatGroupMessages;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoachSportif.Controllers
 {
+
+
+
     public class CommunautéController : Controller
     {
 
@@ -69,7 +73,7 @@ namespace CoachSportif.Controllers
 
         }
 
-
+   
         public ActionResult CreateNewChat()
         {
             return View();
