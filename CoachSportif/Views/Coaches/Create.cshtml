@@ -4,26 +4,26 @@
     ViewBag.Title = "Create";
 }
 
+
 <h2>Nouveau Coach</h2>
 <h2>@ViewBag.Error</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="row gtr-uniform gtr-50">
-        <div class="col-6 col-12-xsmall">
-                <input type="text" name="pseudo" placeholder="Pseudo" />
-        </div>
-
-        <div class="col-6 col-12-xsmall">
-            <ul class="actions">
-                <li><input type="submit" value="Rechercher" class="btn btn-default" /></li>
-            </ul>
-        </div>
+<div class="row gtr-uniform gtr-50">
+    <div class="col-6 col-12-xsmall">
+        <input type="text" name="pseudo" placeholder="Pseudo" onchange="buildTable(this.)" onkeyup="buildTable(this.text)" />
     </div>
-}
+</div>
 
+<hr />
+
+<div id="table">
+
+</div>
+
+<script>
+    function buildTable(pseudo = "") {
+        let html = `
 <table class="table">
     <tr>
         <th>
@@ -36,27 +36,34 @@
             @Html.DisplayNameFor(model => model.Ville.Nom)
         </th>
         <th></th>
-    </tr>
-
-    @foreach (var item in Model.ToList())
-    {
+    </tr>`
+        let json = @Html.Raw(Json.Encode(Model));
+        for (var user of json) {
+        if (user.Pseudo.includes(pseudo))
+        {
+            html += `
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Pseudo)
+                ${user.Pseudo}
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mail)
+                ${user.Mail}
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ville.Nom)
+                ${user.Ville.Nom}
             </td>
             <td>
-                @Html.ActionLink("+", "CreateCoach", new { id = item.Id })
+            <a href="/Coaches/CreateCoach/${user.Id}">+</a>
             </td>
-        </tr>
+        </tr>`
+        }
     }
-
-</table>
+    html +=`
+</table>`
+        document.querySelector("#table").innerHTML = html
+    }
+    buildTable()
+</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
