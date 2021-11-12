@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Pseudo Coach</th>
                 <th>Nom Coach</th>
                 <th>Prenom Coach</th>
                 <th>Nombre De Cours Disponible</th>
@@ -17,21 +18,22 @@
             @{ int i = 1; }
             @foreach (var coach in Model)
             {
-                <tr>
-                    <td>@i</td>
-                    <td>@coach.Utilisateur.Nom</td>
-                    <td>@coach.Utilisateur.Prenom</td>
-                    <td>@coach.CoursDispenses.Count()</td>
+            <tr>
+                <td>@i</td>
+                <td>@coach.Utilisateur.Pseudo</td>
+                <td>@coach.Utilisateur.Nom</td>
+                <td>@coach.Utilisateur.Prenom</td>
+                <td>@coach.CoursDispenses.Count()</td>
 
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = coach.Id })
-                        @if (Session["admin"] != null)
-                        {
-                            <span> | </span>
-                            @Html.ActionLink("Delete", "Delete", new { id = coach.Id })
-                        }
-                    </td>
-                </tr>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = coach.Id })
+                    @if (Session["admin"] != null)
+                    {
+                        <span> | </span>
+                        @Html.ActionLink("Delete", "Delete", new { id = coach.Id })
+                    }
+                </td>
+            </tr>
                 i++;
             }
         </tbody>
