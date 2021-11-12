@@ -41,12 +41,12 @@ namespace CoachSportif.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(ViewModelChatGroupMessages viewModelChatGroupMessages)
+        public ActionResult _Chat(ViewModelChatGroupMessages viewModelChatGroupMessages)
         {
          var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
-            ViewBag.GroupeChats = myContext.GroupeChats.Include(gc => gc.Membres);
 
+            GroupeChat gc = myContext.GroupeChats.Include(g => g.ChatMessages).SingleOrDefault( g => g.Id == viewModelChatGroupMessages.groupeChats);
 
             if (ModelState.IsValid)
             {
@@ -58,17 +58,11 @@ namespace CoachSportif.Controllers
                 message1.Utilisateur = myUser;
                 message1.Date =DateTime.Now;
                 message1.MessageText = viewModelChatGroupMessages.messages.MessageText;
-
-                myContext.GroupeChats.Find(viewModelChatGroupMessages.groupeChats).ChatMessages.Add(message1);
-             
-             
-                
-
-
+                gc.ChatMessages.Add(message1);
                 myContext.SaveChanges();
-                return RedirectToAction("Index");
+                return View(gc);
             }
-            return View(viewModelChatGroupMessages);
+            return View(gc);
            
 
         }

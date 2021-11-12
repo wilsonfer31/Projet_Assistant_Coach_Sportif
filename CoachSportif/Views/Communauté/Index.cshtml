@@ -14,7 +14,8 @@
 <link href="~/Content/ChatStyle.css" rel="stylesheet" />
 
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm("_Chat","Communauté",FormMethod.Post))
 {
 
     <div id="containerChat">
@@ -82,12 +83,13 @@
 
             @if (ViewBag.Groupe != null)
             {
+            <div id="chat">
                 @Html.Partial("_Chat", groupeChat)
+            </div>
                 <footer>
                     <input type="hidden" name="groupeChats" value=@groupeChat.Id />
                     @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
-                    Connected as:  @ViewBag.userName <a><input type="submit" value="Send" class="btn primary" /></a>
-                     v
+                    Connected as:  @ViewBag.userName <button class="btn primary">Send</button>
                 </footer>
             }
             else
@@ -96,6 +98,20 @@
             }
 
 
+            <script>
+                document.forms[0].onsubmit = () => {
+                    let formData = new FormData(document.forms[0]);
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            document.querySelector("#chat").innerHTML = xhr.responseText.split("<header>")[1].split("</ul>")[0]
+                        }
+                    };
+                    xhr.open('post', '/Communauté/_Chat', true);
+                    xhr.send(new URLSearchParams(formData));
+                    return false;
+                };
+            </script>
         </main>
     </div>
                    
