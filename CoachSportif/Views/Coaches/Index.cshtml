@@ -43,7 +43,7 @@
             if (c.Utilisateur.Pseudo.includes(coach) && c.Utilisateur.Ville.Nom.includes(ville)) {
                 if (c.CoursDispenses.length > 0) {
                     for (let a of c.CoursDispenses) {
-                        if (a.Activite.Nom.includes(activite) && (new Date(parseInt(a.DateCours.substr(6))).toLocaleDateString().includes(new Date(Date.parse(date)).toLocaleDateString()) || date == "")) {
+                        if ((a.Activite.Nom.includes(activite) || a.Activite.Categorie.Nom.includes(activite)) && (new Date(parseInt(a.DateCours.substr(6))).toLocaleDateString().includes(new Date(Date.parse(date)).toLocaleDateString()) || date == "")) {
                             if (!tabFiltre.includes(c)) {
                                 tabFiltre.push(c);
                             }
