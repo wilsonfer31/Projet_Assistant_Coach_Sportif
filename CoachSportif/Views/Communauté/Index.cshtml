@@ -9,6 +9,7 @@
     {
         groupeChat = ViewBag.Groupe;
     }
+    
 }
 
 <link href="~/Content/ChatStyle.css" rel="stylesheet" />
@@ -36,8 +37,6 @@
 
                         if (item1.Id == (int)Session["user_id"])
                         {
-
-
                             string backgroundColorLi = null;
                             string backgroundColorh2 = null;
                             if (item.Id == groupeChat.Id)
@@ -47,9 +46,9 @@
                                 backgroundColorh2 = "color:#e44c65";
                             }
                             <a href="@Url.Action("Index", new { id = item.Id })">
-                                <li style="@backgroundColorLi">
+                            <li style="@backgroundColorLi">
 
-                                    <div>
+                                <div>
                                     <h2 style="@backgroundColorh2">   @item.Nom</h2>
 
 
@@ -70,27 +69,31 @@
                 }
 
 
-
+                <a href="@Url.Action("CreateNewChat")">
                 <li>
                     <div>
                         <p>
-                            @Html.ActionLink("Ajouter un chat", "CreateNewChat", "Communauté")
+                            Ajouter un chat
                             <br />
                             +
                         </p>
                     </div>
 
                 </li>
+                </a>
+
+                <a href="@Url.Action("JoinAchat")">
                 <li>
                     <div>
                         <p>
-                            @Html.ActionLink("Rejoindre un chat", "JoinAchat", "Communauté")
+                            Rejoindre un chat
                             <br />
                             +
                         </p>
                     </div>
 
                 </li>
+                </a>
 
             </ul>
         </aside>
@@ -145,7 +148,14 @@
             <ul>
                 @foreach (Coaching_Models.Utilisateur membre in groupeChat.Membres)
                 {
-                    <li>
+
+                    string userActuel = null;
+                    if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
+
+
+
+
+                    <li style="@userActuel">
                         @membre.Pseudo
                     </li>
                 }
