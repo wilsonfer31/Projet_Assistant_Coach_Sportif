@@ -13,8 +13,8 @@ EDIT ON
 }
 
 aside {
-    width: 260px;
-    height: 800px;
+    width: 200px;
+    height: auto;
     background-color: #3b3e49;
     display: inline-block;
     font-size: 15px;
@@ -159,7 +159,7 @@ main header {
     padding-left: 0;
     margin: 0;
     list-style-type: none;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 535px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
@@ -191,6 +191,7 @@ main header {
         display: inline-block;
         text-align: left;
         border-radius: 5px;
+        overflow-wrap: break-word;
     }
 
     #chat .me {
