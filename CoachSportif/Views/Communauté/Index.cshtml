@@ -96,7 +96,7 @@
 
             @if (ViewBag.Groupe != null)
             {
-            <div id="chat">
+            <div id="chatcontainer">
                 @Html.Partial("_Chat", groupeChat)
             </div>
                 <footer>
@@ -118,7 +118,7 @@
                     var xhr = new XMLHttpRequest();
                     xhr.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
-                            document.querySelector("#chat").innerHTML = xhr.responseText.split("<header>")[1].split("</ul>")[0]
+                            document.querySelector("#chatcontainer").innerHTML = "<header>" + xhr.responseText.split("<header>")[1].split("</ul>")[0]
                         }
                     };
                     xhr.open('post', '/Communauté/_Chat', true);
