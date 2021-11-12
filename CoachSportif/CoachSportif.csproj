@@ -264,6 +264,8 @@
     <Content Include="Views\Coaches\Index.cshtml" />
     <Content Include="Views\Communauté\_Chat.cshtml" />
     <Content Include="Views\Shared\CoachList.cshtml" />
+    <Content Include="Views\Communauté\CreateNewChat.cshtml" />
+    <Content Include="Views\Communauté\JoinAchat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

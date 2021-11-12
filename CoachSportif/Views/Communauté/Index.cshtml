@@ -36,48 +36,61 @@
 
                         if (item1.Id == (int)Session["user_id"])
                         {
+
+
+                            string backgroundColorLi = null;
+                            string backgroundColorh2 = null;
+                            if (item.Id == groupeChat.Id)
+                            {
+
+                                backgroundColorLi = "box-shadow: inset 0 0 0 1px #e44c65";
+                                backgroundColorh2 = "color:#e44c65";
+                            }
+
+                                <li style="@backgroundColorLi">
+
+                                    <div>
+                                        <h2 style="@backgroundColorh2">   @Html.ActionLink(item.Nom, "Index", new { id = item.Id })</h2>
+
+
+
+                                        <h3>
+                                            <span class="status green"></span>
+                                            @item.Membres.Count() participants
+
+                                        </h3>
+
+                                    </div>
+                                  
+                                </li>
+                            }
+                        }
+                    }
+
+
+
                     <li>
-
                         <div>
-                            <h2>   @Html.ActionLink(item.Nom, "Index", new { id = item.Id })</h2>
-
-
-
-                            <h3>
-                                <span class="status green"></span>
-                                @item.Membres.Count() participants
-
-                            </h3>
-
+                            <p>
+                                @Html.ActionLink("Ajouter un chat", "CreateNewChat", "Communauté")
+                                <br />
+                                +
+                            </p>
                         </div>
 
                     </li>
-                        }
-                    }
-                }
+                    <li>
+                        <div>
+                            <p>
+                                @Html.ActionLink("Rejoindre un chat", "JoinAchat", "Communauté")
+                                <br />
+                                +
+                            </p>
+                        </div>
 
-                <li>
-                    <div>
-                        <p>
-                            @Html.ActionLink("Ajouter un chat", "CreateNewChat", "Communauté")
-                            <br />
-                            +
-                        </p>
-                    </div>
+                    </li>
 
-                </li>
-                <li>
-                    <div>
-                        <p>
-                            @Html.ActionLink("Rejoindre un chat", "JoinAchat", "Communauté")
-                            <br />
-                            +
-                        </p>
-                    </div>
-
-                </li>
-
-            </ul>
+                </ul>
         </aside>
         <main>
 
@@ -89,7 +102,8 @@
                 <footer>
                     <input type="hidden" name="groupeChats" value=@groupeChat.Id />
                     @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
-                    Connected as:  @ViewBag.userName <button class="btn primary">Send</button>
+                    Connected as:  @ViewBag.userName <a><input type="submit" value="Send" class="btn primary" /></a>
+                     v
                 </footer>
             }
             else
@@ -113,6 +127,23 @@
                 };
             </script>
         </main>
+
+        <div style="background-color: red; height: 200px; width: 200px; display: inline-block;">
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+
+        </div>
+
+
     </div>
-                   
+                  
+    
 }
+<script>
+
+    var objDiv = document.getElementById("chat");
+    objDiv.scrollTop = objDiv.scrollHeight;
+</script>

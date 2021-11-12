@@ -13,8 +13,8 @@ EDIT ON
 }
 
 aside {
-    width: 260px;
-    height: 800px;
+    width: 200px;
+    height: auto;
     background-color: #3b3e49;
     display: inline-block;
     font-size: 15px;
@@ -159,7 +159,7 @@ main header {
     padding-left: 0;
     margin: 0;
     list-style-type: none;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 535px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
@@ -191,6 +191,7 @@ main header {
         display: inline-block;
         text-align: left;
         border-radius: 5px;
+        overflow-wrap: break-word;
     }
 
     #chat .me {
@@ -199,12 +200,12 @@ main header {
     #chat .you{
         text-align: left;
     }
-    #chat .you .message {
-        background-color: #58b666;
-    }
+        #chat .you .message {
+            background-color: #6fbced;
+        }
 
     #chat .me .message {
-        background-color: #6fbced;
+        background-color: #58b666;
     }
 
     #chat .triangle {
@@ -215,12 +216,12 @@ main header {
     }
 
     #chat .you .triangle {
-        border-color: transparent transparent #58b666 transparent;
+        border-color: transparent transparent #6fbced transparent;
         margin-left: 5px;
     }
 
     #chat .me .triangle {
-        border-color: transparent transparent #6fbced transparent;
+        border-color: transparent transparent #58b666 transparent;
         margin-left: 800px;
     }
 
