@@ -53,7 +53,7 @@ namespace CoachSportif.Controllers
             {
                 db.CategorieActivites.Add(categorieActivite);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","Activites");
             }
 
             return View(categorieActivite);
