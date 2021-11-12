@@ -101,7 +101,7 @@
             </div>
                 <footer>
                     <input type="hidden" name="groupeChats" value=@groupeChat.Id />
-                    @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2"})
                     Connected as:  @ViewBag.userName <a><input type="submit" value="Send" class="btn primary" /></a>
                      v
                 </footer>
@@ -119,6 +119,8 @@
                     xhr.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
                             document.querySelector("#chatcontainer").innerHTML = "<header>" + xhr.responseText.split("<header>")[1].split("</ul>")[0]
+                            document.querySelector("#chat").scrollTop = document.querySelector("#chat").scrollHeight;
+                            document.querySelector("textarea").value = "";
                         }
                     };
                     xhr.open('post', '/Communauté/_Chat', true);

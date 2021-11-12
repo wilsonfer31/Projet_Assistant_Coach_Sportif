@@ -52,15 +52,11 @@ namespace CoachSportif.Controllers
          var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
 
-            GroupeChat gc = myContext.GroupeChats.Include(g => g.ChatMessages).SingleOrDefault( g => g.Id == viewModelChatGroupMessages.groupeChats);
+            GroupeChat gc = myContext.GroupeChats.Include(g => g.ChatMessages.Select(m => m.Utilisateur)).SingleOrDefault( g => g.Id == viewModelChatGroupMessages.groupeChats);
 
             if (ModelState.IsValid)
             {
-
-               
-              
                 Message message1 = new Message();
-
                 message1.Utilisateur = myUser;
                 message1.Date =DateTime.Now;
                 message1.MessageText = viewModelChatGroupMessages.messages.MessageText;
@@ -69,8 +65,6 @@ namespace CoachSportif.Controllers
                 return View(gc);
             }
             return View(gc);
-           
-
         }
 
    
