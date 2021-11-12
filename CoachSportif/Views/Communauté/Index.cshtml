@@ -3,7 +3,7 @@
 @model Coaching_Models.ViewModelChatGroupMessages.ViewModelChatGroupMessages
 
 
-@{ 
+@{
     Coaching_Models.GroupeChat groupeChat = new Coaching_Models.GroupeChat();
     if (ViewBag.Groupe != null)
     {
@@ -15,7 +15,7 @@
 
 
 
-@using (Html.BeginForm("_Chat","Communauté",FormMethod.Post))
+@using (Html.BeginForm("_Chat", "Communauté", FormMethod.Post))
 {
 
     <div id="containerChat">
@@ -46,72 +46,74 @@
                                 backgroundColorLi = "box-shadow: inset 0 0 0 1px #e44c65";
                                 backgroundColorh2 = "color:#e44c65";
                             }
-
+                            <a href="@Url.Action("Index", new { id = item.Id })">
                                 <li style="@backgroundColorLi">
 
                                     <div>
-                                        <h2 style="@backgroundColorh2">   @Html.ActionLink(item.Nom, "Index", new { id = item.Id })</h2>
+                                    <h2 style="@backgroundColorh2">   @item.Nom</h2>
 
 
 
-                                        <h3>
-                                            <span class="status green"></span>
-                                            @item.Membres.Count() participants
+                                    <h3>
+                                        <span class="status green"></span>
+                                        @item.Membres.Count() participants
 
-                                        </h3>
+                                    </h3>
 
-                                    </div>
-                                  
-                                </li>
-                            }
+                                </div>
+
+
+                            </li>
+                            </a>
                         }
                     }
+                }
 
 
 
-                    <li>
-                        <div>
-                            <p>
-                                @Html.ActionLink("Ajouter un chat", "CreateNewChat", "Communauté")
-                                <br />
-                                +
-                            </p>
-                        </div>
+                <li>
+                    <div>
+                        <p>
+                            @Html.ActionLink("Ajouter un chat", "CreateNewChat", "Communauté")
+                            <br />
+                            +
+                        </p>
+                    </div>
 
-                    </li>
-                    <li>
-                        <div>
-                            <p>
-                                @Html.ActionLink("Rejoindre un chat", "JoinAchat", "Communauté")
-                                <br />
-                                +
-                            </p>
-                        </div>
+                </li>
+                <li>
+                    <div>
+                        <p>
+                            @Html.ActionLink("Rejoindre un chat", "JoinAchat", "Communauté")
+                            <br />
+                            +
+                        </p>
+                    </div>
 
-                    </li>
+                </li>
 
-                </ul>
+            </ul>
         </aside>
         <main>
 
             @if (ViewBag.Groupe != null)
             {
-            <div id="chatcontainer">
-                @Html.Partial("_Chat", groupeChat)
-            </div>
+                <div id="chatcontainer">
+                    @Html.Partial("_Chat", groupeChat)
+                </div>
                 <footer>
                     <input type="hidden" name="groupeChats" value=@groupeChat.Id />
-                    @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2"})
-                    
-                <div class="row gtr-uniform ">
-                    <p class="col-6"> Connected as:  @ViewBag.userName </p>
-                    <div class="col-6">
-                        <input type="submit" value="Send" class=" button primary" />
+                    @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="row gtr-uniform ">
+                        <p class="col-6"> Connected as:  @ViewBag.userName </p>
+                        <div class="col-6">
+                            <input type="submit" value="Send" class=" button primary" />
+                        </div>
+
                     </div>
 
-                </div>
-                
-                     
+
                 </footer>
             }
             else
@@ -138,23 +140,22 @@
             </script>
         </main>
 
-        <div style="background-color: red; height: 200px; width: 200px; display: inline-block;">
+        <aside>
+            <!--style="background-color: red; height: 200px; width: 200px; display: inline-block;"-->
             <ul>
                 @foreach (Coaching_Models.Utilisateur membre in groupeChat.Membres)
                 {
                     <li>
-                        @membre.Pseudo;
+                        @membre.Pseudo
                     </li>
                 }
 
             </ul>
 
-        </div>
-
-
+        </aside>
     </div>
-                  
-    
+
+
 }
 <script>
 
