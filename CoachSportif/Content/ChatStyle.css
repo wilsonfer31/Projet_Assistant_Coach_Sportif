@@ -15,10 +15,10 @@ EDIT ON
 aside {
     width: 200px;
     height: auto;
-    background-color: #3b3e49;
     display: inline-block;
     font-size: 15px;
     vertical-align: top;
+    border: 2px solid white;
 }
 
 main {
@@ -62,7 +62,6 @@ aside ul {
 
 aside li {
     padding: 10px 0;
-    border-bottom: 1px outset white;
 }
 
     aside li:hover {

@@ -102,8 +102,16 @@
                 <footer>
                     <input type="hidden" name="groupeChats" value=@groupeChat.Id />
                     @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2"})
-                    Connected as:  @ViewBag.userName <a><input type="submit" value="Send" class="btn primary" /></a>
-                     v
+                    
+                <div class="row gtr-uniform ">
+                    <p class="col-6"> Connected as:  @ViewBag.userName </p>
+                    <div class="col-6">
+                        <input type="submit" value="Send" class=" button primary" />
+                    </div>
+
+                </div>
+                
+                     
                 </footer>
             }
             else
@@ -132,9 +140,13 @@
 
         <div style="background-color: red; height: 200px; width: 200px; display: inline-block;">
             <ul>
-                <li>
+                @foreach (Coaching_Models.Utilisateur membre in groupeChat.Membres)
+                {
+                    <li>
+                        @membre.Pseudo;
+                    </li>
+                }
 
-                </li>
             </ul>
 
         </div>
