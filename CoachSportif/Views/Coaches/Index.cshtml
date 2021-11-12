@@ -24,23 +24,33 @@
         <input type="text" name="" value="" placeholder="Activité" />
     </div>
     <div class="col-6 col-12-xsmall">
-        <input type="text" name="" value="" placeholder="Date" />
+        <input type="date" name="" value="" placeholder="Date" style="height: 3em" />
     </div>
 </div>
+
+<div class="table-wrapper"></div>
 
 <script>
     function recherche() {
         let inputs = document.querySelectorAll("input");
+        inputs.forEach(input => { input.addEventListener("change", drawTable); input.addEventListener("keyup",drawTable)})
         let coach = inputs.item(0).value;
         let ville = inputs.item(1).value;
         let activite = inputs.item(2).value;
         let date = inputs.item(3).value;
-
         let tabFiltre = [];
         for (let c of @Html.Raw(Json.Encode(Model))) {
             if (c.Utilisateur.Pseudo.includes(coach) && c.Utilisateur.Ville.Nom.includes(ville)) {
-                for (let a of c.CoursDispenses) {
-                    if (a.Activite.Nom.includes(activite) && a.DateCours.ToString().includes(date)) {
+                if (c.CoursDispenses.length > 0) {
+                    for (let a of c.CoursDispenses) {
+                        if (a.Activite.Nom.includes(activite) && (new Date(parseInt(a.DateCours.substr(6))).toLocaleDateString().includes(new Date(Date.parse(date)).toLocaleDateString()) || date == "")) {
+                            if (!tabFiltre.includes(c)) {
+                                tabFiltre.push(c);
+                            }
+                        }
+                    }
+                } else {
+                    if (activite === "" && date === "") {
                         if (!tabFiltre.includes(c)) {
                             tabFiltre.push(c);
                         }
@@ -49,7 +59,50 @@
             }
         }
         return tabFiltre;
-        
     }
+
+    function drawTable() {
+        let html = `
+<table class="alt">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Pseudo Coach</th>
+                <th>Nom Coach</th>
+                <th>Prenom Coach</th>
+                <th>Nombre De Cours Disponible</th>
+                <th>Details</th>
+
+
+            </tr>
+        </thead>
+        <tbody>`
+
+        for (let coach of recherche()) {
+            let i = 1;
+            html += `
+            <tr>
+                <td>${i}</td>
+                <td>${coach.Utilisateur.Pseudo}</td>
+                <td>${coach.Utilisateur.Nom}</td>
+                <td>${coach.Utilisateur.Prenom}</td>
+                <td>${coach.CoursDispenses.length}</td>
+
+                <td>
+                    <a href="/Coaches/Details/${coach.Id}">Details</a>
+                    @if (Session["admin"] != null)
+                    {
+                        <span> | </span>
+                        <a href="/Coaches/Delete/${coach.Id}">+</a>
+                    }
+                </td>
+            </tr>`
+            i++;
+        }
+        html += `
+        </tbody>
+    </table>`
+        document.querySelector(".table-wrapper").innerHTML = html;
+    };
+    drawTable();
 </script>
-@Html.Partial("CoachList")
