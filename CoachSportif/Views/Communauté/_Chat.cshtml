@@ -17,7 +17,7 @@
         if(Model.ChatMessages[i].Utilisateur.Id == (int)Session["user_id"])
         {
 
-            <li class="you">
+            <li class="me">
                 <div class="entete">
                     <span class="status green"></span>
                     <h2>@Model.ChatMessages[i].Utilisateur.Pseudo</h2>
@@ -35,11 +35,11 @@
         {
 
 
-            <li class="me">
+            <li class="you">
                 <div class="entete">
                     <h3>@Model.ChatMessages[i].Date</h3>
                     <h2>@Model.ChatMessages[i].Utilisateur.Pseudo</h2>
-                    <span class="status blue"></span>
+                    <span class="status green"></span>
                 </div>
                 <div class="triangle"></div>
                 <div class="message">

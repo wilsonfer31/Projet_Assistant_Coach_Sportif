@@ -165,6 +165,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ChatStyle.css" />
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\images\AllSportLogo.png" />
     <Content Include="Content\images\BackgroundAccueil.jpg" />
@@ -263,6 +264,8 @@
     <Content Include="Views\Coaches\Index.cshtml" />
     <Content Include="Views\Communauté\_Chat.cshtml" />
     <Content Include="Views\Shared\CoachList.cshtml" />
+    <Content Include="Views\Communauté\CreateNewChat.cshtml" />
+    <Content Include="Views\Communauté\JoinAchat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

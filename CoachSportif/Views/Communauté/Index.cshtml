@@ -55,6 +55,8 @@
                     }
                 }
 
+                
+
                 <li>
                     <div>
                         <p>
@@ -87,7 +89,7 @@
                     <input type="hidden" name="groupeChats" value=@groupeChat.Id />
                     @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
                     Connected as:  @ViewBag.userName <a><input type="submit" value="Send" class="btn primary" /></a>
-                     v
+                   
                 </footer>
             }
             else

@@ -15,14 +15,14 @@ namespace CoachSportif.Controllers
 
 
     public class CommunautéController : Controller
-    {
+    { 
 
         MyContext myContext = new MyContext();
         // GET: Communauté
         public ActionResult Index(int? id)
         {
             var intSession = int.Parse(Session["user_id"].ToString());
-            Utilisateur userinfo = myContext.Utilisateurs.Find(intSession);
+            Utilisateur userinfo = myContext.Utilisateurs.Include(u => u.GroupeChats).SingleOrDefault(u => u.Id == intSession);
 
             ViewBag.Messages = myContext.Messages.ToList();
             ViewBag.userName = userinfo.Pseudo;
@@ -33,8 +33,14 @@ namespace CoachSportif.Controllers
 
 
                 ViewBag.Groupe = myContext.GroupeChats.Find(id.Value);
-            };
+            }
+            else if(userinfo.GroupeChats.Count()>0)
+            {
+                ViewBag.Groupe = myContext.GroupeChats.Find(userinfo.GroupeChats.ElementAt(0).Id);
+
+            }
            
+
             
 
             return View();
@@ -125,7 +131,7 @@ namespace CoachSportif.Controllers
                 myUser.GroupeChats.Add(groupeChat1);
 
                 myContext.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",new {Id = groupeChat1.Id });
             }
             return View(ViewModelChatGroupMessages.groupeChats);
         }
