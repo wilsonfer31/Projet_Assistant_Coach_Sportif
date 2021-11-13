@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Script.Serialization;
 
 namespace Coaching_Models
 {
@@ -19,6 +20,7 @@ namespace Coaching_Models
         public string Adresse { get; set; }
         [Required]
         public Ville Ville { get; set; }
+        [ScriptIgnore]
         public List<GroupeChat> GroupeChats { get; set; } = new List<GroupeChat>();
         public List<Cours> CoursSuivis { get; set; } = new List<Cours>();
         public bool Admin { get; set; } = false;

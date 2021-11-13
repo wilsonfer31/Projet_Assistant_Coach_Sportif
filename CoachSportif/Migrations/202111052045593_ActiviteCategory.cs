@@ -1,8 +1,7 @@
 namespace CoachSportif.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class ActiviteCategory : DbMigration
     {
         public override void Up()
@@ -11,7 +10,7 @@ namespace CoachSportif.Migrations
             CreateIndex("dbo.Activites", "Categorie_Id");
             AddForeignKey("dbo.Activites", "Categorie_Id", "dbo.CategorieActivites", "Id");
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Activites", "Categorie_Id", "dbo.CategorieActivites");

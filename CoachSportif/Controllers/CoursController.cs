@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Coaching_Models;
+using CoachSportif.Filters;
+using CoachSportif.Models;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using CoachSportif.Models;
-using Coaching_Models;
 
 namespace CoachSportif.Controllers
 {
+    [LoginFilters]
     public class CoursController : Controller
     {
-        private MyContext db = new MyContext();
+        private readonly MyContext db = new MyContext();
 
         // GET: Cours
+        [AdminFilters]
         public ActionResult Index()
         {
-            return View(db.Cours.Include(C => C.Adresse).Include(C => C.Activite).Include(C =>  C.Coach.Utilisateur));
+            return View(db.Cours.Include(C => C.Adresse).Include(C => C.Activite).Include(C => C.Coach.Utilisateur));
         }
 
         // GET: Cours/Details/5
@@ -38,6 +38,7 @@ namespace CoachSportif.Controllers
 
 
         // GET: Cours/Create
+        [CoachFilters]
         public ActionResult Create()
         {
             CreateCoursForm ccf = new CreateCoursForm
@@ -53,6 +54,7 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CoachFilters]
         public ActionResult Create(CreateCoursForm ccf)
         {
             if (ModelState.IsValid)
@@ -75,6 +77,7 @@ namespace CoachSportif.Controllers
         }
 
         // GET: Cours/Edit/5
+        [CoachFilters]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -94,6 +97,7 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CoachFilters]
         public ActionResult Edit([Bind(Include = "Id,DateCours")] Cours cours)
         {
             if (ModelState.IsValid)
@@ -106,6 +110,7 @@ namespace CoachSportif.Controllers
         }
 
         // GET: Cours/Delete/5
+        [CoachFilters]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,6 +128,7 @@ namespace CoachSportif.Controllers
         // POST: Cours/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CoachFilters]
         public ActionResult DeleteConfirmed(int id)
         {
             Cours cours = db.Cours.Find(id);
@@ -131,6 +137,7 @@ namespace CoachSportif.Controllers
             return RedirectToAction("Index");
         }
 
+        [AdminFilters]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

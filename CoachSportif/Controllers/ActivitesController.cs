@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Coaching_Models;
+using CoachSportif.Filters;
+using CoachSportif.Models;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using CoachSportif.Models;
-using Coaching_Models;
 
 namespace CoachSportif.Controllers
 {
+    [AdminFilters]
     public class ActivitesController : Controller
     {
-        private MyContext db = new MyContext();
+        private readonly MyContext db = new MyContext();
 
         // GET: Activites
         public ActionResult Index()
@@ -39,6 +38,7 @@ namespace CoachSportif.Controllers
         // GET: Activites/Create
         public ActionResult Create()
         {
+            ViewBag.Categories = db.CategorieActivites.Select(c => new SelectListItem { Text = c.Nom, Value = c.Id.ToString() });
             return View();
         }
 
@@ -55,7 +55,7 @@ namespace CoachSportif.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Categories = db.CategorieActivites.Select(c => new SelectListItem { Text = c.Nom, Value = c.Id.ToString() });
             return View(activite);
         }
 

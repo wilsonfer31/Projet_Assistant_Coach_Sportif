@@ -140,6 +140,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Controllers\VilleController.cs" />
+    <Compile Include="Filters\CoachFilters.cs" />
+    <Compile Include="Filters\AdminFilters.cs" />
+    <Compile Include="Filters\LoginFilters.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,10 +265,18 @@
     <Content Include="Views\Coaches\Details.cshtml" />
     <Content Include="Views\Coaches\Edit.cshtml" />
     <Content Include="Views\Coaches\Index.cshtml" />
-    <Content Include="Views\Communauté\_Chat.cshtml" />
+    <Content Include="Views\Communauté\Chat.cshtml" />
     <Content Include="Views\Shared\CoachList.cshtml" />
     <Content Include="Views\Communauté\CreateNewChat.cshtml" />
     <Content Include="Views\Communauté\JoinAchat.cshtml" />
+    <Content Include="Views\Communauté\Groupes.cshtml" />
+    <Content Include="Views\Communauté\Groupe.cshtml" />
+    <Content Include="Views\Communauté\Details.cshtml" />
+    <Content Include="Views\Utilisateurs\Auth.cshtml" />
+    <Content Include="Views\Ville\Create.cshtml" />
+    <Content Include="Views\Ville\Delete.cshtml" />
+    <Content Include="Views\Ville\Details.cshtml" />
+    <Content Include="Views\Ville\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

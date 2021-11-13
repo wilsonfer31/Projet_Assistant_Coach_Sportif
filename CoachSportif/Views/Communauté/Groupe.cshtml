@@ -1,0 +1,67 @@
+﻿@model Coaching_Models.GroupeChat
+
+@{
+    ViewBag.Title = "Groupe";
+}
+
+<h2>@Model.Nom</h2>
+
+<div class="row gtr-uniform gtr-50">
+    <div class="col-6 col-12-xsmall">
+        <input type="text" name="pseudo" placeholder="Pseudo" onchange="buildTable(this.value)" onkeyup="buildTable(this.value)" />
+    </div>
+</div>
+
+<hr />
+
+<div id="table">
+
+</div>
+
+<script>
+    function buildTable(pseudo = "") {
+        let html = `
+<table class="table">
+    <tr>
+        <th>
+
+            <label>Pseudo</label>
+        </th>
+        <th>
+            <label>Contribution</label>
+        </th>
+        <th></th>
+    </tr>`;
+        for (var user of @Html.Raw(Json.Encode(Model.Membres))) {
+        if (user.Pseudo.includes(pseudo))
+        {
+            let contrib = 0;
+            for (var mess of @Html.Raw(Json.Encode(Model.ChatMessages))) {                
+                if (mess.Utilisateur.Pseudo.includes(user.Pseudo)) {
+                    contrib++;
+                }
+            }
+            html += `
+        <tr>
+            <td>
+                ${user.Pseudo}
+            </td>
+            <td>
+                ${contrib}
+            </td>
+            <td>
+            <a href="/Communauté/Details/@Model.Id/${user.Id}">Voir les Messages</a> | <a href="/Coaches/CreateCoach/${user.Id}">Exclure</a>
+            </td>
+        </tr>`;
+        }
+    }
+        html += `
+</table>`;
+        document.querySelector("#table").innerHTML = html;
+    }
+    buildTable()
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

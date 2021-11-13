@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Coaching_Models.ViewModelChatGroupMessages
+﻿namespace Coaching_Models.ViewModelChatGroupMessages
 {
     public class ViewModelChatGroupMessages
     {
-        public int groupeChats { get; set; }
-        public Message messages { get; set; }
+        public int GroupeChats { get; set; }
+        public Message Messages { get; set; }
 
 
     }

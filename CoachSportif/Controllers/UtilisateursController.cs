@@ -1,4 +1,5 @@
 ﻿using Coaching_Models;
+using CoachSportif.Filters;
 using CoachSportif.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,9 +11,10 @@ namespace CoachSportif.Controllers
 {
     public class UtilisateursController : Controller
     {
-        private MyContext db = new MyContext();
+        private readonly MyContext db = new MyContext();
 
         // GET: Utilisateurs
+        [AdminFilters]
         public ActionResult Index()
         {
             return View(db.Utilisateurs.Include(u => u.Ville).ToList());
@@ -66,6 +68,7 @@ namespace CoachSportif.Controllers
         }
 
         // GET: Utilisateurs/Edit/5
+        [LoginFilters]
         public ActionResult Edit(int? id)
         {
 
@@ -78,7 +81,7 @@ namespace CoachSportif.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new EditForm(utilisateur, db.Villes.Select(V => new SelectListItem {Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() })));
+            return View(new EditForm(utilisateur, db.Villes.Select(V => new SelectListItem { Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() })));
         }
 
         // POST: Utilisateurs/Edit/5
@@ -86,14 +89,18 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [LoginFilters]
         public ActionResult Edit(EditForm editForm)
         {
             List<SelectListItem> VilleSelect = new List<SelectListItem>();
             Utilisateur utilisateur = db.Utilisateurs.Include(u => u.Ville).SingleOrDefault(u => u.Id == editForm.Id);
             foreach (Ville V in db.Villes)
             {
-                VilleSelect.Add(new SelectListItem {Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
-                if (V.Id.ToString().Equals(editForm.Ville)) utilisateur.Ville = V;
+                VilleSelect.Add(new SelectListItem { Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
+                if (V.Id.ToString().Equals(editForm.Ville))
+                {
+                    utilisateur.Ville = V;
+                }
             }
             if (ModelState.IsValid)
             {
@@ -107,6 +114,7 @@ namespace CoachSportif.Controllers
         }
 
         // GET: Utilisateurs/Delete/5
+        [LoginFilters]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +132,7 @@ namespace CoachSportif.Controllers
         // POST: Utilisateurs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [LoginFilters]
         public ActionResult DeleteConfirmed(int id)
         {
             Utilisateur utilisateur = db.Utilisateurs.Find(id);
@@ -132,6 +141,7 @@ namespace CoachSportif.Controllers
             return RedirectToAction("Index");
         }
 
+        [AdminFilters]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -157,39 +167,70 @@ namespace CoachSportif.Controllers
             {
                 Utilisateur userDB = null;
                 Coach coach = db.Coaches.Include(c => c.Utilisateur).SingleOrDefault(u => u.Utilisateur.Pseudo.Equals(user.Pseudo));
-                if (coach == null) userDB = db.Utilisateurs.SingleOrDefault(u => u.Pseudo.Equals(user.Pseudo));
-                else userDB = coach.Utilisateur;
+                if (coach == null)
+                {
+                    userDB = db.Utilisateurs.SingleOrDefault(u => u.Pseudo.Equals(user.Pseudo));
+                }
+                else
+                {
+                    userDB = coach.Utilisateur;
+                }
+
                 if (userDB != null)
                 {
                     if (userDB.MotDePasse.Equals(user.MotDePasse))
                     {
-                        if (coach != null) Session["coach_id"] = coach.Id;
+                        if (coach != null)
+                        {
+                            Session["coach_id"] = coach.Id;
+                        }
+
                         Session["user_id"] = userDB.Id;
-                        if (userDB.Admin) Session["admin"] = userDB.Admin;
+                        if (userDB.Admin)
+                        {
+                            Session["admin"] = userDB.Admin;
+                        }
+
                         Session.Remove("logging");
                         return RedirectToAction("Index", "Ville");
                     }
-                    else ViewBag.Error = msgErreur;
+                    else
+                    {
+                        ViewBag.Error = msgErreur;
+                    }
                 }
-                else ViewBag.Error = msgErreur;
+                else
+                {
+                    ViewBag.Error = msgErreur;
+                }
             }
-            else ViewBag.Error = msgErreur;
+            else
+            {
+                ViewBag.Error = msgErreur;
+            }
+
             Session.Remove("logging");
             return RedirectToAction("Log");
         }
-
+        [LoginFilters]
         public ActionResult Logout()
         {
             Session.RemoveAll();
             return RedirectToAction("Index", "Home");
         }
 
+        [AdminFilters]
         public ActionResult AdminState(int id)
         {
-            Utilisateur utilisateur = db.Utilisateurs.Find(id);
+            Utilisateur utilisateur = db.Utilisateurs.Include(u => u.Ville).SingleOrDefault(u => u.Id == id);
             utilisateur.Admin = !utilisateur.Admin;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Auth()
+        {
+            return View();
         }
     }
 }

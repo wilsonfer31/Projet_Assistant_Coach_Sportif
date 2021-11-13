@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Coaching_Models.GroupeChat>
+
+@{
+    ViewBag.Title = "Groupes";
+}
+
+<h2>Groupes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Membres)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nom)
+    </td>
+    <td>
+        @item.Membres.Count()
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Groupe", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

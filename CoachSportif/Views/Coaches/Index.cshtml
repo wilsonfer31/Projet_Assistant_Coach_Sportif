@@ -40,19 +40,21 @@
         let date = inputs.item(3).value;
         let tabFiltre = [];
         for (let c of @Html.Raw(Json.Encode(Model))) {
-            if (c.Utilisateur.Pseudo.includes(coach) && c.Utilisateur.Ville.Nom.includes(ville)) {
-                if (c.CoursDispenses.length > 0) {
-                    for (let a of c.CoursDispenses) {
-                        if ((a.Activite.Nom.includes(activite) || a.Activite.Categorie.Nom.includes(activite)) && (new Date(parseInt(a.DateCours.substr(6))).toLocaleDateString().includes(new Date(Date.parse(date)).toLocaleDateString()) || date == "")) {
+            if (c.Utilisateur !== null && c.CoursDispenses !== null) {
+                if (c.Utilisateur.Pseudo.includes(coach) && c.Utilisateur.Ville.Nom.includes(ville)) {
+                    if (c.CoursDispenses.length > 0) {
+                        for (let a of c.CoursDispenses) {
+                            if ((a.Activite.Nom.includes(activite) || a.Activite.Categorie.Nom.includes(activite)) && (new Date(parseInt(a.DateCours.substr(6))).toLocaleDateString().includes(new Date(Date.parse(date)).toLocaleDateString()) || date == "")) {
+                                if (!tabFiltre.includes(c)) {
+                                    tabFiltre.push(c);
+                                }
+                            }
+                        }
+                    } else {
+                        if (activite === "" && date === "") {
                             if (!tabFiltre.includes(c)) {
                                 tabFiltre.push(c);
                             }
-                        }
-                    }
-                } else {
-                    if (activite === "" && date === "") {
-                        if (!tabFiltre.includes(c)) {
-                            tabFiltre.push(c);
                         }
                     }
                 }
@@ -93,7 +95,7 @@
                     @if (Session["admin"] != null)
                     {
                         <span> | </span>
-                        <a href="/Coaches/Delete/${coach.Id}">+</a>
+                        <a href="/Coaches/Delete/${coach.Id}">Supprimer</a>
                     }
                 </td>
             </tr>`

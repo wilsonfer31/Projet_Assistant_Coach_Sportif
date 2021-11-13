@@ -36,17 +36,19 @@ namespace CoachSportif.Controllers
 
                 //Instanciation du client: On se connecte au serveur SMTP gmail
                 //Provider Gmail
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+                {
 
-                //On indique au client d'utiliser les informations qu'on va lui fournir
-                client.UseDefaultCredentials = true;
+                    //On indique au client d'utiliser les informations qu'on va lui fournir
+                    UseDefaultCredentials = true,
 
-                //Ajout des informations de connexion
-                //On initialise une nouvelle instance NetworkCredential avec le nom de l'utilisateur et le MDP
-                client.Credentials = new NetworkCredential("claudeaziz8@gmail.com", "Dawan1234");
+                    //Ajout des informations de connexion
+                    //On initialise une nouvelle instance NetworkCredential avec le nom de l'utilisateur et le MDP
+                    Credentials = new NetworkCredential("claudeaziz8@gmail.com", "Dawan1234"),
 
-                //On active le protocole SSL
-                client.EnableSsl = true;
+                    //On active le protocole SSL
+                    EnableSsl = true
+                };
                 client.Send(msg);
 
                 ViewBag.Message = "Votre message a bien été envoyer";

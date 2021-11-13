@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Coaching_Models
@@ -30,7 +27,7 @@ namespace Coaching_Models
         private static IEnumerable<SelectListItem> InitHours()
         {
             List<SelectListItem> lst = new List<SelectListItem>();
-            for(int i = 0; i<24; i++)
+            for (int i = 0; i < 24; i++)
             {
                 lst.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString() });
             }
@@ -39,7 +36,7 @@ namespace Coaching_Models
         private static IEnumerable<SelectListItem> InitMins()
         {
             List<SelectListItem> lst = new List<SelectListItem>();
-            for (int i = 0; i < 61; i+=5)
+            for (int i = 0; i < 61; i += 5)
             {
                 lst.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString() });
             }

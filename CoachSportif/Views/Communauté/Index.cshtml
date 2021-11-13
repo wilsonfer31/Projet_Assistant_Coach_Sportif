@@ -9,67 +9,45 @@
     {
         groupeChat = ViewBag.Groupe;
     }
-    
+
 }
 
 <link href="~/Content/ChatStyle.css" rel="stylesheet" />
 
+<div id="containerChat">
+    <aside>
+        <ul>
+            @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
+            {
 
-
-@using (Html.BeginForm("_Chat", "Communauté", FormMethod.Post))
-{
-
-    <div id="containerChat">
-        <aside>
-
-            <ul>
-
-
-                @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
-
-
-
+                foreach (Coaching_Models.Utilisateur item1 in item.Membres)
                 {
-
-
-                    foreach (Coaching_Models.Utilisateur item1 in item.Membres)
+                    if (item1.Id == (int)Session["user_id"])
                     {
-
-                        if (item1.Id == (int)Session["user_id"])
+                        string backgroundColorLi = null;
+                        string backgroundColorh2 = null;
+                        if (item.Id == groupeChat.Id)
                         {
-                            string backgroundColorLi = null;
-                            string backgroundColorh2 = null;
-                            if (item.Id == groupeChat.Id)
-                            {
 
-                                backgroundColorLi = "box-shadow: inset 0 0 0 1px #e44c65";
-                                backgroundColorh2 = "color:#e44c65";
-                            }
-                            <a href="@Url.Action("Index", new { id = item.Id })">
+                            backgroundColorLi = "box-shadow: inset 0 0 0 1px #e44c65";
+                            backgroundColorh2 = "color:#e44c65";
+                        }
+                        <a href="@Url.Action("Index", new { id = item.Id })">
                             <li style="@backgroundColorLi">
-
                                 <div>
                                     <h2 style="@backgroundColorh2">   @item.Nom</h2>
-
-
-
                                     <h3>
                                         <span class="status green"></span>
                                         @item.Membres.Count() participants
 
                                     </h3>
-
                                 </div>
-
-
                             </li>
-                            </a>
-                        }
+                        </a>
                     }
                 }
-
-
-                <a href="@Url.Action("CreateNewChat")">
+            }
+            <a href="@Url.Action("CreateNewChat")">
                 <li>
                     <div>
                         <p>
@@ -78,11 +56,9 @@
                             +
                         </p>
                     </div>
-
                 </li>
-                </a>
-
-                <a href="@Url.Action("JoinAchat")">
+            </a>
+            <a href="@Url.Action("JoinAchat")">
                 <li>
                     <div>
                         <p>
@@ -91,84 +67,67 @@
                             +
                         </p>
                     </div>
-
                 </li>
-                </a>
-
-            </ul>
-        </aside>
-        <main>
-
-            @if (ViewBag.Groupe != null)
-            {
-                <div id="chatcontainer">
-                    @Html.Partial("_Chat", groupeChat)
-                </div>
-                <footer>
+            </a>
+        </ul>
+    </aside>
+    <main>
+        @if (ViewBag.Groupe != null)
+        {
+            <div id="chatcontainer">
+                @Html.Partial("Chat", groupeChat)
+            </div>
+            <footer>
+                @using (Html.BeginForm("_Chat", "Communauté", FormMethod.Post))
+                {
                     <input type="hidden" name="groupeChats" value=@groupeChat.Id />
-                    @Html.TextAreaFor(model => model.messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextAreaFor(model => model.Messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
 
                     <div class="row gtr-uniform ">
                         <p class="col-6"> Connected as:  @ViewBag.userName </p>
                         <div class="col-6">
                             <input type="submit" value="Send" class=" button primary" />
                         </div>
-
                     </div>
-
-
-                </footer>
-            }
-            else
-            {
-                <h2>Veuillez choisir un chat</h2>
-            }
-
-
-            <script>
-                document.forms[0].onsubmit = () => {
-                    let formData = new FormData(document.forms[0]);
-                    var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            document.querySelector("#chatcontainer").innerHTML = "<header>" + xhr.responseText.split("<header>")[1].split("</ul>")[0]
-                            document.querySelector("#chat").scrollTop = document.querySelector("#chat").scrollHeight;
-                            document.querySelector("textarea").value = "";
-                        }
-                    };
-                    xhr.open('post', '/Communauté/_Chat', true);
-                    xhr.send(new URLSearchParams(formData));
-                    return false;
-                };
-            </script>
-        </main>
-
-        <aside>
-            <!--style="background-color: red; height: 200px; width: 200px; display: inline-block;"-->
-            <ul>
-                @foreach (Coaching_Models.Utilisateur membre in groupeChat.Membres)
-                {
-
-                    string userActuel = null;
-                    if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
-
-
-
-
-                    <li style="@userActuel">
-                        @membre.Pseudo
-                    </li>
                 }
-
-            </ul>
-
-        </aside>
-    </div>
-
-
-}
+                </footer>
+        }
+        else
+        {
+            <h2>Veuillez choisir un chat</h2>
+        }
+        <script>
+            document.forms[0].onsubmit = () => {
+                let formData = new FormData(document.forms[0]);
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.querySelector("#chatcontainer").innerHTML = "<header>" + xhr.responseText.split("<header>")[1].split("</ul>")[0]
+                        objDiv.scrollTop = objDiv.scrollHeight;
+                        document.querySelector("textarea").value = "";
+                    }
+                };
+                xhr.open('post', '/Communauté/Chat', true);
+                xhr.send(new URLSearchParams(formData));
+                return false;
+            };
+        </script>
+    </main>
+    <aside>
+        <!--style="background-color: red; height: 200px; width: 200px; display: inline-block;"-->
+        <ul>
+            @foreach (Coaching_Models.Utilisateur membre in groupeChat.Membres)
+            {
+                string userActuel = null;
+                if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
+                <li style="@userActuel">
+                    @membre.Pseudo
+                </li>
+            }
+        </ul>
+    </aside>
+</div>
 <script>
-
     var objDiv = document.getElementById("chat");
     objDiv.scrollTop = objDiv.scrollHeight;
 </script>
