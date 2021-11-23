@@ -42,17 +42,6 @@ namespace CoachSportif.Controllers
             return View(db.Utilisateurs.Except(db.Coaches.Include(c => c.Utilisateur).Select(c => c.Utilisateur)).Include(u => u.Ville));
         }
 
-        // POST: Coaches/Create
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AdminFilters]
-        public ActionResult Create(string pseudo)
-        {
-            return View(db.Utilisateurs.Except(db.Coaches.Include(c => c.Utilisateur).Select(c => c.Utilisateur)).Where(u => u.Pseudo.Contains(pseudo)).Include(u => u.Ville));
-        }
-
         [AdminFilters]
         public ActionResult CreateCoach(int? id)
         {
