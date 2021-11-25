@@ -1,4 +1,4 @@
-﻿@model Coaching_Models.Activite
+﻿@model Coaching_Models.CreateActiviteForm
 
 @{
     ViewBag.Title = "Create";
@@ -7,7 +7,7 @@
 <h2>Nouvelle Activité</h2>
 <hr />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Activites", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

@@ -3,8 +3,10 @@ using CoachSportif.Filters;
 using CoachSportif.Models;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace CoachSportif.Controllers
@@ -47,11 +49,19 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ImageUrl,Descritption,Nom")] Activite activite)
+        public ActionResult Create(CreateActiviteForm activite)
         {
             if (ModelState.IsValid)
             {
-                db.Activites.Add(activite);
+                string fileName = activite.Nom + Path.GetExtension(activite.ImageUrl.FileName);
+                activite.ImageUrl.SaveAs(Server.MapPath("~/Content/images/") + fileName);
+                db.Activites.Add(new Activite() 
+                {
+                    Nom = activite.Nom,
+                    Descritption = activite.Descritption,
+                    ImageUrl = fileName,
+                    Categorie = db.CategorieActivites.Find(activite.Categorie)
+                });
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
