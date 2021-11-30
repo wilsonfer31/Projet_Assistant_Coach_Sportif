@@ -133,5 +133,14 @@ namespace CoachSportif.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Utilisateurs
+        [AdminFilters]
+        public ActionResult ListeVille()
+        {
+            return View(db.Villes);
+        }
+
+
     }
 }
