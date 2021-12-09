@@ -27,7 +27,7 @@ namespace CoachSportif.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Coach coach = db.Coaches.Find(id);
+            Coach coach = db.Coaches.Include(c => c.CoursDispenses.Select(cr => cr.Activite.Categorie)).Include(c => c.Utilisateur).SingleOrDefault(c=>c.Id==id);
             if (coach == null)
             {
                 return HttpNotFound();
