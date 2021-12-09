@@ -3,6 +3,7 @@ using CoachSportif.Filters;
 using CoachSportif.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -52,12 +53,15 @@ namespace CoachSportif.Controllers
         {
             if (ModelState.IsValid)
             {
+                string fileName = registerForm.Pseudo + Path.GetExtension(registerForm.ProfilePicture.FileName);
+                registerForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/") + fileName);
                 Utilisateur utilisateur = new Utilisateur
                 {
                     Pseudo = registerForm.Pseudo,
                     MotDePasse = registerForm.MotDePasse,
                     Mail = registerForm.Mail,
-                    Ville = db.Villes.Find(registerForm.Ville)
+                    Ville = db.Villes.Find(registerForm.Ville),
+                    ProfilePicture = fileName
                 };
                 db.Utilisateurs.Add(utilisateur);
                 db.SaveChanges();

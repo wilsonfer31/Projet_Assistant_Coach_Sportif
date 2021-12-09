@@ -40,8 +40,10 @@
                     </li>
                 }
                 <li>@Html.ActionLink("Community", "Index", "Communauté")</li>
+                <li><img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="../Content/images/@Session["user_profile"]"></li>
+                <li><label>@Session["user_pseudo"]</label></li>
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
-               
+
             }
         </ul>
     </nav>

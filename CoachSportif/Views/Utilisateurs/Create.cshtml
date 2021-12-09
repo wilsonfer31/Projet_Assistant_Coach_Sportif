@@ -7,10 +7,10 @@
 <h3>@ViewBag.Title</h3>
 <hr />
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Utilisateurs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="row gtr-uniform gtr-50">
     <div class="col-6 col-12-xsmall">
         @Html.LabelFor(model => model.Pseudo, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -44,6 +44,14 @@
         </div>
     </div>
 
+    <div class="col-12">
+        @Html.LabelFor(model => model.ProfilePicture, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProfilePicture, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProfilePicture, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div class="col-6 col-12-xsmall">
         <ul class="actions">
             <li><input type="submit" value="Create" class="btn btn-default" /></li>
@@ -52,6 +60,3 @@
     </div>
 </div>
 }
-
-
-

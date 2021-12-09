@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Coaching_Models
@@ -17,5 +18,6 @@ namespace Coaching_Models
         [Required]
         public int Ville { get; set; }
         public IEnumerable<SelectListItem> Villes { get; set; }
+        public HttpPostedFileBase ProfilePicture { get; set; }
     }
 }
