@@ -24,6 +24,8 @@ namespace Coaching_Models
         public List<GroupeChat> GroupeChats { get; set; } = new List<GroupeChat>();
         public List<Cours> CoursSuivis { get; set; } = new List<Cours>();
         public bool Admin { get; set; } = false;
+        [Display(Name = "UserPhoto")]
+        public string ProfilePicture { get; set; }
 
         public void UpdateFromForm(EditForm ef)
         {
@@ -33,6 +35,7 @@ namespace Coaching_Models
             Tel = ef.Tel;
             Mail = ef.Mail;
             Adresse = ef.Adresse;
+            ProfilePicture = ef.ProfilePicture.FileName;
         }
     }
 }
