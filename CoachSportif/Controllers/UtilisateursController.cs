@@ -190,6 +190,8 @@ namespace CoachSportif.Controllers
                         }
 
                         Session["user_id"] = userDB.Id;
+                        Session["user_pseudo"] = userDB.Pseudo;
+                        Session["user_profile"] = userDB.ProfilePicture;
                         if (userDB.Admin)
                         {
                             Session["admin"] = userDB.Admin;

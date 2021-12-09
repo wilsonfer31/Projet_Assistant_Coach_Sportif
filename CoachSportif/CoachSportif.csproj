@@ -179,6 +179,7 @@
     <Content Include="Content\images\colorrun.jpg" />
     <Content Include="Content\images\cyclisme.jpg" />
     <Content Include="Content\images\ligneDeDepart.jpg" />
+    <Content Include="Content\images\noProfilImage.jpg" />
     <Content Include="Content\images\willCoachSoonLogo.png" />
     <Content Include="Content\images\yoga.jpg" />
     <Content Include="Content\main.css" />

@@ -1,4 +1,21 @@
-﻿<!-- Header -->
+﻿
+
+@{
+
+    string stringSource = "../Content/images/";
+
+    if (Session["user_profile"] != null)
+    {
+        stringSource += Session["user_profile"];
+    }
+    else
+    {
+        stringSource += "noProfilImage.jpg";
+    }
+
+}
+
+<!-- Header -->
 <header id="header">
     <h1 id="logo"> <img src="~/Content/images/willCoachSoonLogo.png" height="80px" /> </h1>
     <nav id="nav">
@@ -38,10 +55,24 @@
                             <li class="button primary">@Html.ActionLink("Gestion des Chats", "Index", "Chats")</li>
                         </ul>
                     </li>
+
                 }
+
+
                 <li>@Html.ActionLink("Community", "Index", "Communauté")</li>
-                <li><img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="../Content/images/@Session["user_profile"]"></li>
-                <li><label>@Session["user_pseudo"]</label></li>
+            
+                <li>
+
+                    <div>
+                        <img style="width:40px;height:40px;  border-radius:30px" src=@stringSource>
+                        <label>@Session["user_pseudo"]</label>
+                    </div>
+                </li>
+                
+
+               
+
+
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
 
             }
