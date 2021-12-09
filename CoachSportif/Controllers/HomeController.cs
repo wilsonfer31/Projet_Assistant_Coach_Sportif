@@ -44,7 +44,7 @@ namespace CoachSportif.Controllers
 
                     //Ajout des informations de connexion
                     //On initialise une nouvelle instance NetworkCredential avec le nom de l'utilisateur et le MDP
-                    Credentials = new NetworkCredential("claudeaziz8@gmail.com", "Dawan1234"),
+                    Credentials = new NetworkCredential("claudeaziz8@gmail.com", "az12345/"),
 
                     //On active le protocole SSL
                     EnableSsl = true
