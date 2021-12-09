@@ -18,7 +18,7 @@
         <div class="card-footer">
             <span class="price">@item.DateCours</span>
             <div class="btn-card">
-                @Html.ActionLink("Reserver", "Details", "Utilisateurs", new { id = item.Id }, new { @class = "button noselect"})
+                @Html.ActionLink("Reserver", "Details", "Utilisateurs", new { id = Session["user_id"], opt = item.Id },  new { @class = "button noselect"})
             </div>
         </div>
     </article>

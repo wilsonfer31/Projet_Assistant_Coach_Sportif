@@ -2,8 +2,10 @@
 @model Coaching_Models.Utilisateur
 
 @{
-    List<Coaching_Models.Cours> lstCours = new List<Coaching_Models.Cours>();
+ 
     ViewBag.Title = "Details";
+
+   
 }
 
 <h2>Details</h2>
@@ -103,32 +105,26 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>NomCoach</th>
-                <th>PrenomCoach</th>
-                <th>TelCoach</th>
-                <th>MailCoach</th>
+             
                 <th>Cours</th>
                 <th>Date</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @{ int i = 1; }
-                @foreach (Coaching_Models.Cours cour in lstCours)
-                {
 
+            @{ int i = 1; }
+            @foreach (Coaching_Models.Cours cour in Model.CoursSuivis.OrderBy(cr => cr.DateCours))
+            {
+                <tr>
                     <td>@i</td>
-                    <td>@cour.Coach.Utilisateur.Nom</td>
-                    <td>@cour.Coach.Utilisateur.Prenom</td>
-                    <td>@cour.Coach.Utilisateur.Tel </td>
-                    <td>@cour.Coach.Utilisateur.Mail</td>
+
                     <td>@cour.Activite.Nom</td>
                     <td>@cour.DateCours</td>
+                </tr>
+                i++;
 
-                    i++; 
+            }
 
-                }
-            </tr>
 
         </tbody>
 

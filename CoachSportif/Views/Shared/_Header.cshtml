@@ -2,7 +2,7 @@
 
 @{
 
-    string stringSource = "../../Content/images/";
+    string stringSource = "";
 
     if (Session["user_profile"] != null)
     {
@@ -64,7 +64,7 @@
                 <li>
 
                     <div>
-                        <img style="width:40px;height:40px;  border-radius:30px" src=@stringSource>
+                        <img style="width:40px;height:40px;  border-radius:30px" src="~/Content/images/@stringSource">
                         <label>@Session["user_pseudo"]</label>
                     </div>
                 </li>

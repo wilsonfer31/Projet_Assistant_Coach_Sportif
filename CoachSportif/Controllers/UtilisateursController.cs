@@ -22,17 +22,31 @@ namespace CoachSportif.Controllers
         }
 
         // GET: Utilisateurs/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? opt)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Utilisateur utilisateur = db.Utilisateurs.Find(id);
+            Utilisateur utilisateur = db.Utilisateurs.Include(u => u.CoursSuivis.Select(cr => cr.Activite)).SingleOrDefault(u=>u.Id == id);
             if (utilisateur == null)
             {
                 return HttpNotFound();
             }
+            if (opt.HasValue)
+            {
+                Cours c = db.Cours.Include(cr=>cr.Activite).SingleOrDefault(cr => cr.Id == opt);
+                if (!utilisateur.CoursSuivis.Contains(c))
+                {
+                    c.Adherents.Add(utilisateur);
+                    utilisateur.CoursSuivis.Add(c);
+                    db.SaveChanges();
+                }
+          
+              
+              
+            }
+          
             return View(utilisateur);
         }
 
