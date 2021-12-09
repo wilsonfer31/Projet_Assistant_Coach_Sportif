@@ -1,4 +1,5 @@
-﻿using CoachSportif.Models;
+﻿using Coaching_Models;
+using CoachSportif.Models;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
@@ -21,9 +22,15 @@ namespace CoachSportif.Controllers
 
         public ActionResult Contact()
         {
+            MailForm mf = new MailForm();
+            if (Session["user_id"] != null)
+            {
+                Utilisateur u = new MyContext().Utilisateurs.Find(Session["user_id"]);
+                mf.Mail = u.Mail;
 
+            }
 
-            return View();
+            return View(mf);
         }
 
         [HttpPost]
