@@ -158,6 +158,10 @@
     <Compile Include="Migrations\202111052045593_ActiviteCategory.Designer.cs">
       <DependentUpon>202111052045593_ActiviteCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112090941213_ProfilePicture.cs" />
+    <Compile Include="Migrations\202112090941213_ProfilePicture.Designer.cs">
+      <DependentUpon>202112090941213_ProfilePicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MailForm.cs" />
     <Compile Include="Models\MyContext.cs" />
@@ -311,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111052045593_ActiviteCategory.resx">
       <DependentUpon>202111052045593_ActiviteCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112090941213_ProfilePicture.resx">
+      <DependentUpon>202112090941213_ProfilePicture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
