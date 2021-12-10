@@ -15,7 +15,7 @@ namespace CoachSportif.Controllers
         {
             if (id == null)
             {
-                return View(new ViewModelVille(db.GetUserVilleId((int)Session["user_id"])));
+                return View(new ViewModelVille(db.GetUserVilleId((int)Session["user_id"], db.Getcontext())));
             }
             Ville ville = await db.FindByIdAsync(id);
             if (ville == null)

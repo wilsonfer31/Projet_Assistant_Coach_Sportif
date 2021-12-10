@@ -1,4 +1,5 @@
 ﻿using CoachSportif.Models;
+using CoachSportif.Tools;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace CoachSportif.DAO
     public class GenericDao<T>
     {
         private readonly MyContext db = new MyContext();
+
+        public MyContext Getcontext()
+        {
+            return db;
+        }
 
         public async Task<List<T>> GetAllAsync()
         {

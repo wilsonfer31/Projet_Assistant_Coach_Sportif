@@ -23,11 +23,11 @@ namespace CoachSportif.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(RegisterForm registerForm)
+        public async Task<ActionResult> Register(RegisterForm registerForm)
         {
             if (ModelState.IsValid)
             {
-                if (await db.AddAsync(registerForm.GetUser()) != default)
+                if (await db.AddAsync(registerForm.GetUser(db.Getcontext())) != default)
                 {
                     Session["logging"] = true;
                     return RedirectToAction("Log");
@@ -61,7 +61,7 @@ namespace CoachSportif.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.UpdateAsync(editForm.GetUser()).Result)
+                if (db.UpdateAsync(editForm.GetUser(db.Getcontext())).Result)
                 {
                     return RedirectToAction("Details", new { id = editForm.Id });
                 }
@@ -83,11 +83,11 @@ namespace CoachSportif.Controllers
 
             if (ModelState.IsValid)
             {
-                (Utilisateur userDB, Coach coach) = db.GetCoachOrUser(lf);
+                (Utilisateur userDB, Coach coach) = db.GetCoachOrUser(lf, db.Getcontext());
 
                 if (userDB != null)
                 {
-                    if (userDB.MotDePasse.Equals(lf.MotDePasse))
+                    if (userDB.MotDePasse.Equals(HashTool.CryptPassword(lf.MotDePasse)))
                     {
                         if (coach != null)
                         {
@@ -131,7 +131,7 @@ namespace CoachSportif.Controllers
         [AdminFilters]
         public ActionResult AdminState(int id)
         {
-            db.FindByIdAsync(id).Result.ChangeAdminStateAsync();
+            db.FindByIdAsync(id).Result.ChangeAdminStateAsync(db.Getcontext());
             return RedirectToAction("Index");
         }
 

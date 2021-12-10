@@ -36,7 +36,7 @@ namespace CoachSportif.Controllers
         {
             if (ModelState.IsValid)
             {
-                await db.AddAsync(ccf.GetObject());
+                await db.AddAsync(ccf.GetObject(db.Getcontext()));
                 return RedirectToAction("Index");
             }
             return View(ccf);

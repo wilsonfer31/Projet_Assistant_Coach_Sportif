@@ -12,7 +12,7 @@ namespace CoachSportif.Controllers
         [AdminFilters]
         public override ActionResult Create()
         {
-            return View(db.GetUserToAppointCoach());
+            return View(db.GetUserToAppointCoach(db.Getcontext()));
         }
 
         [AdminFilters]
@@ -20,7 +20,7 @@ namespace CoachSportif.Controllers
         {
             if (id.HasValue)
             {
-                await db.AddAsync(db.UserToCoach(id.Value));
+                await db.AddAsync(db.UserToCoach(id.Value, db.Getcontext()));
                 return RedirectToAction("Index");
             }
             ViewBag.Error = "Something Went Rong";
@@ -33,7 +33,7 @@ namespace CoachSportif.Controllers
         [CoachFilters]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await db.RemoveAsync(db.DeleteCoach(id));
+            await db.RemoveAsync(db.DeleteCoach(id, db.Getcontext()));
             return RedirectToAction("Index");
         }
     }

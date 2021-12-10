@@ -2,6 +2,7 @@
 using CoachSportif.Filters;
 using CoachSportif.Models;
 using CoachSportif.Models.ViewModel;
+using CoachSportif.Tools;
 using System;
 using System.Data.Entity;
 using System.Linq;

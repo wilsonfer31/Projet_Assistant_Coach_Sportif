@@ -1,5 +1,6 @@
 ﻿using Coaching_Models;
 using CoachSportif.Models;
+using CoachSportif.Tools;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
