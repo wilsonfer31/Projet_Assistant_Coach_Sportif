@@ -9,11 +9,9 @@ using System.Web.Mvc;
 
 namespace CoachSportif.Controllers
 {
-    [LoginFilters]
     public class CoachesController : Controller
     {
         private readonly MyContext db = new MyContext();
-
         // GET: Coach
         public ActionResult Index()
         {
