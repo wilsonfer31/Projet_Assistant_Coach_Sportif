@@ -63,34 +63,28 @@ namespace CoachSportif.Tools
             co.CoursDispenses.Add(c);
             return c;
         }
-
         public static void ChangeAdminStateAsync(this Utilisateur u)
         {
             u.Admin = !u.Admin;
             db.SaveChangesAsync();
         }
-
-        public static IQueryable<SelectListItem> Inigdilles(this IEnumerable<SelectListItem> Villes)
+        public static IQueryable<SelectListItem> InitVilles(this IEnumerable<SelectListItem> Villes)
         {
             return db.Villes.Select(V => new SelectListItem { Text = V.Nom + " - " + V.CP, Value = V.Id.ToString() });
         }
-
         public static IQueryable<SelectListItem> InitActivites(this IEnumerable<SelectListItem> Activites)
         {
             return db.Activites.Select(V => new SelectListItem { Text = V.Nom, Value = V.Id.ToString() });
         }
-
         public static IQueryable<SelectListItem> InitCategories(this IEnumerable<SelectListItem> Categories)
         {
             return db.CategorieActivites.Select(c => new SelectListItem { Text = c.Nom, Value = c.Id.ToString() });
         }
-
-        public static void InigdilleViewModel(this ViewModelVille vm, int villeId)
+        public static void InitVilleViewModel(this ViewModelVille vm, int villeId)
         {
             vm.Cours = db.Cours.Where(c => c.Adresse.Id == villeId);
             vm.Coaches = db.Coaches.Where(c => c.Utilisateur.Ville.Id == villeId);
         }
-
         public static (Utilisateur, Coach) GetCoachOrUser(this GenericDao<Utilisateur> gd, LogForm user)
         {
             Utilisateur userDB = null;
@@ -105,7 +99,6 @@ namespace CoachSportif.Tools
             }
             return (userDB, coach);
         }
-
         public static int GetUserVilleId(this GenericDao<Ville> gd, int userId)
         {
             return db.Utilisateurs.Find(userId).Ville.Id;
@@ -125,7 +118,5 @@ namespace CoachSportif.Tools
             if (coach.CoursDispenses.Count() > 0) coach.CoursDispenses.ForEach(c => db.Cours.Remove(c));
             return coach;
         }
-
-
     }
 }

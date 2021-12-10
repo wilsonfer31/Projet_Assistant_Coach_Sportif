@@ -1,37 +1,39 @@
-﻿@model CoachSportif.Models.ViewModel.ViewModelVille
+﻿@model IEnumerable<Coaching_Models.Ville>
 
-<script>
-    function populate(id)
-    {
-        let CardContainer = document.querySelector(".cards-container")
-        CardContainer.removeChild(CardContainer.firstChild)
-        if (id == 0) {
-            CardContainer.innerHTML = `@Html.Partial("Cards",Model.Cours)`
-        } else {
-            CardContainer.innerHTML = `@Html.Partial("CoachList",Model.Coaches)`
-        }
-    }
-</script>
+@{
+    ViewBag.Title = "Index";
+}
 
+<h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th></th>
+    </tr>
 
-<br />
-<br />
-<nav class="nav">
-    <ul class="nav-list">
-        <li>
-            <a class="nav-link" style="cursor:pointer" onclick="populate(0)">Activités</a>
-        </li>
-        <li>
-            <a class="nav-link" style="cursor:pointer" onclick="populate(1)">Coaches</a>
-        </li>
-    </ul>
-</nav>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
 
-<br />
-
-
-<h3>Les Activités disponibles dans votre ville</h3>
-<div class="cards-container">
-    @Html.Partial("Cards", Model.Cours)
-</div>
+</table>

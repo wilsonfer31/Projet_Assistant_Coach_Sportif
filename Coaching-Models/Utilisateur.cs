@@ -26,6 +26,7 @@ namespace Coaching_Models
         public virtual List<Cours> CoursSuivis { get; set; } = new List<Cours>();
         public bool Admin { get; set; } = false;
         [Display(Name = "UserPhoto")]
+        public string ProfilePicture { get; set; }
 
     }
 }
