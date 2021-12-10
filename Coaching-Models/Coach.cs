@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.Script.Serialization;
 
 namespace Coaching_Models
 {

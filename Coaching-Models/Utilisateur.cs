@@ -20,9 +20,9 @@ namespace Coaching_Models
         public string Adresse { get; set; }
         [Required]
         public virtual Ville Ville { get; set; }
-        [ScriptIgnore(ApplyToOverrides=true)]
+        [ScriptIgnore(ApplyToOverrides = true)]
         public virtual List<GroupeChat> GroupeChats { get; set; } = new List<GroupeChat>();
-        [ScriptIgnore(ApplyToOverrides=true)]
+        [ScriptIgnore(ApplyToOverrides = true)]
         public virtual List<Cours> CoursSuivis { get; set; } = new List<Cours>();
         public bool Admin { get; set; } = false;
         [Display(Name = "UserPhoto")]

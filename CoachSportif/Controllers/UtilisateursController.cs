@@ -1,13 +1,7 @@
 ﻿using Coaching_Models;
-using CoachSportif.DAO;
 using CoachSportif.Filters;
-using CoachSportif.Models;
 using CoachSportif.Models.FormsModel;
 using CoachSportif.Tools;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;

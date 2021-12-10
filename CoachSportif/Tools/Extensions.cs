@@ -2,14 +2,12 @@
 using CoachSportif.DAO;
 using CoachSportif.Models;
 using CoachSportif.Models.FormsModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Data.Entity;
 using CoachSportif.Models.ViewModel;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace CoachSportif.Tools
 {
@@ -115,7 +113,11 @@ namespace CoachSportif.Tools
         {
 
             Coach coach = db.Coaches.Include(c => c.CoursDispenses).SingleOrDefault(c => c.Id == id);
-            if (coach.CoursDispenses.Count() > 0) coach.CoursDispenses.ForEach(c => db.Cours.Remove(c));
+            if (coach.CoursDispenses.Count() > 0)
+            {
+                coach.CoursDispenses.ForEach(c => db.Cours.Remove(c));
+            }
+
             return coach;
         }
     }

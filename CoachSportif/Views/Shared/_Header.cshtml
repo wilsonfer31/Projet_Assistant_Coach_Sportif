@@ -55,24 +55,14 @@
                             <li class="button primary">@Html.ActionLink("Gestion des Chats", "Index", "Chats")</li>
                         </ul>
                     </li>
-
                 }
-
-
                 <li>@Html.ActionLink("Community", "Index", "Communauté")</li>
-            
                 <li>
-
                     <div>
                         <img style="width:40px;height:40px;  border-radius:30px" src="~/Content/images/@stringSource">
                         <label>@Session["user_pseudo"]</label>
                     </div>
                 </li>
-                
-
-               
-
-
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
 
             }
