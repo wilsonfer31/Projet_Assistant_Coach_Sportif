@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using CoachSportif.Tools;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Coaching_Models
+namespace CoachSportif.Models.FormsModel
 {
     public class RegisterForm
     {
+        public RegisterForm()
+        {
+            Villes = Villes.InitVilles();
+        }
+
         [Required]
         public string Pseudo { get; set; }
         [Required]

@@ -3,7 +3,8 @@
 @foreach (var item in Model)
 {
     string src = "https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_960_720.jpg";
-    if (!string.IsNullOrEmpty(item.Activite.ImageUrl) && File.Exists("../Content/images/" + item.Activite.ImageUrl)) { src = "../Content/images/" + item.Activite.ImageUrl; }
+    string filepath = "../Content/images/Activites/" + item.Activite.Id + item.Activite.ImageUrl;
+    if (!string.IsNullOrEmpty(item.Activite.ImageUrl) && File.Exists(Server.MapPath(filepath.Replace("..","~")))) { src = filepath; }
 
 <article class="card">
     <div class="card-header">

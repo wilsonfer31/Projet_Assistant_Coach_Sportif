@@ -19,20 +19,12 @@ namespace Coaching_Models
         public string Mail { get; set; }
         public string Adresse { get; set; }
         [Required]
-        public Ville Ville { get; set; }
-        [ScriptIgnore]
-        public List<GroupeChat> GroupeChats { get; set; } = new List<GroupeChat>();
-        public List<Cours> CoursSuivis { get; set; } = new List<Cours>();
+        public virtual Ville Ville { get; set; }
+        [ScriptIgnore(ApplyToOverrides=true)]
+        public virtual List<GroupeChat> GroupeChats { get; set; } = new List<GroupeChat>();
+        [ScriptIgnore(ApplyToOverrides=true)]
+        public virtual List<Cours> CoursSuivis { get; set; } = new List<Cours>();
         public bool Admin { get; set; } = false;
-
-        public void UpdateFromForm(EditForm ef)
-        {
-            Pseudo = ef.Pseudo;
-            Nom = ef.Nom;
-            Prenom = ef.Prenom;
-            Tel = ef.Tel;
-            Mail = ef.Mail;
-            Adresse = ef.Adresse;
-        }
+                
     }
 }
