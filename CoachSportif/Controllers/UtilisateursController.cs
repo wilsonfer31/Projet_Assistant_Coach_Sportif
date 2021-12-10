@@ -83,7 +83,7 @@ namespace CoachSportif.Controllers
 
             if (ModelState.IsValid)
             {
-                (Utilisateur userDB, Coach coach) = db.GetCoachOrUser(lf, db.Getcontext());
+                (Utilisateur userDB, Coach coach) = db.GetCoachOrUser(lf);
 
                 if (userDB != null)
                 {

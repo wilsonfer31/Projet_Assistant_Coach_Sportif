@@ -1,75 +1,34 @@
-﻿ 
-
-@model Coaching_Models.ViewModelChatGroupMessages.ViewModelChatGroupMessages
-
-
-@{
-    Coaching_Models.GroupeChat groupeChat = new Coaching_Models.GroupeChat();
-    if (ViewBag.Groupe != null)
-    {
-        groupeChat = ViewBag.Groupe;
-    }
-
-}
-
+﻿@model IEnumerable<Coaching_Models.GroupeChat>
 <link href="~/Content/ChatStyle.css" rel="stylesheet" />
 
 <div id="containerChat">
     <aside>
         <ul>
-            @foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
+            @foreach (Coaching_Models.GroupeChat item in Model)
             {
-
-                foreach (Coaching_Models.Utilisateur item1 in item.Membres)
-                {
-                    if (item1.Id == (int)Session["user_id"])
-                    {
-                        string backgroundColorLi = null;
-                        string backgroundColorh2 = null;
-                        if (item.Id == groupeChat.Id)
-                        {
-
-                            backgroundColorLi = "box-shadow: inset 0 0 0 1px #e44c65";
-                            backgroundColorh2 = "color:#e44c65";
-                        }
-                        <a href="@Url.Action("Index", new { id = item.Id })">
-                            <li style="@backgroundColorLi">
-                                <div>
-                                    <h2 style="@backgroundColorh2">   @item.Nom</h2>
-                                    <h3>
-                                        <span class="status green"></span>
-                                        @item.Membres.Count() participants
-
-                                    </h3>
-                                </div>
-                            </li>
-                        </a>
-                    }
-                }
+                <a href="@Url.Action("Index", new { id = item.Id })">
+                    <li style="box-shadow: inset 0 0 0 1px #e44c65">
+                        <div>
+                            <h2 style="color:#e44c65">@item.Nom</h2>
+                            <h3>
+                                <span class="status green"></span>
+                                @item.Membres.Count() participants
+                            </h3>
+                        </div>
+                    </li>
+                </a>
             }
-   
         </ul>
     </aside>
     <main>
-        @if (ViewBag.Groupe != null)
+        @if (ViewBag.CurrentChat != null)
         {
             <div id="chatcontainer">
-                @Html.Partial("Chat", groupeChat)
+                @Html.Partial("Chat", Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat))
             </div>
             <footer>
-                @using (Html.BeginForm("_Chat", "Communauté", FormMethod.Post))
-                {
-                    <input type="hidden" name="groupeChats" value=@groupeChat.Id />
-                    @Html.TextAreaFor(model => model.Messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                    <div class="row gtr-uniform ">
-                        <p class="col-6"> Connected as:  @ViewBag.userName </p>
-                        <div class="col-6">
-                            <input type="submit" value="Send" class=" button primary" />
-                        </div>
-                    </div>
-                }
-                </footer>
+                @Html.Partial("JoinAchat",new CoachSportif.Models.ViewModel.ViewModelChatGroupMessages { CurrentChat = 0})
+            </footer>
         }
         else
         {
@@ -95,15 +54,18 @@
     <aside>
         <!--style="background-color: red; height: 200px; width: 200px; display: inline-block;"-->
         <ul>
-            @foreach (Coaching_Models.Utilisateur membre in groupeChat.Membres)
+            @if (ViewBag.CurrentChat != null)
             {
-                string userActuel = null;
-                if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
-                <li style="@userActuel">
-                    @membre.Pseudo
-                </li>
+                foreach (Coaching_Models.Utilisateur membre in Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat).Membres)
+                {
+                    string userActuel = null;
+                    if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
+                    <li style="@userActuel">
+                        @membre.Pseudo
+                    </li>
+                }
             }
-        </ul>
+            </ul>
     </aside>
 </div>
 <script>

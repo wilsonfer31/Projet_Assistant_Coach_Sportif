@@ -13,5 +13,7 @@ namespace Coaching_Models
         [ScriptIgnore(ApplyToOverrides = true)]
         public virtual List<Utilisateur> Adherents { get; set; } = new List<Utilisateur>();
         public DateTime DateCours { get; set; }
+        [ScriptIgnore(ApplyToOverrides = true)]
+        public virtual GroupeChat Chat { get; set; }
     }
 }

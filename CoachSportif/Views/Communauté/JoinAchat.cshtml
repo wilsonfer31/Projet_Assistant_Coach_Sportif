@@ -1,36 +1,12 @@
-﻿@model Coaching_Models.ViewModelChatGroupMessages.ViewModelChatGroupMessages
-
-@{
-    ViewBag.Title = "JoinAchat";
-
-    Dictionary<int, string>
-    groupeChats = new Dictionary<int, string>
-    ();
-
-    foreach (Coaching_Models.GroupeChat item in ViewBag.GroupeChats)
-    {
-    if (!item.Membres.Any(p=>p.Id == (int)Session["user_id"])) {
-    groupeChats.Add(item.Id, (item.Nom).ToString());
-
-    }}}
-
-
-
-
-
-    <h2>JoinAchat</h2>
-
-
-    @using (Html.BeginForm())
-    {
-
-
-    @Html.DropDownListFor(model => model.groupeChats, new SelectList(groupeChats.OrderBy(x=>x.Value),"Key", "Value" , "Key"))
-    <br />
-    <a><input type="submit" value="Send" class="btn primary" /></a>
-
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+﻿@model CoachSportif.Models.ViewModel.ViewModelChatGroupMessages
+@using (Html.BeginForm("_Chat", "Communauté", FormMethod.Post))
+{
+    <input type="hidden" name="groupeChats" value=@Model.CurrentChat />
+    @Html.TextAreaFor(model => model.Messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="row gtr-uniform ">
+        <p class="col-6"> Connected as:  @Session["user_pseudo"] </p>
+        <div class="col-6">
+            <input type="submit" value="Send" class=" button primary" />
+        </div>
     </div>
+}

@@ -20,28 +20,16 @@ namespace CoachSportif.Controllers
         public ActionResult Index(int? id)
         {
             var intSession = int.Parse(Session["user_id"].ToString());
-            Utilisateur userinfo = myContext.Utilisateurs.Include(u => u.GroupeChats).SingleOrDefault(u => u.Id == intSession);
-
-            ViewBag.Messages = myContext.Messages.ToList();
-            ViewBag.userName = userinfo.Pseudo;
-            ViewBag.GroupeChats = myContext.GroupeChats.Include(gc => gc.Membres);
-
+            Utilisateur userinfo = myContext.Utilisateurs.Find(intSession);
             if (id.HasValue)
             {
-
-
-                ViewBag.Groupe = myContext.GroupeChats.Find(id.Value);
+                ViewBag.CurrentChat = id.Value;
             }
             else if (userinfo.GroupeChats.Count() > 0)
             {
-                ViewBag.Groupe = myContext.GroupeChats.Find(userinfo.GroupeChats.ElementAt(0).Id);
-
+                ViewBag.CurrentChat = userinfo.GroupeChats.ElementAt(0).Id;
             }
-
-
-
-
-            return View();
+            return View(userinfo.GroupeChats);
         }
 
         [HttpPost]
@@ -50,7 +38,7 @@ namespace CoachSportif.Controllers
             var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
 
-            GroupeChat gc = myContext.GroupeChats.Include(g => g.ChatMessages.Select(m => m.Utilisateur)).SingleOrDefault(g => g.Id == viewModelChatGroupMessages.GroupeChats);
+            GroupeChat gc = myContext.GroupeChats.Include(g => g.ChatMessages.Select(m => m.Utilisateur)).SingleOrDefault(g => g.Id == viewModelChatGroupMessages.CurrentChat);
 
             if (ModelState.IsValid)
             {
@@ -116,14 +104,14 @@ namespace CoachSportif.Controllers
             if (ModelState.IsValid)
             {
 
-                GroupeChat groupeChat1 = myContext.GroupeChats.Find(ViewModelChatGroupMessages.GroupeChats);
+                GroupeChat groupeChat1 = myContext.GroupeChats.Find(ViewModelChatGroupMessages.CurrentChat);
                 groupeChat1.Membres.Add(myUser);
                 myUser.GroupeChats.Add(groupeChat1);
 
                 myContext.SaveChanges();
                 return RedirectToAction("Index", new { groupeChat1.Id });
             }
-            return View(ViewModelChatGroupMessages.GroupeChats);
+            return View(ViewModelChatGroupMessages.CurrentChat);
         }
 
         public ActionResult Groupes()

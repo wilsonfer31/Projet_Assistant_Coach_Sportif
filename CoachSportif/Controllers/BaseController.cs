@@ -43,7 +43,6 @@ namespace CoachSportif.Controllers
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Create(T o)
         {
-
             if (ModelState.IsValid)
             {
                 await db.AddAsync(o);

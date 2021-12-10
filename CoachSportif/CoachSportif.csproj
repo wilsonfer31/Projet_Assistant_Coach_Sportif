@@ -167,6 +167,10 @@
     <Compile Include="Migrations\202112090941213_ProfilePicture.Designer.cs">
       <DependentUpon>202112090941213_ProfilePicture.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112101816398_CoursChat.cs" />
+    <Compile Include="Migrations\202112101816398_CoursChat.Designer.cs">
+      <DependentUpon>202112101816398_CoursChat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FormsModel\CreateActiviteForm.cs" />
     <Compile Include="Models\FormsModel\CreateCoursForm.cs" />
@@ -333,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112090941213_ProfilePicture.resx">
       <DependentUpon>202112090941213_ProfilePicture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112101816398_CoursChat.resx">
+      <DependentUpon>202112101816398_CoursChat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

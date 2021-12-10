@@ -32,14 +32,26 @@ namespace CoachSportif.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CoachFilters]
-        public async Task<ActionResult> Create(CreateCoursForm ccf)
+        public async Task<ActionResult> CreateCoursAsync(CreateCoursForm ccf)
         {
             if (ModelState.IsValid)
             {
                 await db.AddAsync(ccf.GetObject(db.Getcontext()));
                 return RedirectToAction("Index");
             }
-            return View(ccf);
+            return View("Create",ccf);
+        }
+        public async Task<ActionResult> Join(int? id)
+        {
+            if (id.HasValue)
+            {
+                Cours c = db.UserJoin(id.Value, (int)Session["user_id"]);
+                if (await db.UpdateAsync(c))
+                {
+                    return RedirectToAction("Index", "Communauté", c.Chat.Id);
+                }
+            }
+            return RedirectToAction("Details", "Cours", id);
         }
     }
 }
