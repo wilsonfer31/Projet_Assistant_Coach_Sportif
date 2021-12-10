@@ -1,4 +1,5 @@
-﻿using CoachSportif.Models;
+﻿using Coaching_Models;
+using CoachSportif.Models;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
@@ -21,9 +22,15 @@ namespace CoachSportif.Controllers
 
         public ActionResult Contact()
         {
+            MailForm mf = new MailForm();
+            if (Session["user_id"] != null)
+            {
+                Utilisateur u = new MyContext().Utilisateurs.Find(Session["user_id"]);
+                mf.Mail = u.Mail;
 
+            }
 
-            return View();
+            return View(mf);
         }
 
         [HttpPost]
@@ -44,7 +51,7 @@ namespace CoachSportif.Controllers
 
                     //Ajout des informations de connexion
                     //On initialise une nouvelle instance NetworkCredential avec le nom de l'utilisateur et le MDP
-                    Credentials = new NetworkCredential("claudeaziz8@gmail.com", "Dawan1234"),
+                    Credentials = new NetworkCredential("claudeaziz8@gmail.com", "az12345/"),
 
                     //On active le protocole SSL
                     EnableSsl = true

@@ -1,6 +1,7 @@
 ﻿using CoachSportif.Tools;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using System.Web.Mvc;
 
 namespace CoachSportif.Models.FormsModel
@@ -23,5 +24,6 @@ namespace CoachSportif.Models.FormsModel
         [Required]
         public int Ville { get; set; }
         public IEnumerable<SelectListItem> Villes { get; set; }
+        public HttpPostedFileBase ProfilePicture { get; set; }
     }
 }

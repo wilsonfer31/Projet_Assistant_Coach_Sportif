@@ -1,41 +1,53 @@
 ﻿@model IEnumerable<Coaching_Models.Coach>
 
-<div class="table-wrapper">
-    <table class="alt">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Pseudo Coach</th>
-                <th>Nom Coach</th>
-                <th>Prenom Coach</th>
-                <th>Nombre De Cours Disponible</th>
-                <th>Details</th>
+
+@{ int i = 1;
 
 
-            </tr>
-        </thead>
-        <tbody>
-            @{ int i = 1; }
-            @foreach (var coach in Model)
-            {
-            <tr>
-                <td>@i</td>
-                <td>@coach.Utilisateur.Pseudo</td>
-                <td>@coach.Utilisateur.Nom</td>
-                <td>@coach.Utilisateur.Prenom</td>
-                <td>@coach.CoursDispenses.Count()</td>
 
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = coach.Id })
-                    @if (Session["admin"] != null)
-                    {
-                        <span> | </span>
-                        @Html.ActionLink("Delete", "Delete", new { id = coach.Id })
-                    }
-                </td>
-            </tr>
-                i++;
-            }
-        </tbody>
-    </table>
-</div>
+    string stringSource = "../../Content/images/";
+
+    if (Session["user_profile"] != null)
+    {
+        stringSource += Session["user_profile"];
+    }
+    else
+    {
+        stringSource += "noProfilImage.jpg";
+    }
+
+
+
+}
+@foreach (var coach in Model)
+{
+
+
+    <article class="card">
+        <div class="card-header">
+
+
+                <img src=@stringSource alt="ActImage">
+
+        </div>
+        <div class="card-body">
+
+            <h2>@coach.Utilisateur.Prenom @coach.Utilisateur.Nom</h2>
+            <p>@coach.Utilisateur.Pseudo</p>
+
+
+        </div>
+        <div class="card-footer">
+
+            <div class="btn-card">
+                @Html.ActionLink("Details", "Details", "Coaches", new { id = coach.Id }, new { @class = "button noselect" })
+            </div>
+        </div>
+    </article>
+
+    i++;
+
+
+}
+
+

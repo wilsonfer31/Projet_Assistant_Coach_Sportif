@@ -2220,6 +2220,7 @@ input, select, textarea {
 
 input[type="text"],
 input[type="password"],
+input[type="number"],
 input[type="email"],
 input[type="date"],
 input[type="datetime"],
@@ -3752,7 +3753,7 @@ textarea {
 		display: none;
 	}
 
-	@media screen and (max-width: 736px) {
+	@media screen and (max-width: 980px) {
 
 		/* Basic */
 

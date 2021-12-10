@@ -2,7 +2,7 @@
 
 @foreach (var item in Model)
 {
-    string src = "https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_960_720.jpg";
+    string src = "../../Content/images/AllSportLogo.png";
     string filepath = "../Content/images/Activites/" + item.Activite.Id + item.Activite.ImageUrl;
     if (!string.IsNullOrEmpty(item.Activite.ImageUrl) && File.Exists(Server.MapPath(filepath.Replace("..","~")))) { src = filepath; }
 
@@ -19,7 +19,7 @@
         <div class="card-footer">
             <span class="price">@item.DateCours</span>
             <div class="btn-card">
-                @Html.ActionLink("Détails", "Details", "Cours", new { id = item.Id }, new { @class = "button noselect"})
+                @Html.ActionLink("Reserver", "Details", "Utilisateurs", new { id = Session["user_id"], opt = item.Id },  new { @class = "button noselect"})
             </div>
         </div>
     </article>

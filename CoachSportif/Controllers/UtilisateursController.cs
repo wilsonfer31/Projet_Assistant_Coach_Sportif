@@ -6,6 +6,7 @@ using CoachSportif.Models.FormsModel;
 using CoachSportif.Tools;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -99,6 +100,8 @@ namespace CoachSportif.Controllers
                             Session["coach_id"] = coach.Id;
                         }
                         Session["user_id"] = userDB.Id;
+                        Session["user_pseudo"] = userDB.Pseudo;
+                        Session["user_profile"] = userDB.ProfilePicture;
                         if (userDB.Admin)
                         {
                             Session["admin"] = userDB.Admin;
