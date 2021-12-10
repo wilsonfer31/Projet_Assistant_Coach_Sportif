@@ -9,10 +9,7 @@ namespace CoachSportif.Filters
             if (filterContext.HttpContext.Session["user_id"] == null)
             {
                 filterContext.HttpContext.Response.Redirect("~/Utilisateurs/Log");
-
             }
-
         }
-
     }
 }

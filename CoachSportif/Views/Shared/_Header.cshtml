@@ -40,39 +40,29 @@
 
             else
             {
-                <li>@Html.ActionLink("Ma Ville", "Index", "Ville")</li>
+                <li>@Html.ActionLink("Ma Ville", "Details", "Ville")</li>
                 <li>@Html.ActionLink("Mon profil", "Details", "Utilisateurs", new { id = Session["user_id"] }, null)</li>
                 if (Session["admin"] != null)
                 {
                     <li>
                         Administration
                         <ul class="dropdown">
-                            <li class="button primary">@Html.ActionLink("Gestion des Villes", "ListeVille", "Ville")</li>
+                            <li class="button primary">@Html.ActionLink("Gestion des Villes", "Index", "Ville")</li>
                             <li class="button primary">@Html.ActionLink("Gestion des Utilisateurs", "Index", "Utilisateurs")</li>
                             <li class="button primary">@Html.ActionLink("Gestion des Activités", "Index", "Activites")</li>
-                            <li class="button primary">@Html.ActionLink("Gestion des Catégories d'Activités", "Index", "CatégorieActivites")</li>
+                            <li class="button primary">@Html.ActionLink("Gestion des Catégories d'Activités", "Index", "CategorieActivites")</li>
                             <li class="button primary">@Html.ActionLink("Gestion des Cours", "Index", "Cours")</li>
                             <li class="button primary">@Html.ActionLink("Gestion des Chats", "Index", "Chats")</li>
                         </ul>
                     </li>
-
                 }
-
-
                 <li>@Html.ActionLink("Community", "Index", "Communauté")</li>
-
                 <li>
-
                     <div>
                         <img style="width:40px;height:40px;  border-radius:30px" src="~/Content/images/@stringSource">
                         <label>@Session["user_pseudo"]</label>
                     </div>
                 </li>
-
-
-
-
-
                 <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
 
             }

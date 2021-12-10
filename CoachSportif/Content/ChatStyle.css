@@ -3,6 +3,7 @@ EDIT ON
 
 
 #containerChat {
+    display:flex;
     width: 100%;
     height: 800px;
     background: #eff3f7;
@@ -259,3 +260,30 @@ main footer {
         background-color: #e44c65;
     }
 
+@media screen and (max-width : 980px) {
+
+    #containerChat{
+        display:initial;
+    }
+
+    aside {
+        width: 100%
+    }
+    main{
+        width:100%;
+        margin-bottom: 30px
+    }
+    .button{
+        width:30vw;
+    }
+
+}
+
+@media screen and (min-width : 980px) {
+
+    #containerChat {
+        display: flex;
+        margin-top:40px;
+    }
+
+}

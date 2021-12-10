@@ -1,12 +1,19 @@
-﻿using System;
+﻿using CoachSportif.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Coaching_Models
+namespace CoachSportif.Models.FormsModel
 {
     public class CreateCoursForm
     {
+        public CreateCoursForm()
+        {
+            Villes = Villes.InitVilles();
+            Activites = Activites.InitActivites();
+        }
+
         [Required]
         public int CoachId { get; set; }
         [Required]

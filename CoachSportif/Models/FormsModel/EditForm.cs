@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Coaching_Models;
+using CoachSportif.Tools;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Coaching_Models
+namespace CoachSportif.Models.FormsModel
 {
     public class EditForm : NamedEntity
     {
@@ -21,7 +23,7 @@ namespace Coaching_Models
         public HttpPostedFileBase ProfilePicture { get; set; }
         public IEnumerable<SelectListItem> Villes { get; set; }
 
-        public EditForm(Utilisateur utilisateur, IEnumerable<SelectListItem> villes)
+        public EditForm(Utilisateur utilisateur)
         {
             Id = utilisateur.Id;
             Pseudo = utilisateur.Pseudo;
@@ -31,7 +33,7 @@ namespace Coaching_Models
             Mail = utilisateur.Mail;
             Adresse = utilisateur.Adresse;
             Ville = utilisateur.Ville.Id;
-            Villes = villes;
+            Villes = Villes.InitVilles();
         }
     }
 }

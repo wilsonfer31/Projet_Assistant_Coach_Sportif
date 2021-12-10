@@ -1,4 +1,6 @@
-﻿namespace Coaching_Models.ViewModelChatGroupMessages
+﻿using Coaching_Models;
+
+namespace CoachSportif.Models.ViewModel
 {
     public class ViewModelChatGroupMessages
     {

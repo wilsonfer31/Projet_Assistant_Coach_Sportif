@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Coaching_Models
+namespace CoachSportif.Models.FormsModel
 {
     public class LogForm
     {

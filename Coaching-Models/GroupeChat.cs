@@ -4,7 +4,7 @@ namespace Coaching_Models
 {
     public class GroupeChat : NamedEntity
     {
-        public List<Utilisateur> Membres { get; set; } = new List<Utilisateur>();
-        public List<Message> ChatMessages { get; set; } = new List<Message>();
+        public virtual List<Utilisateur> Membres { get; set; } = new List<Utilisateur>();
+        public virtual List<Message> ChatMessages { get; set; } = new List<Message>();
     }
 }

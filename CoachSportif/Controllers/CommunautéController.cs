@@ -1,7 +1,7 @@
 ﻿using Coaching_Models;
-using Coaching_Models.ViewModelChatGroupMessages;
 using CoachSportif.Filters;
 using CoachSportif.Models;
+using CoachSportif.Models.ViewModel;
 using System;
 using System.Data.Entity;
 using System.Linq;

@@ -6,11 +6,12 @@ namespace Coaching_Models
 {
     public class Cours : BaseEntity
     {
-        public Activite Activite { get; set; }
-        [ScriptIgnore]
-        public Coach Coach { get; set; }
-        public Ville Adresse { get; set; }
-        public List<Utilisateur> Adherents { get; set; } = new List<Utilisateur>();
+        public virtual Activite Activite { get; set; }
+        [ScriptIgnore(ApplyToOverrides = true)]
+        public virtual Coach Coach { get; set; }
+        public virtual Ville Adresse { get; set; }
+        [ScriptIgnore(ApplyToOverrides = true)]
+        public virtual List<Utilisateur> Adherents { get; set; } = new List<Utilisateur>();
         public DateTime DateCours { get; set; }
     }
 }
