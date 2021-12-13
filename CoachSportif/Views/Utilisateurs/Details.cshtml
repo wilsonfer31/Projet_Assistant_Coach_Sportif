@@ -6,9 +6,9 @@
     ViewBag.Title = "Details";
     string stringSource = "";
 
-    if (Session["user_profile"] != null)
+    if (Model.ProfilePicture != null)
     {
-        stringSource += Session["user_profile"];
+        stringSource += stringSource += Model.Id + Model.ProfilePicture;
     }
     else
     {

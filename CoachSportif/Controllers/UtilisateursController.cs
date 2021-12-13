@@ -67,7 +67,9 @@ namespace CoachSportif.Controllers
             {
                 if (await db.UpdateAsync(editForm.GetUser(db.Getcontext())))
                 {
-                    editForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + editForm.Id + Path.GetExtension(editForm.ProfilePicture.FileName));
+                    string file = editForm.Id + Path.GetExtension(editForm.ProfilePicture.FileName);
+                    editForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + file);
+                    Session["user_profile"] = file;
                     return RedirectToAction("Details", new { id = editForm.Id });
                 }
             }
@@ -100,7 +102,7 @@ namespace CoachSportif.Controllers
                         }
                         Session["user_id"] = userDB.Id;
                         Session["user_pseudo"] = userDB.Pseudo;
-                        Session["user_profile"] = userDB.ProfilePicture;
+                        Session["user_profile"] = (string.IsNullOrEmpty(userDB.ProfilePicture))?null:userDB.Id+userDB.ProfilePicture;
                         if (userDB.Admin)
                         {
                             Session["admin"] = userDB.Admin;
