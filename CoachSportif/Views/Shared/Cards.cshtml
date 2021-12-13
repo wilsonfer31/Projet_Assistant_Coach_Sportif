@@ -19,7 +19,14 @@
         <div class="card-footer">
             <span class="price">@item.DateCours</span>
             <div class="btn-card">
-                @Html.ActionLink("Reserver", "Join", "Cours", new { id = item.Id },  new { @class = "button noselect"})
+                @if (item.Adherents.Where(u => u.Id == (int)Session["user_id"]).Count() == 0)
+                {
+                    @Html.ActionLink("Reserver", "Join", "Cours", new { id = item.Id }, new { @class = "button noselect" })
+                }
+                else
+                {
+                    @Html.ActionLink("Se désinscrire", "Leave", "Cours", new { id = item.Id }, new { @class = "button noselect" })
+                }
             </div>
         </div>
     </article>

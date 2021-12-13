@@ -75,12 +75,12 @@ namespace CoachSportif.Tools
             db.Activites.Attach(c.Activite);
             return c;
         }
-        public static Cours UserJoin(this GenericDao<Cours> gd, int coursId, int userId)
+        public static Cours UserJoinCours(this GenericDao<Cours> gd, int coursId, int userId)
         {
             MyContext db = gd.Getcontext();
             Cours c = db.Cours.Find(coursId);
             Utilisateur u = db.Utilisateurs.Find(userId);
-            if(c.Coach.Utilisateur != u && !c.Adherents.Contains(u))
+            if (c.Coach.Utilisateur != u && !c.Adherents.Contains(u))
             {
                 c.Adherents.Add(u);
                 c.Chat.Membres.Add(u);
@@ -88,6 +88,39 @@ namespace CoachSportif.Tools
                 u.GroupeChats.Add(c.Chat);
             }
             return c;
+        }
+        public static Cours UserLeftCours(this GenericDao<Cours> gd, int coursId, int userId)
+        {
+            MyContext db = gd.Getcontext();
+            Cours c = db.Cours.Find(coursId);
+            Utilisateur u = db.Utilisateurs.Find(userId);
+            if (c.Adherents.Contains(u))
+            {
+                c.Adherents.Remove(u);
+                c.Chat.Membres.Remove(u);
+                u.CoursSuivis.Remove(c);
+                u.GroupeChats.Remove(c.Chat);
+            }
+            return c;
+        }
+        public static Cours CoachRemoveCours(this GenericDao<Cours> gd, int coursId, int coachId)
+        {
+            MyContext db = gd.Getcontext();
+            Cours cours = db.Cours.Find(coursId);
+            Coach coach = db.Coaches.Find(coachId);
+            if (cours.Coach == coach)
+            {
+                coach.CoursDispenses.Remove(cours);
+                coach.Utilisateur.GroupeChats.Remove(cours.Chat);
+                foreach(Utilisateur u in cours.Adherents)
+                {
+                    u.CoursSuivis.Remove(cours);
+                    u.GroupeChats.Remove(cours.Chat);
+                    cours.Adherents.Remove(u);
+                    cours.Chat.Membres.Remove(u);
+                }
+            }
+            return cours;
         }
         public static void ChangeAdminStateAsync(this Utilisateur u, MyContext db)
         {
