@@ -61,11 +61,11 @@ namespace CoachSportif.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoginFilters]
-        public ActionResult EditUser(EditForm editForm)
+        public async Task<ActionResult> EditUser(EditForm editForm)
         {
             if (ModelState.IsValid)
             {
-                if (db.UpdateAsync(editForm.GetUser(db.Getcontext())).Result)
+                if (await db.UpdateAsync(editForm.GetUser(db.Getcontext())))
                 {
                     editForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + editForm.Id + Path.GetExtension(editForm.ProfilePicture.FileName));
                     return RedirectToAction("Details", new { id = editForm.Id });
