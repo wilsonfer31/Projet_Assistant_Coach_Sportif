@@ -90,6 +90,7 @@
                 @Html.ValidationMessageFor(model => model.ProfilePicture, "", new { @class = "text-danger" })
             </div>
         </div>
+        @Html.HiddenFor(model => model.Id)
 
         <div class="col-6 col-12-xsmall">
             <ul class="actions">
