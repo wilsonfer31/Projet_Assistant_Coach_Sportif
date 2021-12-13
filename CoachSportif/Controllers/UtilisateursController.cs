@@ -3,6 +3,7 @@ using CoachSportif.Filters;
 using CoachSportif.Models.FormsModel;
 using CoachSportif.Models.ViewModel;
 using CoachSportif.Tools;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -28,9 +29,11 @@ namespace CoachSportif.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (await db.AddAsync(registerForm.GetUser(db.Getcontext())) != default)
+                Utilisateur u = await db.AddAsync(registerForm.GetUser(db.Getcontext()));
+                if (u != default)
                 {
                     Session["logging"] = true;
+                    registerForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + u.Id + Path.GetExtension(registerForm.ProfilePicture.FileName));
                     return RedirectToAction("Log");
                 }
             }
@@ -64,6 +67,7 @@ namespace CoachSportif.Controllers
             {
                 if (db.UpdateAsync(editForm.GetUser(db.Getcontext())).Result)
                 {
+                    editForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + editForm.Id + Path.GetExtension(editForm.ProfilePicture.FileName));
                     return RedirectToAction("Details", new { id = editForm.Id });
                 }
             }
@@ -144,9 +148,6 @@ namespace CoachSportif.Controllers
 
         public async Task<ActionResult> changePassword()
         {
-            
-            
-
             return View(new ViewModelVerificationMotDePasse() {Id = (int)Session["user_id"]});
         }
 

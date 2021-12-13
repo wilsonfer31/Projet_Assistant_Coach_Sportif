@@ -21,25 +21,24 @@ namespace CoachSportif.Tools
                 Pseudo = rf.Pseudo,
                 MotDePasse = HashTool.CryptPassword(rf.MotDePasse),
                 Mail = rf.Mail,
-                Ville = db.Villes.Find(rf.Ville)
+                Ville = db.Villes.Find(rf.Ville),
+                ProfilePicture = Path.GetExtension(rf.ProfilePicture.FileName)
             };
             db.Villes.Attach(u.Ville);
             return u;
         }
         public static Utilisateur GetUser(this EditForm ef, MyContext db)
         {
-            Utilisateur u = new Utilisateur
-            {
-                Id = ef.Id,
-                Pseudo = ef.Pseudo,
-                Nom = ef.Nom,
-                Prenom = ef.Prenom,
-                Tel = ef.Tel,
-                Mail = ef.Mail,
-                Adresse = ef.Adresse,
-                Ville = db.Villes.Find(ef.Ville)
-            };
-            db.Villes.Attach(u.Ville);
+            Utilisateur u = db.Utilisateurs.Include("Ville").SingleOrDefault(us => us.Id == ef.Id);
+            u.Id = ef.Id;
+            u.Pseudo = ef.Pseudo;
+            u.Nom = ef.Nom;
+            u.Prenom = ef.Prenom;
+            u.Tel = ef.Tel;
+            u.Mail = ef.Mail;
+            u.Adresse = ef.Adresse;
+            u.Ville = db.Villes.Attach(db.Villes.Find(ef.Ville));
+            u.ProfilePicture = Path.GetExtension(ef.ProfilePicture.FileName);
             return u;
         }
         public static Utilisateur GetUser(this ViewModelVerificationMotDePasse vmdp, MyContext db)
