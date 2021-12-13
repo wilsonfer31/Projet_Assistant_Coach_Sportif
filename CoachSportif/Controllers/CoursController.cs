@@ -45,7 +45,19 @@ namespace CoachSportif.Controllers
         {
             if (id.HasValue)
             {
-                Cours c = db.UserJoin(id.Value, (int)Session["user_id"]);
+                Cours c = db.UserJoinCours(id.Value, (int)Session["user_id"]);
+                if (await db.UpdateAsync(c))
+                {
+                    return RedirectToAction("Index", "Communauté", c.Chat.Id);
+                }
+            }
+            return RedirectToAction("Details", "Cours", id);
+        }
+        public async Task<ActionResult> Leave(int? id)
+        {
+            if (id.HasValue)
+            {
+                Cours c = db.UserLeftCours(id.Value, (int)Session["user_id"]);
                 if (await db.UpdateAsync(c))
                 {
                     return RedirectToAction("Index", "Communauté", c.Chat.Id);
