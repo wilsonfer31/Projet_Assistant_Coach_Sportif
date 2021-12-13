@@ -2,11 +2,13 @@
 <link href="~/Content/ChatStyle.css" rel="stylesheet" />
 
 <div id="containerChat">
-    <aside>
-        <ul>
-            @foreach (Coaching_Models.GroupeChat item in Model)
-            {
-                <a href="@Url.Action("Index", new { id = item.Id })">
+    @if (Model.Count() != 0)
+    {
+        <aside>
+            <ul>
+                @foreach (Coaching_Models.GroupeChat item in Model)
+                {
+                    <a href="@Url.Action("Index", new { id = item.Id })">
                     <li style="box-shadow: inset 0 0 0 1px #e44c65">
                         <div>
                             <h2 style="color:#e44c65">@item.Nom</h2>
@@ -16,59 +18,64 @@
                             </h3>
                         </div>
                     </li>
-                </a>
-            }
-        </ul>
-    </aside>
-    <main>
-        @if (ViewBag.CurrentChat != null)
-        {
-            <div id="chatcontainer">
-                @Html.Partial("Chat", Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat))
-            </div>
-            <footer>
-                @Html.Partial("JoinAchat",new CoachSportif.Models.ViewModel.ViewModelChatGroupMessages { CurrentChat = 0})
-            </footer>
-        }
-        else
-        {
-            <h2>Veuillez choisir un chat</h2>
-        }
-        <script>
-            document.forms[0].onsubmit = () => {
-                let formData = new FormData(document.forms[0]);
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        document.querySelector("#chatcontainer").innerHTML = "<header>" + xhr.responseText.split("<header>")[1].split("</ul>")[0]
-                        objDiv.scrollTop = objDiv.scrollHeight;
-                        document.querySelector("textarea").value = "";
-                    }
-                };
-                xhr.open('post', '/Communauté/Chat', true);
-                xhr.send(new URLSearchParams(formData));
-                return false;
-            };
-        </script>
-    </main>
-    <aside>
-        <!--style="background-color: red; height: 200px; width: 200px; display: inline-block;"-->
-        <ul>
+                    </a>
+                }
+            </ul>
+        </aside>
+        <main>
             @if (ViewBag.CurrentChat != null)
             {
-                foreach (Coaching_Models.Utilisateur membre in Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat).Membres)
-                {
-                    string userActuel = null;
-                    if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
-                    <li style="@userActuel">
-                        @membre.Pseudo
-                    </li>
-                }
+                <div id="chatcontainer">
+                    @Html.Partial("Chat", Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat))
+                </div>
+                <footer>
+                    @Html.Partial("JoinAchat", new CoachSportif.Models.ViewModel.ViewModelChatGroupMessages { CurrentChat = 0 })
+                </footer>
             }
+            else
+            {
+                <h2>Veuillez choisir un chat</h2>
+            }
+            <script>
+                document.forms[0].onsubmit = () => {
+                    let formData = new FormData(document.forms[0]);
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            document.querySelector("#chatcontainer").innerHTML = "<header>" + xhr.responseText.split("<header>")[1].split("</ul>")[0]
+                            objDiv.scrollTop = objDiv.scrollHeight;
+                            document.querySelector("textarea").value = "";
+                        }
+                    };
+                    xhr.open('post', '/Communauté/Chat', true);
+                    xhr.send(new URLSearchParams(formData));
+                    return false;
+                };
+            </script>
+        </main>
+        <aside>
+            <!--style="background-color: red; height: 200px; width: 200px; display: inline-block;"-->
+            <ul>
+                @if (ViewBag.CurrentChat != null)
+                {
+                    foreach (Coaching_Models.Utilisateur membre in Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat).Membres)
+                    {
+                        string userActuel = null;
+                        if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
+                        <li style="@userActuel">
+                            @membre.Pseudo
+                        </li>
+                    }
+                }
             </ul>
-    </aside>
+        </aside>
+        <script>
+            var objDiv = document.getElementById("chat");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        </script>
+    }
+    else
+    {
+        <p>Aucun chat disponible, veuillez vous inscrire à au moins un cours</p>
+    }
 </div>
-<script>
-    var objDiv = document.getElementById("chat");
-    objDiv.scrollTop = objDiv.scrollHeight;
-</script>
