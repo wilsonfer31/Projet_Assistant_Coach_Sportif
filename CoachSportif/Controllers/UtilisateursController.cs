@@ -1,6 +1,7 @@
 ﻿using Coaching_Models;
 using CoachSportif.Filters;
 using CoachSportif.Models.FormsModel;
+using CoachSportif.Models.ViewModel;
 using CoachSportif.Tools;
 using System.Net;
 using System.Threading.Tasks;
@@ -138,6 +139,35 @@ namespace CoachSportif.Controllers
         public ActionResult Auth()
         {
             return View();
+        }
+
+
+        public async Task<ActionResult> changePassword()
+        {
+            
+            
+
+            return View(new ViewModelVerificationMotDePasse() {Id = (int)Session["user_id"]});
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> changePassword(ViewModelVerificationMotDePasse vmdp)
+        {
+            if (ModelState.IsValid)
+            {
+                Utilisateur u = await db.FindByIdAsync(vmdp.Id);
+                bool equals = u.MotDePasse.Equals(HashTool.CryptPassword(vmdp.AncienMotDePasse));
+                if (equals)
+                {
+                    u.MotDePasse = HashTool.CryptPassword(vmdp.NouveauMotDePasse);
+                    await db.UpdateAsync(u);
+                }
+
+              
+            }
+
+
+            return RedirectToAction("Details", new { id = vmdp.Id });
         }
     }
 }

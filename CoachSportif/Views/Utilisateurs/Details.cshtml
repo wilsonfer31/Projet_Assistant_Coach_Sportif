@@ -26,17 +26,6 @@
         <br />
 
         <dt>
-            @Html.DisplayNameFor(model => model.MotDePasse)
-        </dt>
-
-        <dd>
-            <div style="border:solid 1px rgba(255, 255, 255, 0.3); border-radius: 4px; text-align: center">
-                @Html.DisplayFor(model => model.MotDePasse)
-            </div>
-        </dd>
-        <br />
-
-        <dt>
             @Html.DisplayNameFor(model => model.Nom)
         </dt>
 
@@ -96,6 +85,7 @@
 </div>
 
 <p>
+    @Html.ActionLink("Changer la password", "changePassword", new { id = Model.Id })|
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
