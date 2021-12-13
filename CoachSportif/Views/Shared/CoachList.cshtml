@@ -7,21 +7,22 @@
 
     string stringSource = "../../Content/images/utilisateurs/";
 
+
+
+
+}
+
+@foreach (var coach in Model)
+{
+
     if (Session["user_profile"] != null)
     {
-        stringSource += Session["user_profile"];
+        stringSource += coach.Utilisateur.Id + coach.Utilisateur.ProfilePicture;
     }
     else
     {
         stringSource += "noProfilImage.jpg";
     }
-
-
-
-}
-@foreach (var coach in Model)
-{
-
 
     <article class="card">
         <div class="card-header">
