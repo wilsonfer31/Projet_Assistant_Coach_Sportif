@@ -15,6 +15,16 @@
 
 }
 
+<style>
+    .test {
+        background-image: url("../../Content/images/Utilisateurs/@stringSource");
+        background-size: cover;
+        background-repeat: no-repeat;
+     
+      
+
+    }
+</style>
 <!-- Header -->
 <header id="header">
     <h1 id="logo"> <img src="~/Content/images/willCoachSoonLogo.png" height="80px" /> </h1>
@@ -58,14 +68,19 @@
                 }
                 <li>@Html.ActionLink("Community", "Index", "Communauté")</li>
                 <li>
-                    <div>
-                        <img style="width:40px;height:40px;  border-radius:30px" src="~/Content/images/Utilisateurs/@stringSource">
-                        <label>@Session["user_pseudo"]</label>
+                    <div class="test">
+
+                      
                     </div>
                 </li>
-                <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
 
-            }
-        </ul>
+                <li>
+
+                    <label>@Session["user_pseudo"]</label>
+                     </li>
+<li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
+
+                }
+            </ul>
     </nav>
 </header>
