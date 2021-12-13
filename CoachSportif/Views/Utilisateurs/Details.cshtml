@@ -26,7 +26,7 @@
     <hr />
 
 
-    <img style="width:300px;height:300px;  border-radius:5px" src="~/Content/images/Utilisateurs/@stringSource">
+    <img class="profilImage" border-radius:5px" src="~/Content/images/Utilisateurs/@stringSource">
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Pseudo)
@@ -99,9 +99,10 @@
 </div>
 
 <p>
-    @Html.ActionLink("Changer la password", "changePassword", new { id = Model.Id })|
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    @Html.ActionLink("Changer le Mot de passe ", "changePassword", new { id = Model.Id })|
+    @Html.ActionLink("Modifer", "Edit", new { id = Model.Id }) 
+   
 </p>
 
 <div class="table-wrapper">

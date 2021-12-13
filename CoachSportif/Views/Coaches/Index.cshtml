@@ -73,10 +73,11 @@
                 <th>Nom Coach</th>
                 <th>Prenom Coach</th>
                 <th>Nombre De Cours Disponible</th>
-   
+    @if (Session["user_id"] != null)
+                    {
                 <th>Details</th>
+    }
 
- 
             </tr>
         </thead>
         <tbody>`
