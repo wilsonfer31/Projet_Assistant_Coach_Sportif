@@ -38,7 +38,9 @@ namespace CoachSportif.Controllers
             var intSession = int.Parse(Session["user_id"].ToString());
             Utilisateur myUser = myContext.Utilisateurs.Find(intSession);
 
-            GroupeChat gc = myContext.GroupeChats.Include(g => g.ChatMessages.Select(m => m.Utilisateur)).SingleOrDefault(g => g.Id == viewModelChatGroupMessages.CurrentChat);
+            /*     GroupeChat gc = myContext.GroupeChats.Include(g => g.ChatMessages.Select(m => m.Utilisateur)).SingleOrDefault(g => g.Id == viewModelChatGroupMessages.CurrentChat); */
+
+            GroupeChat gc = myContext.GroupeChats.Find(viewModelChatGroupMessages.CurrentChat);
 
             if (ModelState.IsValid)
             {

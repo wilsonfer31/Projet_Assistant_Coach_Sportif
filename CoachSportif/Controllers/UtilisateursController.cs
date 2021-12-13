@@ -58,7 +58,7 @@ namespace CoachSportif.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoginFilters]
-        public ActionResult Edit(EditForm editForm)
+        public ActionResult EditUser(EditForm editForm)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace CoachSportif.Controllers
                     return RedirectToAction("Details", new { id = editForm.Id });
                 }
             }
-            return View(editForm);
+            return View("Edit",editForm);
         }
 
         public ActionResult Log()

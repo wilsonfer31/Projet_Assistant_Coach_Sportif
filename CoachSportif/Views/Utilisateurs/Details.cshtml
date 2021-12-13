@@ -2,17 +2,31 @@
 @model Coaching_Models.Utilisateur
 
 @{
- 
-    ViewBag.Title = "Details";
 
-   
+    ViewBag.Title = "Details";
+    string stringSource = "";
+
+    if (Session["user_profile"] != null)
+    {
+        stringSource += Session["user_profile"];
+    }
+    else
+    {
+        stringSource += "noProfilImage.jpg";
+    }
+
 }
 
-<h2>Details</h2>
+
+
+<h2>Mon Profil : </h2>
 
 <div>
-    <h4>Utilisateur</h4>
+   
     <hr />
+
+
+    <img style="width:300px;height:300px;  border-radius:5px" src="~/Content/images/@stringSource">
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Pseudo)
@@ -95,7 +109,7 @@
         <thead>
             <tr>
                 <th>#</th>
-             
+
                 <th>Cours</th>
                 <th>Date</th>
             </tr>
