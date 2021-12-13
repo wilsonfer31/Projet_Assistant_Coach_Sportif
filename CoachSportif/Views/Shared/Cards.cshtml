@@ -2,13 +2,13 @@
 
 @foreach (var item in Model)
 {
-    string src = "../../Content/images/AllSportLogo.png";
-    string filepath = "../Content/images/Activites/" + item.Activite.Id + item.Activite.ImageUrl;
-    if (!string.IsNullOrEmpty(item.Activite.ImageUrl) && File.Exists(Server.MapPath(filepath.Replace("..","~")))) { src = filepath; }
+    string src = "AllSportLogo.png";
+    string filepath =item.Activite.Id + item.Activite.ImageUrl;
+    if (!string.IsNullOrEmpty(item.Activite.ImageUrl) && File.Exists(Server.MapPath("~/Content/images/Activites/"+filepath))) { src = filepath; }
 
 <article class="card">
     <div class="card-header">
-         <img src=@src alt="ActImage"> 
+         <img src="~/Content/images/Activites/@src" alt="ActImage"> 
     </div>
         <div class="card-body">
             <span class="tag tag-first">@item.Activite.Categorie.Nom</span>
