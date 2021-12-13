@@ -37,7 +37,7 @@ namespace CoachSportif.Controllers
             if (ModelState.IsValid)
             {
                 await db.AddAsync(ccf.GetObject(db.Getcontext()));
-                return RedirectToAction("Index");
+                return RedirectToAction("Details","Utilisateurs", new {id = (int)Session["user_id"]});
             }
             return View("Create",ccf);
         }

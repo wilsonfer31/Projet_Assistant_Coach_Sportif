@@ -36,20 +36,7 @@ namespace CoachSportif.Controllers
             return View();
         }
 
-        // POST: CategorieActivites/Create
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Create(T o)
-        {
-            if (ModelState.IsValid)
-            {
-                await db.AddAsync(o);
-                return RedirectToAction("Index");
-            }
-            return View(o);
-        }
+
 
         // GET: Activites/Edit/5
         public virtual async Task<ActionResult> Edit(int? id)

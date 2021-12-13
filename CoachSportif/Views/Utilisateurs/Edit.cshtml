@@ -2,15 +2,30 @@
 
 @{
     ViewBag.Title = "Edit";
+    string stringSource = "";
+
+    if (Model.Image != null)
+    {
+        stringSource += Model.Image;
+    }
+    else
+    {
+        stringSource += "noProfilImage.jpg";
+    }
 }
 
-<h2>Edit</h2>
+<h2>Editer profil :</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditUser", "Utilisateurs", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
+    <a>
+        <div class="col-6 col-12-xsmall">
+            <img style="width:150px;height:150px;  border-radius:30px" src="~/Content/images/@stringSource">
+        </div>
+    </a>
     <div class="row gtr-uniform gtr-50">
         <div class="col-6 col-12-xsmall">
             @Html.LabelFor(model => model.Pseudo, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -65,6 +80,14 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Ville, Model.Villes)
                 @Html.ValidationMessageFor(model => model.Ville, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-12">
+            @Html.LabelFor(model => model.ProfilePicture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProfilePicture, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProfilePicture, "", new { @class = "text-danger" })
             </div>
         </div>
 

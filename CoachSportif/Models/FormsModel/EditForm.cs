@@ -9,7 +9,10 @@ namespace CoachSportif.Models.FormsModel
 {
     public class EditForm : NamedEntity
     {
-        public EditForm() { }
+        public EditForm() 
+        {
+            Villes = Villes.InitVilles();
+        }
         [Required]
         public string Pseudo { get; set; }
         public string Prenom { get; set; }
@@ -21,6 +24,8 @@ namespace CoachSportif.Models.FormsModel
         [Required]
         public int Ville { get; set; }
         public HttpPostedFileBase ProfilePicture { get; set; }
+
+        public string Image { get; set; }
         public IEnumerable<SelectListItem> Villes { get; set; }
 
         public EditForm(Utilisateur utilisateur)
@@ -32,6 +37,7 @@ namespace CoachSportif.Models.FormsModel
             Tel = utilisateur.Tel;
             Mail = utilisateur.Mail;
             Adresse = utilisateur.Adresse;
+            Image = utilisateur.ProfilePicture;
             Ville = utilisateur.Ville.Id;
             Villes = Villes.InitVilles();
         }
