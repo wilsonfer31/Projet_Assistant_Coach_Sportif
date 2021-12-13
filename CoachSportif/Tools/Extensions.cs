@@ -42,6 +42,13 @@ namespace CoachSportif.Tools
             db.Villes.Attach(u.Ville);
             return u;
         }
+        public static Utilisateur GetUser(this ViewModelVerificationMotDePasse vmdp, MyContext db)
+        {
+            Utilisateur u = db.Utilisateurs.Include("Ville").SingleOrDefault(us => us.Id == vmdp.Id);
+            u.MotDePasse = HashTool.CryptPassword(vmdp.NouveauMotDePasse);
+            db.Villes.Attach(u.Ville);
+            return u;
+        }
         public static Activite GetObject(this CreateActiviteForm caf, MyContext db)
         {
             return new Activite

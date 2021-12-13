@@ -156,14 +156,10 @@ namespace CoachSportif.Controllers
             if (ModelState.IsValid)
             {
                 Utilisateur u = await db.FindByIdAsync(vmdp.Id);
-                bool equals = u.MotDePasse.Equals(HashTool.CryptPassword(vmdp.AncienMotDePasse));
-                if (equals)
-                {
-                    u.MotDePasse = HashTool.CryptPassword(vmdp.NouveauMotDePasse);
-                    await db.UpdateAsync(u);
-                }
-
-              
+                if (u.MotDePasse.Equals(HashTool.CryptPassword(vmdp.AncienMotDePasse)))
+                {                    
+                    await db.UpdateAsync(vmdp.GetUser(db.Getcontext()));
+                }              
             }
 
 
