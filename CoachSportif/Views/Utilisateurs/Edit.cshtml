@@ -17,7 +17,7 @@
 <h2>Editer profil :</h2>
 
 
-@using (Html.BeginForm("EditUser", "Utilisateurs", FormMethod.Post))
+@using (Html.BeginForm("EditUser", "Utilisateurs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
