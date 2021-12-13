@@ -1,7 +1,7 @@
 ﻿@model CoachSportif.Models.ViewModel.ViewModelChatGroupMessages
 @using (Html.BeginForm("_Chat", "Communauté", FormMethod.Post))
 {
-    <input type="hidden" name="groupeChats" value=@Model.CurrentChat />
+    <input type="hidden" name="CurrentChat" value=@Model.CurrentChat />
     @Html.TextAreaFor(model => model.Messages.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="row gtr-uniform ">
         <p class="col-6"> Connected as:  @Session["user_pseudo"] </p>

@@ -22,7 +22,7 @@ namespace CoachSportif.Tools
                 MotDePasse = HashTool.CryptPassword(rf.MotDePasse),
                 Mail = rf.Mail,
                 Ville = db.Villes.Find(rf.Ville),
-                ProfilePicture = Path.GetExtension(rf.ProfilePicture.FileName)
+                ProfilePicture = (rf.ProfilePicture != null)?Path.GetExtension(rf.ProfilePicture.FileName):null
             };
             db.Villes.Attach(u.Ville);
             return u;
@@ -38,7 +38,7 @@ namespace CoachSportif.Tools
             u.Mail = ef.Mail;
             u.Adresse = ef.Adresse;
             u.Ville = db.Villes.Attach(db.Villes.Find(ef.Ville));
-            u.ProfilePicture = Path.GetExtension(ef.ProfilePicture.FileName);
+            if(ef.ProfilePicture != null) u.ProfilePicture = Path.GetExtension(ef.ProfilePicture.FileName);
             return u;
         }
         public static Utilisateur GetUser(this ViewModelVerificationMotDePasse vmdp, MyContext db)
@@ -54,7 +54,7 @@ namespace CoachSportif.Tools
             {
                 Nom = caf.Nom,
                 Descritption = caf.Descritption,
-                ImageUrl = Path.GetExtension(caf.ImageUrl.FileName),
+                ImageUrl = (caf.ImageUrl != null) ? Path.GetExtension(caf.ImageUrl.FileName) : null,
                 Categorie = db.CategorieActivites.Find(caf.Categorie)
             };
         }
@@ -128,10 +128,11 @@ namespace CoachSportif.Tools
             }
             return cours;
         }
-        public static void ChangeAdminStateAsync(this Utilisateur u, MyContext db)
+        public static void ChangeAdminState(this Utilisateur u, MyContext db)
         {
+            db.Villes.Attach(u.Ville);
             u.Admin = !u.Admin;
-            db.SaveChangesAsync();
+            db.SaveChanges();
         }
         public static IQueryable<SelectListItem> InitVilles(this IEnumerable<SelectListItem> Villes)
         {
@@ -173,7 +174,7 @@ namespace CoachSportif.Tools
         public static IQueryable<Utilisateur> GetUserToAppointCoach(this GenericDao<Coach> gd)
         {
             MyContext db = gd.Getcontext();
-            return db.Utilisateurs.Except(db.Coaches.Select(c => c.Utilisateur));
+            return db.Utilisateurs.Except(db.Coaches.Select(c => c.Utilisateur)).Where(u=> !string.IsNullOrEmpty(u.Nom) && !string.IsNullOrEmpty(u.Prenom));
         }
         public static Coach UserToCoach(this GenericDao<Coach> gd, int id)
         {

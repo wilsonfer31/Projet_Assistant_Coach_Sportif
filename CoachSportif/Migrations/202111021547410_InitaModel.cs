@@ -1,5 +1,7 @@
 namespace CoachSportif.Migrations
 {
+    using CoachSportif.Models;
+    using CoachSportif.Tools;
     using System.Data.Entity.Migrations;
 
     public partial class InitaModel : DbMigration
@@ -134,7 +136,6 @@ namespace CoachSportif.Migrations
                 .ForeignKey("dbo.Utilisateurs", t => t.Utilisateur_Id, cascadeDelete: true)
                 .Index(t => t.GroupeChat_Id)
                 .Index(t => t.Utilisateur_Id);
-
         }
 
         public override void Down()

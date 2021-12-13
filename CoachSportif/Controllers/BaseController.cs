@@ -35,9 +35,6 @@ namespace CoachSportif.Controllers
         {
             return View();
         }
-
-
-
         // GET: Activites/Edit/5
         public virtual async Task<ActionResult> Edit(int? id)
         {
@@ -52,7 +49,6 @@ namespace CoachSportif.Controllers
             }
             return View(obj);
         }
-
         // POST: CategorieActivites/Edit/5
         // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,7 +63,6 @@ namespace CoachSportif.Controllers
             }
             return View(o);
         }
-
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -81,7 +76,6 @@ namespace CoachSportif.Controllers
             }
             return View(obj);
         }
-
         // POST: Utilisateurs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -91,7 +85,6 @@ namespace CoachSportif.Controllers
             await db.RemoveAsync(await db.FindByIdAsync(id));
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

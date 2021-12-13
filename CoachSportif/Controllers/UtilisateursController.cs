@@ -30,12 +30,12 @@ namespace CoachSportif.Controllers
             if (ModelState.IsValid)
             {
                 Utilisateur u = await db.AddAsync(registerForm.GetUser(db.Getcontext()));
-                if (u != default)
+                if (u != default && registerForm.ProfilePicture != null)
                 {
-                    Session["logging"] = true;
                     registerForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + u.Id + Path.GetExtension(registerForm.ProfilePicture.FileName));
-                    return RedirectToAction("Log");
                 }
+                Session["logging"] = true;
+                return RedirectToAction("Log");
             }
             return View(registerForm);
         }
@@ -55,9 +55,6 @@ namespace CoachSportif.Controllers
             return View(new EditForm(utilisateur));
         }
 
-        // POST: Utilisateurs/Edit/5
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoginFilters]
@@ -67,9 +64,12 @@ namespace CoachSportif.Controllers
             {
                 if (await db.UpdateAsync(editForm.GetUser(db.Getcontext())))
                 {
-                    string file = editForm.Id + Path.GetExtension(editForm.ProfilePicture.FileName);
-                    editForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + file);
-                    Session["user_profile"] = file;
+                    if(editForm.ProfilePicture != null)
+                    {
+                        string file = editForm.Id + Path.GetExtension(editForm.ProfilePicture.FileName);
+                        editForm.ProfilePicture.SaveAs(Server.MapPath("~/Content/images/Utilisateurs/") + file);
+                        Session["user_profile"] = file;
+                    }
                     return RedirectToAction("Details", new { id = editForm.Id });
                 }
             }
@@ -136,9 +136,9 @@ namespace CoachSportif.Controllers
         }
 
         [AdminFilters]
-        public ActionResult AdminState(int id)
+        public async Task<ActionResult> AdminState(int id)
         {
-            db.FindByIdAsync(id).Result.ChangeAdminStateAsync(db.Getcontext());
+            (await db.FindByIdAsync(id)).ChangeAdminState(db.Getcontext());
             return RedirectToAction("Index");
         }
 

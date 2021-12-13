@@ -24,5 +24,17 @@ namespace CoachSportif.Controllers
             }
             return View(new ViewModelVille(ville.Id));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(Ville o)
+        {
+            if (ModelState.IsValid)
+            {
+                await db.AddAsync(o);
+                return RedirectToAction("Index");
+            }
+            return View(o);
+        }
     }
 }

@@ -23,18 +23,6 @@ namespace CoachSportif.Controllers
             }
             return View(o);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(CategorieActivite o)
-        {
-            if (ModelState.IsValid)
-            {
-                await db.UpdateAsync(o);
-                return RedirectToAction("Index");
-            }
-            return View(o);
-        }
     }
 
 

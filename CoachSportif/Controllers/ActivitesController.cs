@@ -26,7 +26,7 @@ namespace CoachSportif.Controllers
             if (ModelState.IsValid)
             {
                 Activite act = await db.AddAsync(activite.GetObject(db.Getcontext()));
-                if (act != default)
+                if (act != default && activite.ImageUrl != null)
                 {
                     activite.ImageUrl.SaveAs(Server.MapPath("~/Content/images/Activites/") + act.Id + act.ImageUrl);
                 }

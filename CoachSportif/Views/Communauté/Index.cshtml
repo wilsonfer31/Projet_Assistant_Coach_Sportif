@@ -29,7 +29,7 @@
                     @Html.Partial("Chat", Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat))
                 </div>
                 <footer>
-                    @Html.Partial("JoinAchat", new CoachSportif.Models.ViewModel.ViewModelChatGroupMessages { CurrentChat = 0 })
+                    @Html.Partial("JoinAchat", new CoachSportif.Models.ViewModel.ViewModelChatGroupMessages { CurrentChat = (int)ViewBag.CurrentChat })
                 </footer>
             }
             else

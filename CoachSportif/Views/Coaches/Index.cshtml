@@ -92,11 +92,7 @@
                 <td>${coach.CoursDispenses.length}</td>
 
                 <td>
-                    @if ((bool)Session["logging"])
-                    {
-
                     <a href="/Coaches/Details/${coach.Id}">Details</a>
-                    }
                     @if (Session["admin"] != null)
                     {
                         <span> | </span>

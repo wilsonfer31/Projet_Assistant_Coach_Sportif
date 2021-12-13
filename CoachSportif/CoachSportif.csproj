@@ -198,7 +198,7 @@
     <Content Include="Content\images\colorrun.jpg" />
     <Content Include="Content\images\cyclisme.jpg" />
     <Content Include="Content\images\ligneDeDepart.jpg" />
-    <Content Include="Content\images\noProfilImage.jpg" />
+    <Content Include="Content\images\Utilisateurs\noProfilImage.jpg" />
     <Content Include="Content\images\willCoachSoonLogo.png" />
     <Content Include="Content\images\yoga.jpg" />
     <Content Include="Content\main.css" />
@@ -307,7 +307,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\Activites\" />
-    <Folder Include="Content\images\Utilisateurs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
