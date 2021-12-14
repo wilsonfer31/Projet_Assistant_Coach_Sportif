@@ -60,10 +60,23 @@
                 {
                     foreach (Coaching_Models.Utilisateur membre in Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat).Membres)
                     {
+                        string stringSource = "noProfilImage.jpg";
+
+                        if (membre.ProfilePicture != null)
+                        {
+                            stringSource = membre.Id + membre.ProfilePicture;
+                        }
+                          
                         string userActuel = null;
                         if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
                         <li style="@userActuel">
-                            @membre.Pseudo
+                            <div class="displayflex d-flex align-items-center">
+                                <img class="imageHeader" src="~/Content/images/Utilisateurs/@stringSource" />
+                                <div class="pseudoMembreChat">
+                                    @membre.Pseudo
+                                </div>
+                            </div>
+                            
                         </li>
                     }
                 }
