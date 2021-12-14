@@ -12,7 +12,6 @@ namespace CoachSportif.Controllers
 {
     public class UtilisateursController : BaseController<Utilisateur>
     {
-
         // GET: Utilisateurs/Create
         public override ActionResult Create()
         {
@@ -148,7 +147,7 @@ namespace CoachSportif.Controllers
         }
 
 
-        public async Task<ActionResult> changePassword()
+        public ActionResult changePassword()
         {
             return View(new ViewModelVerificationMotDePasse() {Id = (int)Session["user_id"]});
         }
@@ -164,8 +163,6 @@ namespace CoachSportif.Controllers
                     await db.UpdateAsync(vmdp.GetUser(db.Getcontext()));
                 }              
             }
-
-
             return RedirectToAction("Details", new { id = vmdp.Id });
         }
     }
