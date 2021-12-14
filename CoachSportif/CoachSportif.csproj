@@ -303,6 +303,7 @@
     <Content Include="Views\Ville\Details.cshtml" />
     <Content Include="Views\Ville\Index.cshtml" />
     <Content Include="Views\Utilisateurs\changePassword.cshtml" />
+    <Content Include="Views\Shared\DetailsCours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

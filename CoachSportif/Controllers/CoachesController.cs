@@ -1,6 +1,7 @@
 ﻿using Coaching_Models;
 using CoachSportif.Filters;
 using CoachSportif.Tools;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -25,6 +26,19 @@ namespace CoachSportif.Controllers
             }
             ViewBag.Error = "Something Went Rong";
             return RedirectToAction("Create");
+        }
+        public async Task<ActionResult> DetailsCours(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Coach u = await db.FindByIdAsync(id);
+            if (u == null)
+            {
+                return HttpNotFound();
+            }
+            return View(u.CoursDispenses);
         }
 
         // POST: Coaches/Delete/5

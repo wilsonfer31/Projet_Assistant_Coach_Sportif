@@ -38,6 +38,20 @@ namespace CoachSportif.Controllers
             }
             return View(registerForm);
         }
+        public async Task<ActionResult> DetailsCours(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Utilisateur u = await db.FindByIdAsync(id);
+            if (u == null)
+            {
+                return HttpNotFound();
+            }
+            return View(u.CoursSuivis);
+        }
+
         // GET: Utilisateurs/Edit/5
         [LoginFilters]
         public override async Task<ActionResult> Edit(int? id)

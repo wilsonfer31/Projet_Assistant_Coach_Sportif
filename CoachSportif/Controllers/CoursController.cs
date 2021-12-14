@@ -65,5 +65,17 @@ namespace CoachSportif.Controllers
             }
             return RedirectToAction("Details", "Cours", id);
         }
+        public async Task<ActionResult> CoachLeave(int? id)
+        {
+            if (id.HasValue)
+            {
+                Cours c = db.CoachRemoveCours(id.Value);
+                if (await db.RemoveAsync(c))
+                {
+                    return RedirectToAction("DetailsCours", "Coaches", new { id = (int)Session["coach_id"] });
+                }
+            }
+            return RedirectToAction("DetailsCours", "Coaches", new { id = (int)Session["coach_id"] });
+        }
     }
 }

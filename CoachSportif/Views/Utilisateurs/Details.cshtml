@@ -105,34 +105,3 @@
    
 </p>
 
-<div class="table-wrapper">
-    <table class="alt">
-        <thead>
-            <tr>
-                <th>#</th>
-
-                <th>Cours</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @{ int i = 1; }
-            @foreach (Coaching_Models.Cours cour in Model.CoursSuivis.OrderBy(cr => cr.DateCours))
-            {
-                <tr>
-                    <td>@i</td>
-
-                    <td>@cour.Activite.Nom</td>
-                    <td>@cour.DateCours</td>
-                </tr>
-                i++;
-
-            }
-
-
-        </tbody>
-
-    </table>
-</div>
-

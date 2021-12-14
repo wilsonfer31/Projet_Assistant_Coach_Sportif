@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Coaching_Models.Cours>
+
+@{
+    ViewBag.Title = "DetailsCours";
+}
+
+<h2>Mes Cours</h2>
+<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Cours</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{ int i = 1; }
+            @foreach (Coaching_Models.Cours cour in Model.OrderBy(cr => cr.DateCours))
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@cour.Activite.Nom</td>
+                    <td>@cour.DateCours</td>
+                    <td>
+                        @Html.ActionLink("Chat", "Index", "Communauté", new { id = cour.Chat.Id }, null) |
+                        @if (Session["coach_id"] != null && (int)Session["coach_id"] == cour.Coach.Id)
+                        {
+                            @Html.ActionLink("Annuler", "Delete", "Cours", new { id = cour.Id }, null)
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Se désinscrire", "Leave", "Cours", new { id = cour.Id }, null)
+                        }
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+</div>

@@ -109,15 +109,20 @@ namespace CoachSportif.Tools
             }
             return c;
         }
-        public static Cours CoachRemoveCours(this GenericDao<Cours> gd, int coursId, int coachId)
+        public static Cours CoachRemoveCours(this GenericDao<Cours> gd, int coursId)
         {
             MyContext db = gd.Getcontext();
-            Cours cours = db.Cours.Find(coursId);
-            Coach coach = db.Coaches.Find(coachId);
-            if (cours.Coach == coach)
+            Cours cours = db.Cours
+                .Include(c => c.Adherents.Select(a => a.GroupeChats.Select(gc => gc.Membres)))
+                .Include(c => c.Adherents.Select(a => a.CoursSuivis))
+                .Include(c => c.Coach.Utilisateur.GroupeChats.Select(gc => gc.Membres))
+                .Include(c => c.Coach.CoursDispenses)
+                .Include(c => c.Chat.ChatMessages)
+                .SingleOrDefault( c => c.Id == coursId);
+            if (cours.Coach == cours.Coach)
             {
-                coach.CoursDispenses.Remove(cours);
-                coach.Utilisateur.GroupeChats.Remove(cours.Chat);
+                cours.Coach.CoursDispenses.Remove(cours);
+                cours.Coach.Utilisateur.GroupeChats.Remove(cours.Chat);
                 foreach(Utilisateur u in cours.Adherents)
                 {
                     u.CoursSuivis.Remove(cours);
@@ -125,6 +130,8 @@ namespace CoachSportif.Tools
                     cours.Adherents.Remove(u);
                     cours.Chat.Membres.Remove(u);
                 }
+                db.Messages.RemoveRange(cours.Chat.ChatMessages);
+                db.GroupeChats.Remove(cours.Chat);
             }
             return cours;
         }

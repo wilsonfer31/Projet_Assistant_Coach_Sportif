@@ -1,5 +1,6 @@
 ﻿using CoachSportif.Models;
 using CoachSportif.Tools;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -58,7 +59,7 @@ namespace CoachSportif.DAO
                 await db.SaveChangesAsync();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }

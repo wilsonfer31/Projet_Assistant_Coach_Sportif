@@ -44,7 +44,18 @@
             else
             {
                 <li>@Html.ActionLink("Ma Ville", "Details", "Ville")</li>
-                <li>@Html.ActionLink("Mon profil", "Details", "Utilisateurs", new { id = Session["user_id"] }, null)</li>
+                <li></li>
+                <li style="margin-left:0;padding-left:0">
+                    Mon Profil
+                    <ul class="dropdown">
+                        <li class="button primary">@Html.ActionLink("Mes Informations", "Details", "Utilisateurs", new { id = Session["user_id"] }, null)</li>
+                        <li class="button primary">@Html.ActionLink("Mes Cours Suivis", "DetailsCours", "Utilisateurs", new { id = Session["user_id"] }, null)</li>
+                        @if (Session["coach_id"] != null)
+                        {
+                            <li class="button primary">@Html.ActionLink("Mes Cours Dispensés", "DetailsCours", "Coaches", new { id = Session["coach_id"] }, null)</li>
+                        }
+                    </ul>
+                </li>
                 if (Session["admin"] != null)
                 {
                     <li>
@@ -70,10 +81,10 @@
                 <li>
 
                     <label>@Session["user_pseudo"]</label>
-                     </li>
-<li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
+                </li>
+                <li class="button primary">@Html.ActionLink("Deconnexion", "Logout", "Utilisateurs")</li>
 
-                }
-            </ul>
+            }
+        </ul>
     </nav>
 </header>
