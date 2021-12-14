@@ -4,8 +4,11 @@
     ViewBag.Title = "Index";
 }
 
+<h2>Gestion des utilisateurs</h2>
+<hr />
+
 <p>
-    @Html.ActionLink("Creer un Coach", "Create", "Coaches")
+    @Html.ActionLink("Ajouter un Coach", "Create", "Coaches")
 </p>
 <table class="table">
     <tr>
@@ -59,7 +62,7 @@
             if (item.Admin) { @Html.ActionLink("Supprimer Droits Admin", "AdminState", new { id = item.Id })}
             else { @Html.ActionLink("Donner Droits Admin", "AdminState", new { id = item.Id })}
             <span> | </span>
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Effacer", "Delete", new { id = item.Id })
         }
     </td>
 </tr>
