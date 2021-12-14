@@ -4143,3 +4143,12 @@ textarea {
 .displayflex {
 	display:flex;
 }
+
+
+
+.titleSpan {
+	background: -webkit-linear-gradient(#e44c65, #444);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	
+}
