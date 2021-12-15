@@ -59,7 +59,7 @@ namespace CoachSportif.DAO
                 await db.SaveChangesAsync();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }

@@ -5,6 +5,14 @@
 }
 
 <h2>Mes Cours</h2>
+
+@if (Session["coach_id"] != null)
+{
+    <p>
+        @Html.ActionLink("Creer un Cours", "Create", "Cours")
+    </p>
+    <hr />
+}
 <div class="table-wrapper">
     <table class="alt">
         <thead>

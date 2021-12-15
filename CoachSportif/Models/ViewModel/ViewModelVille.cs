@@ -13,7 +13,12 @@ namespace CoachSportif.Models.ViewModel
         {
             this.InitVilleViewModel(villeID);
         }
-
+        public ViewModelVille(Ville v)
+        {
+            Ville = v;
+            this.InitVilleViewModel(v.Id);
+        }
+        public Ville Ville { get; set; }
         public IEnumerable<Cours> Cours { get; set; }
         public IEnumerable<Coach> Coaches { get; set; }
     }

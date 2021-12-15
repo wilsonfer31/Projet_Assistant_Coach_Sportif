@@ -1,39 +1,77 @@
-﻿@model IEnumerable<Coaching_Models.Ville>
+﻿@model IEnumerable<CoachSportif.Models.ViewModel.ViewModelVille>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Gestion des villes</h2>
+<h2>Les Villes</h2>
 <hr />
-<p>
-    @Html.ActionLink("Ajouter une ville", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nom)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.ActionLink("Modifer", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Aperçu", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Effacer", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="row gtr-uniform gtr-50">
+    <div class="col-6 col-12-xsmall">
+        <input type="text" name="" value="" placeholder="Nom" />
+    </div>
+    <div class="col-6 col-12-xsmall">
+        <input type="text" name="" value="" placeholder="CP" />
+    </div>
+</div>
 
-</table>
+<div class="table-wrapper"></div>
+
+<script>
+    function recherche() {
+        let inputs = document.querySelectorAll("input");
+        inputs.forEach(input => { input.addEventListener("change", drawTable); input.addEventListener("keyup",drawTable)})
+        let Nom = inputs.item(0).value;
+        let CP = inputs.item(1).value;
+        let tabFiltre = [];
+        for (let v of @Html.Raw(Json.Encode(Model))) {
+            if (v.Ville.Nom.includes(Nom) && v.Ville.CP.toString().includes(CP)) {
+                tabFiltre.push(v);
+            }
+        }
+        return tabFiltre;
+    }
+
+    function drawTable() {
+        let html = `
+<table class="alt">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Nombre de Coaches</th>
+                <th>Nombre De Cours</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>`
+
+        for (let vm of recherche()) {
+            let i = 1;
+            html += `
+            <tr>
+                <td>${i}</td>
+                <td>${vm.Ville.CP}</td>
+                <td>${vm.Ville.Nom}</td>
+                <td>${vm.Coaches.length}</td>
+                <td>${vm.Cours.length}</td>
+                <td>
+                    <a href="/Ville/Details/${vm.Ville.Id}">Details</a>
+                    @if (Session["admin"] != null)
+                    {
+                        <span> | </span>
+                        <a href="/Ville/Delete/${vm.Ville.Id}">Supprimer</a>
+                    }
+                </td>
+            </tr>`
+            i++;
+        }
+        html += `
+        </tbody>
+    </table>`
+        document.querySelector(".table-wrapper").innerHTML = html;
+    };
+    drawTable();
+</script>

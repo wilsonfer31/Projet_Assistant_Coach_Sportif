@@ -1,54 +1,32 @@
 ﻿@model IEnumerable<Coaching_Models.Coach>
 
-
-@{ int i = 1;
-
-
-
-    string stringSource = "../../Content/images/utilisateurs/";
-
-
-
-
+@{ 
+    int i = 1;
+    string stringSource = "noProfilImage.jpg";
 }
 
 @foreach (var coach in Model)
 {
-
-    if (Session["user_profile"] != null)
+    if (coach.Utilisateur.ProfilePicture != null)
     {
-        stringSource += coach.Utilisateur.Id + coach.Utilisateur.ProfilePicture;
-    }
-    else
-    {
-        stringSource += "noProfilImage.jpg";
+        stringSource = coach.Utilisateur.Id + coach.Utilisateur.ProfilePicture;
     }
 
     <article class="card">
         <div class="card-header">
-
-
-                <img src=@stringSource alt="ActImage">
-
+            <img src="/Content/images/utilisateurs/@stringSource" alt="ActImage">
         </div>
         <div class="card-body">
-
             <h2>@coach.Utilisateur.Prenom @coach.Utilisateur.Nom</h2>
             <p>@coach.Utilisateur.Pseudo</p>
-
-
         </div>
         <div class="card-footer">
-
             <div class="btn-card">
                 @Html.ActionLink("Details", "Details", "Coaches", new { id = coach.Id }, new { @class = "button noselect" })
             </div>
         </div>
     </article>
-
     i++;
-
-
 }
 
 
