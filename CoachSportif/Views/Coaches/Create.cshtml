@@ -37,7 +37,7 @@
         </th>
         <th></th>
     </tr>`
-        let json = @Html.Raw(Json.Encode(Model));
+        let json = @Html.Raw(Json.Encode(Model.ToList()));
         for (var user of json) {
         if (user.Pseudo.includes(pseudo))
         {

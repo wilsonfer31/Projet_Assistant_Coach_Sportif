@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    
 }
 
 <h2>Les Villes</h2>
@@ -25,7 +26,7 @@
         let Nom = inputs.item(0).value;
         let CP = inputs.item(1).value;
         let tabFiltre = [];
-        for (let v of @Html.Raw(Json.Encode(Model))) {
+        for (let v of @Html.Raw(Json.Encode(Model.Select(vm => new { Ville = vm.Ville, Cours = vm.Cours.ToList(), Coaches = vm.Coaches.ToList() })))) {
             if (v.Ville.Nom.includes(Nom) && v.Ville.CP.toString().includes(CP)) {
                 tabFiltre.push(v);
             }
