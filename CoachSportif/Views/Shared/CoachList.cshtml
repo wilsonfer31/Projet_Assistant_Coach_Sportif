@@ -5,7 +5,7 @@
     string stringSource = "noProfilImage.jpg";
 }
 
-@foreach (var coach in Model)
+@foreach (var coach in Model.ToList())
 {
     if (coach.Utilisateur.ProfilePicture != null)
     {

@@ -91,7 +91,6 @@
                     var xhr = new XMLHttpRequest();
                     xhr.onload = function () {
                             setChatContent(xhr.responseText)
-                            document.querySelector("textarea").value = "";
                     };
                     let chat = @((int)ViewBag.CurrentChat);
                     xhr.open('get', '/Communauté/Chat/'+chat, true);

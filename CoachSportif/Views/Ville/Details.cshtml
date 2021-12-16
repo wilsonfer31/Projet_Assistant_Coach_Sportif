@@ -6,9 +6,9 @@
         let CardContainer = document.querySelector(".cards-container")
         CardContainer.removeChild(CardContainer.firstChild)
         if (id == 0) {
-            CardContainer.innerHTML = `@Html.Partial("Cards",Model.Cours)`
+            CardContainer.innerHTML = `@Html.Partial("Cards",Model.Cours.ToList())`
         } else {
-            CardContainer.innerHTML = `@Html.Partial("CoachList",Model.Coaches)`
+            CardContainer.innerHTML = `@Html.Partial("CoachList",Model.Coaches.ToList())`
         }
     }
 </script>

@@ -193,11 +193,23 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ChatStyle.css" />
     <Content Include="Content\fontawesome-all.min.css" />
+    <Content Include="Content\images\Activites\1.jpg" />
+    <Content Include="Content\images\Activites\1.png" />
+    <Content Include="Content\images\Activites\11.jpg" />
+    <Content Include="Content\images\Activites\2.jpg" />
+    <Content Include="Content\images\Activites\3.PNG" />
+    <Content Include="Content\images\Activites\4.jpg" />
+    <Content Include="Content\images\Activites\AllSportLogo.png" />
     <Content Include="Content\images\AllSportLogo.png" />
     <Content Include="Content\images\BackgroundAccueil.jpg" />
     <Content Include="Content\images\colorrun.jpg" />
     <Content Include="Content\images\cyclisme.jpg" />
     <Content Include="Content\images\ligneDeDepart.jpg" />
+    <Content Include="Content\images\Utilisateurs\3003.jpg" />
+    <Content Include="Content\images\Utilisateurs\5.jpg" />
+    <Content Include="Content\images\Utilisateurs\5.PNG" />
+    <Content Include="Content\images\Utilisateurs\6.jpg" />
+    <Content Include="Content\images\Utilisateurs\7.jpg" />
     <Content Include="Content\images\Utilisateurs\noProfilImage.jpg" />
     <Content Include="Content\images\willCoachSoonLogo.png" />
     <Content Include="Content\images\yoga.jpg" />
@@ -306,7 +318,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\Activites\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
