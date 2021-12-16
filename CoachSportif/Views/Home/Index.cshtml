@@ -13,7 +13,7 @@
                     Venez nous racontrer,
                     Partager des conseils,
                     ou des entrainements.
-                    
+
                     <br />
 
                 </i>
@@ -22,7 +22,7 @@
         <span class="image"><img src="~/Content/images/AllSportLogo.png" alt="" /></span>
 
     </div>
-    
+
     <a href="#one" class="goto-next scrolly">Next</a>
 </section>
 
@@ -52,8 +52,16 @@
                 <div class="col-4 col-12-medium">
                     <header>
                         <h2>Meme le dernier d'une course , est devant de ceux qui ne courent pas!</h2>
-                        <a href="/Utilisateurs/Log">  <br /> Rejoins Nous! </a>
-</header>
+                        @if (Session["user_id"] == null)
+                        {
+                            <a href="/Utilisateurs/Log">  <br /> Rejoins Nous! </a>
+                        }
+
+                        else
+                        {
+                            <a href="/Utilisateurs/Log">  <br /></a>
+                        }
+                    </header>
                 </div>
 
             </div>
@@ -64,26 +72,26 @@
 
 <!-- Two -->
 @*<section id="two" class="spotlight style3 left">
-    <span class="image fit main bottom"><img src="~/Content/images/yoga.jpg" alt="" /></span>
-    <div class="content">
-        <header>
-            <h2>Un forum de chat accesible a tous !</h2>
-            <p>Chaque utilisateur est intégrer à un chat personaliser en fonction de sa position il pourra donc échanger avec la communauté proche de chez lui. </p>
-        </header>
-       
-    </div>
-    <a href="#three" class="goto-next scrolly">Next</a>
-</section>*@
+        <span class="image fit main bottom"><img src="~/Content/images/yoga.jpg" alt="" /></span>
+        <div class="content">
+            <header>
+                <h2>Un forum de chat accesible a tous !</h2>
+                <p>Chaque utilisateur est intégrer à un chat personaliser en fonction de sa position il pourra donc échanger avec la communauté proche de chez lui. </p>
+            </header>
+
+        </div>
+        <a href="#three" class="goto-next scrolly">Next</a>
+    </section>*@
 
 <section id="three" class="spotlight style2 right">
-<span class="image fit main bottom"><img src="~/Content/images/colorrun.jpg" alt="" /></span>
-<div class="content">
-    <header>
-        <h2>Une Forte communauté !</h2>
-        <p>Rien ne vous empechera de réaliser votre séance de sport ou que vous soyez...Votre communauté est actif n'hésitez pas a les soliciter!</p>
-    </header>
-</div>
-<a href="#four" class="goto-next scrolly">Next</a>
+    <span class="image fit main bottom"><img src="~/Content/images/colorrun.jpg" alt="" /></span>
+    <div class="content">
+        <header>
+            <h2>Une Forte communauté !</h2>
+            <p>Rien ne vous empechera de réaliser votre séance de sport ou que vous soyez...Votre communauté est actif n'hésitez pas a les soliciter!</p>
+        </header>
+    </div>
+    <a href="#four" class="goto-next scrolly">Next</a>
 </section>
 
 <!-- Three  -->
@@ -94,7 +102,7 @@
             <h2>Des prix attractif</h2>
             <p>Des tarifs intéressant vous seront proposer ! en effet nous vous mettons directement en relation avec nos coachs sans INTERMEDIAIRE!!</p>
         </header>
-        
+
     </div>
     <a href="#five" class="goto-next scrolly">Next</a>
 </section>
