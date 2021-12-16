@@ -26,7 +26,7 @@
             @if (ViewBag.CurrentChat != null)
             {
                 <div id="chatcontainer">
-                    @Html.Partial("Chat", Model.SingleOrDefault(c => c.Id == (int)ViewBag.CurrentChat))
+                    
                 </div>
                 <footer>
                     @Html.Partial("JoinAchat", new CoachSportif.Models.ViewModel.ViewModelChatGroupMessages { CurrentChat = (int)ViewBag.CurrentChat })
@@ -42,8 +42,7 @@
                     var xhr = new XMLHttpRequest();
                     xhr.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
-                            document.querySelector("#chatcontainer").innerHTML = "<header>" + xhr.responseText.split("<header>")[1].split("</ul>")[0]
-                            objDiv.scrollTop = objDiv.scrollHeight;
+                            setChatContent(xhr.responseText);
                             document.querySelector("textarea").value = "";
                         }
                     };
@@ -66,7 +65,7 @@
                         {
                             stringSource = membre.Id + membre.ProfilePicture;
                         }
-                          
+
                         string userActuel = null;
                         if (membre.Id == (int)Session["user_id"]) { userActuel = "color: #e44c65;"; }
                         <li style="@userActuel">
@@ -76,15 +75,33 @@
                                     @membre.Pseudo
                                 </div>
                             </div>
-                            
+
                         </li>
                     }
                 }
             </ul>
         </aside>
         <script>
-            var objDiv = document.getElementById("chat");
-            objDiv.scrollTop = objDiv.scrollHeight;
+            function setChatScroll() {
+                var objDiv = document.querySelector("#chat");
+                objDiv.scrollTop = objDiv.scrollHeight;
+            }
+            function setChatContent(content) {
+                if (content == null) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onload = function () {
+                            setChatContent(xhr.responseText)
+                            document.querySelector("textarea").value = "";
+                    };
+                    let chat = @((int)ViewBag.CurrentChat);
+                    xhr.open('get', '/Communauté/Chat/'+chat, true);
+                    xhr.send(null);
+                    return false;
+                }
+                document.querySelector("#chatcontainer").innerHTML = "<header>" + content.split("<header>")[1].split("</ul>")[0];
+                setTimeout(setChatContent, 5000);
+            }
+            setChatContent();
         </script>
     }
     else

@@ -31,6 +31,10 @@ namespace CoachSportif.Controllers
             }
             return View(userinfo.GroupeChats);
         }
+        public ActionResult Chat(int? id)
+        {
+            return View(myContext.GroupeChats.Find(id));
+        }
 
         [HttpPost]
         public ActionResult Chat(ViewModelChatGroupMessages viewModelChatGroupMessages)
