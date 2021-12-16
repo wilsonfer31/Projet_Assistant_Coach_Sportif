@@ -24,6 +24,4 @@ namespace CoachSportif.Controllers
             return View(o);
         }
     }
-
-
 }
