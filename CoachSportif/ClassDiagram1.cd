@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CoachSportif.BundleConfig" Collapsed="true">
+    <Position X="11.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.FilterConfig" Collapsed="true">
+    <Position X="11.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.RouteConfig" Collapsed="true">
+    <Position X="11.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.MvcApplication" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.ActivitesController">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ActivitesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.BaseController&lt;T&gt;" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAAAEAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.CategorieActivitesController">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\CategorieActivitesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.CoachesController">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACABAAAAAAAAAAAAEAIAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\CoachesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.CommunautéController">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAQAAIBAAAAAAAAAAAAABAgAAgAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CommunautéController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.CoursController">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAEAEEAAAAEAABAAAAA=</HashCode>
+      <FileName>Controllers\CoursController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.HomeController">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.UtilisateursController">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAASAAAAAAAAABAAAAAIAAAgBAkACAAAAABAAAgA=</HashCode>
+      <FileName>Controllers\UtilisateursController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Controllers.VilleController">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\VilleController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.DAO.GenericDao&lt;T&gt;" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACAQAAAAAAgAIAEAAAAAAAgAAAAAAAAgAAA=</HashCode>
+      <FileName>DAO\GenericDao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Filters.AdminFilters" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filters\AdminFilters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Filters.CoachFilters" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filters\CoachFilters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Filters.LoginFilters" Collapsed="true">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filters\LoginFilters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Migrations.InitaModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
+      <FileName>Migrations\202111021547410_InitaModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoachSportif.Migrations.Gestion_Admin" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
+      <FileName>Migrations\202111041347498_Gestion_Admin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoachSportif.Migrations.ActiviteCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
+      <FileName>Migrations\202111052045593_ActiviteCategory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoachSportif.Migrations.ProfilePicture" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
+      <FileName>Migrations\202112090941213_ProfilePicture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoachSportif.Migrations.CoursChat" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAMAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAI=</HashCode>
+      <FileName>Migrations\202112101816398_CoursChat.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoachSportif.Migrations.Configuration" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Migrations\Configuration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.FormsModel.CreateActiviteForm" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FormsModel\CreateActiviteForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.FormsModel.CreateCoursForm" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgCAAQAAAAAQACBEQAAAAAAAEAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FormsModel\CreateCoursForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.FormsModel.EditForm" Collapsed="true">
+    <Position X="9.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAAAEAAAABAABCAAQQAAAAA=</HashCode>
+      <FileName>Models\FormsModel\EditForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.FormsModel.LogForm" Collapsed="true">
+    <Position X="9.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FormsModel\LogForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.FormsModel.RegisterForm" Collapsed="true">
+    <Position X="9.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAEAAAAAAAAEAAAAAAABAAAAQAAAAA=</HashCode>
+      <FileName>Models\FormsModel\RegisterForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.MailForm" Collapsed="true">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAgAAAAAAAAAAAIAAAQAAAAA=</HashCode>
+      <FileName>Models\MailForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.MyContext" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEABEABAAIAAAAAAEAAAAAAAAIAAAQAAAAA=</HashCode>
+      <FileName>Models\MyContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.ViewModel.ViewModelChatGroupMessages" Collapsed="true">
+    <Position X="7.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\ViewModel\ViewModelChatGroupMessages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.ViewModel.ViewModelVerificationMotDePasse" Collapsed="true">
+    <Position X="11.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModel\ViewModelVerificationMotDePasse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Models.ViewModel.ViewModelVille" Collapsed="true">
+    <Position X="11.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModel\ViewModelVille.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Tools.Extensions" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABAEAgAAAACIIAAIAAAAAAAAIBAGACAEAAACAAAAAA=</HashCode>
+      <FileName>Tools\Extensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoachSportif.Tools.HashTool" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tools\HashTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

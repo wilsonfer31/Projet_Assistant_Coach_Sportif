@@ -11,7 +11,6 @@ namespace CoachSportif.DAO
     public class GenericDao<T>
     {
         private readonly MyContext db = new MyContext();
-
         public MyContext Getcontext()
         {
             return db;

@@ -205,7 +205,9 @@
     <Content Include="Content\images\colorrun.jpg" />
     <Content Include="Content\images\cyclisme.jpg" />
     <Content Include="Content\images\ligneDeDepart.jpg" />
+    <Content Include="Content\images\Utilisateurs\3.jpg" />
     <Content Include="Content\images\Utilisateurs\3003.jpg" />
+    <Content Include="Content\images\Utilisateurs\4.jpg" />
     <Content Include="Content\images\Utilisateurs\5.jpg" />
     <Content Include="Content\images\Utilisateurs\5.PNG" />
     <Content Include="Content\images\Utilisateurs\6.jpg" />
@@ -237,6 +239,7 @@
     <Content Include="fonts\fa-solid-900.ttf" />
     <Content Include="fonts\fa-solid-900.woff" />
     <Content Include="fonts\fa-solid-900.woff2" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\breakpoints.min.js" />
     <Content Include="Scripts\browser.min.js" />
