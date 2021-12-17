@@ -237,6 +237,7 @@
     <Content Include="fonts\fa-solid-900.ttf" />
     <Content Include="fonts\fa-solid-900.woff" />
     <Content Include="fonts\fa-solid-900.woff2" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\breakpoints.min.js" />
     <Content Include="Scripts\browser.min.js" />

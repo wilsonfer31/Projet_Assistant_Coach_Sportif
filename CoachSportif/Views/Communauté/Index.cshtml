@@ -44,6 +44,7 @@
                         if (this.readyState === 4 && this.status === 200) {
                             setChatContent(xhr.responseText);
                             document.querySelector("textarea").value = "";
+                            setChatScroll();
                         }
                     };
                     xhr.open('post', '/Communauté/Chat', true);
@@ -82,15 +83,21 @@
             </ul>
         </aside>
         <script>
-            function setChatScroll() {
+            function setChatScroll(pos) {
+                if (pos == null) {
+                    pos = objDiv.scrollHeight;
+                }
                 var objDiv = document.querySelector("#chat");
-                objDiv.scrollTop = objDiv.scrollHeight;
+                objDiv.scrollTop = pos;
             }
             function setChatContent(content) {
                 if (content == null) {
                     var xhr = new XMLHttpRequest();
                     xhr.onload = function () {
-                            setChatContent(xhr.responseText)
+                        let objDiv = document.querySelector("#chat");
+                        let pos = (objDiv != null && objDiv.scrollTop != scrollHeight) ? obj.scrollTop : null;
+                        setChatContent(xhr.responseText);
+                        setChatScroll(pos);
                     };
                     let chat = @((int)ViewBag.CurrentChat);
                     xhr.open('get', '/Communauté/Chat/'+chat, true);

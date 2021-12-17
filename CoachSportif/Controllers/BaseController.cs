@@ -10,13 +10,10 @@ namespace CoachSportif.Controllers
     {
         protected readonly GenericDao<T> db = new GenericDao<T>();
 
-        // GET: Activites
         public virtual async Task<ActionResult> Index()
         {
             return View(await db.GetAllAsync());
-        }
-
-        // GET: Activites/Details/5
+        } //GET
         public virtual async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -29,13 +26,11 @@ namespace CoachSportif.Controllers
                 return HttpNotFound();
             }
             return View(obj);
-        }
-        // GET: CategorieActivites/Create
+        } //GET
         public virtual ActionResult Create()
         {
             return View();
-        }
-        // GET: Activites/Edit/5
+        } //GET
         public virtual async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -48,10 +43,7 @@ namespace CoachSportif.Controllers
                 return HttpNotFound();
             }
             return View(obj);
-        }
-        // POST: CategorieActivites/Edit/5
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        } //GET
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(T o)
@@ -62,7 +54,7 @@ namespace CoachSportif.Controllers
                 return RedirectToAction("Index");
             }
             return View(o);
-        }
+        } //GET
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -76,7 +68,6 @@ namespace CoachSportif.Controllers
             }
             return View(obj);
         }
-        // POST: Utilisateurs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [LoginFilters]

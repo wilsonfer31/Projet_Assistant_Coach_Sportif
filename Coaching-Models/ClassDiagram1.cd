@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Coaching_Models.Activite">
+    <Position X="12.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.CategorieActivite">
+    <Position X="10.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CategorieActivite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.Coach">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Coach.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.Cours">
+    <Position X="19.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABEAEAAAAAAAgAAAAgAAAAAQAAAAAA=</HashCode>
+      <FileName>Cours.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.BaseEntity">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.DescribedEntity">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\DescribedEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.IllustratedEntity">
+    <Position X="12.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\IllustratedEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.NamedEntity">
+    <Position X="12.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\NamedEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.GroupeChat">
+    <Position X="8" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>GroupeChat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.Message">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAABAAgAAAAAAAA=</HashCode>
+      <FileName>Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.Utilisateur">
+    <Position X="14.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACEAAAkAAEAAAAAQAAEAAAAAAABCAAQQAAAAA=</HashCode>
+      <FileName>Utilisateur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coaching_Models.Ville">
+    <Position X="17" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ville.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
